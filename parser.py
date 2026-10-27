@@ -15,6 +15,7 @@ def parse_m3u_from_url(url):
             lines = content.splitlines()
             current_group = "Общие"
             current_name = ""
+            current_logo = ""
             
             for line in lines:
                 line = line.strip()
@@ -26,6 +27,13 @@ def parse_m3u_from_url(url):
                     else:
                         current_group = "Общие"
                     
+                    # Ищем ссылку на логотип (tvg-logo)
+                    logo_match = re.search(r'tvg-logo="([^"]+)"', line)
+                    if logo_match:
+                        current_logo = logo_match.group(1)
+                    else:
+                        current_logo = ""
+                    
                     # Ищем название канала после запятой
                     parts = line.split(',')
                     if len(parts) > 1:
@@ -35,16 +43,17 @@ def parse_m3u_from_url(url):
                         channels.append({
                             "name": current_name,
                             "group": current_group,
+                            "logo": current_logo,
                             "url": line
                         })
                         current_name = ""
+                        current_logo = ""
     except Exception as e:
         print(f"[!] Ошибка при скачивании {url}: {e}")
     
     return channels
 
 def main():
-    # Расширенный список мастер-листов iptv-org (Россия + Русский язык)
     sources = [
         "https://iptv-org.github.io/iptv/countries/ru.m3u",
         "https://iptv-org.github.io/iptv/languages/rus.m3u"
@@ -57,7 +66,7 @@ def main():
         print(f"[+] Найдено каналов в источнике: {len(parsed)}")
         all_channels.extend(parsed)
 
-    # Дедупликация по URL (чтобы избежать повторов)
+    # Дедупликация по URL
     unique_channels = {}
     for ch in all_channels:
         if ch["url"] not in unique_channels:
@@ -65,12 +74,12 @@ def main():
 
     final_list = list(unique_channels.values())
 
-    print(f"[*] Всего уникальных каналов после объединения: {len(final_list)}")
+    print(f"[*] Всего уникальных каналов с логотипами: {len(final_list)}")
 
     with open("channels.json", "w", encoding="utf-8") as f:
         json.dump(final_list, f, ensure_ascii=False, indent=2)
     
-    print("[+] Парсинг завершен, все каналы сохранены в channels.json")
+    print("[+] Парсинг завершен, все данные сохранены в channels.json")
 
 if __name__ == "__main__":
     main()
