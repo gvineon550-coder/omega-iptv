@@ -2,6 +2,7 @@ import json
 import urllib.request
 import ssl
 import datetime
+import re
 from urllib.parse import urlparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
@@ -26,10 +27,21 @@ def get_host(url):
     except Exception:
         return url
 
+def is_protected_channel(name):
+    """Определяет, является ли канал тайм-шифтом (+2, +4 и т.д.) 
+       или важной вариацией, которую нельзя вырезать."""
+    # Ищем в названии паттерны вроде +2, +3, +4, (2ч) и т.п.
+    if re.search(r'\+\d+', name) or re.search(r'\(\+\d+\)', name):
+        return True
+    return False
+
 def check_stream(ch):
     global host_ua_cache
     host = get_host(ch["url"])
     
+    # Если это защищенный канал с тайм-шифтом (+2, +4...), даем ему приоритет и мягкую проверку
+    is_protected = is_protected_channel(ch["name"])
+
     agents_to_try = list(CHECKER_AGENTS)
     if host in host_ua_cache:
         cached_ua = host_ua_cache[host]
@@ -46,13 +58,20 @@ def check_stream(ch):
         }
         try:
             req = urllib.request.Request(ch["url"], headers=headers, method="GET")
-            with urllib.request.urlopen(req, timeout=2.5, context=ctx) as resp:
-                if resp.status in [200, 206, 302]:
+            # Чуть увеличиваем таймаут для тайм-шифтов
+            timeout_val = 3.5 if is_protected else 2.5
+            with urllib.request.urlopen(req, timeout=timeout_val, context=ctx) as resp:
+                if resp.status in [200, 206, 302, 403]: # 403 тоже считаем живым (геоблок дата-центра)
                     host_ua_cache[host] = ua
                     return ch, True
         except Exception:
             continue
             
+    # Если это канал с +2, +4 и т.д., но проверка не прошла из-за блокировки GitHub — 
+    # ВСЕ РАВНО СОХРАНЯЕМ ЕГО, чтобы он не потерялся для вашего домашнего плеера!
+    if is_protected:
+        return ch, True
+
     return ch, False
 
 def main():
@@ -64,7 +83,7 @@ def main():
         return
 
     total = len(channels)
-    print(f"[*] Проверка {total} каналов с сохранением логотипов...")
+    print(f"[*] Умная параллельная проверка ВСЕХ {total} каналов (с защитой тайм-шифтов)...")
 
     valid_channels = []
     checked_count = 0
@@ -85,7 +104,7 @@ def main():
             status_text = "WORKING" if is_working else "DEAD    "
             print(f"[{bar}] {percent}% ({checked_count}/{total}) | {status_text} -> [{ch['group']}] {ch['name']}")
 
-    # Генерация M3U плейлиста с tvg-logo
+    # Генерация M3U плейлиста
     m3u_content = "#EXTM3U\n"
     for ch in valid_channels:
         m3u_content += f"#EXTVLCOPT:http-user-agent={PLAYLIST_USER_AGENT}\n"
@@ -95,7 +114,7 @@ def main():
     with open("playlist.m3u", "w", encoding="utf-8") as f:
         f.write(m3u_content)
 
-    # Генерация HTML для GitHub Pages с иконками
+    # Генерация HTML для сайта статуса
     html_content = f"""<!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -113,7 +132,7 @@ def main():
 </head>
 <body>
     <h1>⚡ Omega IPTV Status (Wink Edition)</h1>
-    <p>Автоматический чекер IPTV с категориями и логотипами.</p>
+    <p>Автоматический чекер IPTV с защитой тайм-шифтов (+2, +4) и логотипами.</p>
     <a class="btn" href="playlist.m3u">Скачать рабочий M3U плейлист</a>
     <h2>Рабочие каналы ({len(valid_channels)} из {total}):</h2>
     <div>
@@ -133,7 +152,7 @@ def main():
     now = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
     readme_content = f"""# ⚡ Omega IPTV Auto-Checker (Wink Edition)
 
-Автоматический парсер, стелс-чекер и генератор плейлистов с логотипами и поддержкой Wink. Работает на GitHub Actions.
+Автоматический парсер, стелс-чекер с защитой тайм-шифтов (`+2`, `+4` и т.д.) и генератор плейлистов. Работает на GitHub Actions.
 
 ## 📊 Статус системы
 * **Последнее обновление:** `{now}`
@@ -149,7 +168,7 @@ def main():
     with open("README.md", "w", encoding="utf-8") as f:
         f.write(readme_content)
 
-    print(f"[+] Готово! Проверено: {total}, Рабочих каналов: {len(valid_channels)}, логотипы добавлены.")
+    print(f"[+] Готово! Проверено: {total}, Каналов в плейлисте (с учетом тайм-шифтов): {len(valid_channels)}")
 
 if __name__ == "__main__":
     main()
