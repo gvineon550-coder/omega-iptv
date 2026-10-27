@@ -9,7 +9,6 @@ ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
-# Список агентов: Wink, hlswinkplayer, стандартные браузеры и VLC
 CHECKER_AGENTS = [
     "Wink/1.31.1",
     "hlswinkplayer",
@@ -18,9 +17,7 @@ CHECKER_AGENTS = [
     "VLC/3.0.20 LibVLC/3.0.20"
 ]
 
-PLAYLIST_USER_AGENT = "Wink/1.31.1" # Основной UA для итогового плейлиста
-
-# Глобальный кэш для успешных User-Agent по доменам (хостам)
+PLAYLIST_USER_AGENT = "Wink/1.31.1"
 host_ua_cache = {}
 
 def get_host(url):
@@ -33,7 +30,6 @@ def check_stream(ch):
     global host_ua_cache
     host = get_host(ch["url"])
     
-    # Формируем порядок проверки: если для этого хоста уже найден рабочий UA, ставим его первыми
     agents_to_try = list(CHECKER_AGENTS)
     if host in host_ua_cache:
         cached_ua = host_ua_cache[host]
@@ -52,7 +48,6 @@ def check_stream(ch):
             req = urllib.request.Request(ch["url"], headers=headers, method="GET")
             with urllib.request.urlopen(req, timeout=2.5, context=ctx) as resp:
                 if resp.status in [200, 206, 302]:
-                    # Запоминаем успешный UA для всего хоста!
                     host_ua_cache[host] = ua
                     return ch, True
         except Exception:
@@ -68,14 +63,12 @@ def main():
         print("[!] Файл channels.json не найден!")
         return
 
-    # ВАЖНО: Никаких срезов нет, берем все каналы до единого!
     total = len(channels)
-    print(f"[*] Умная параллельная проверка ВСЕХ {total} каналов с кэшированием хостов...")
+    print(f"[*] Проверка {total} каналов с сохранением логотипов...")
 
     valid_channels = []
     checked_count = 0
 
-    # Параллельная проверка в 30 потоков
     with ThreadPoolExecutor(max_workers=30) as executor:
         futures = {executor.submit(check_stream, ch): ch for ch in channels}
         
@@ -86,23 +79,23 @@ def main():
             if is_working:
                 valid_channels.append(ch)
 
-            # Прогресс-бар
             percent = int((checked_count / total) * 100)
             filled = int(percent / 5)
             bar = "█" * filled + "░" * (20 - filled)
             status_text = "WORKING" if is_working else "DEAD    "
             print(f"[{bar}] {percent}% ({checked_count}/{total}) | {status_text} -> [{ch['group']}] {ch['name']}")
 
-    # Генерация M3U плейлиста
+    # Генерация M3U плейлиста с tvg-logo
     m3u_content = "#EXTM3U\n"
     for ch in valid_channels:
         m3u_content += f"#EXTVLCOPT:http-user-agent={PLAYLIST_USER_AGENT}\n"
-        m3u_content += f"#EXTINF:-1 group-title=\"{ch['group']}\",{ch['name']}\n{ch['url']}\n"
+        logo_attr = f' tvg-logo="{ch["logo"]}"' if ch.get("logo") else ""
+        m3u_content += f"#EXTINF:-1{logo_attr} group-title=\"{ch['group']}\",{ch['name']}\n{ch['url']}\n"
 
     with open("playlist.m3u", "w", encoding="utf-8") as f:
         f.write(m3u_content)
 
-    # Генерация HTML для GitHub Pages
+    # Генерация HTML для GitHub Pages с иконками
     html_content = f"""<!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -112,20 +105,22 @@ def main():
     <style>
         body {{ font-family: sans-serif; background: #0f172a; color: #f8fafc; padding: 20px; max-width: 800px; margin: auto; }}
         h1 {{ color: #38bdf8; }}
-        .card {{ background: #1e293b; padding: 15px; margin-bottom: 10px; border-radius: 8px; border-left: 4px solid #22c55e; word-break: break-all; }}
+        .card {{ background: #1e293b; padding: 12px 15px; margin-bottom: 10px; border-radius: 8px; border-left: 4px solid #22c55e; display: flex; align-items: center; gap: 12px; word-break: break-all; }}
+        .logo {{ width: 32px; height: 32px; object-fit: contain; background: #334155; border-radius: 4px; padding: 2px; flex-shrink: 0; }}
         .btn {{ display: inline-block; background: #0ea5e9; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-bottom: 20px; }}
-        .badge {{ background: #334155; color: #38bdf8; padding: 3px 8px; border-radius: 4px; font-size: 0.8em; font-weight: bold; }}
+        .badge {{ background: #334155; color: #38bdf8; padding: 3px 8px; border-radius: 4px; font-size: 0.8em; font-weight: bold; white-space: nowrap; }}
     </style>
 </head>
 <body>
     <h1>⚡ Omega IPTV Status (Wink Edition)</h1>
-    <p>Автоматический стелс-чекер IPTV с категориями и кэшированием хостов.</p>
+    <p>Автоматический чекер IPTV с категориями и логотипами.</p>
     <a class="btn" href="playlist.m3u">Скачать рабочий M3U плейлист</a>
     <h2>Рабочие каналы ({len(valid_channels)} из {total}):</h2>
     <div>
 """
     for ch in valid_channels:
-        html_content += f'        <div class="card"><span class="badge">{ch["group"]}</span> <strong>{ch["name"]}</strong><br><small style="color: #94a3b8;">{ch["url"]}</small></div>\n'
+        logo_img = f'<img class="logo" src="{ch["logo"]}" onerror="this.style.display=\'none\'">' if ch.get("logo") else '<div class="logo"></div>'
+        html_content += f'        <div class="card">{logo_img}<div><span class="badge">{ch["group"]}</span> <strong>{ch["name"]}</strong><br><small style="color: #94a3b8;">{ch["url"]}</small></div></div>\n'
 
     html_content += """    </div>
 </body>
@@ -138,7 +133,7 @@ def main():
     now = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
     readme_content = f"""# ⚡ Omega IPTV Auto-Checker (Wink Edition)
 
-Автоматический парсер, стелс-чекер и генератор плейлистов с поддержкой Wink и кэшированием хостов. Работает на GitHub Actions.
+Автоматический парсер, стелс-чекер и генератор плейлистов с логотипами и поддержкой Wink. Работает на GitHub Actions.
 
 ## 📊 Статус системы
 * **Последнее обновление:** `{now}`
@@ -154,7 +149,7 @@ def main():
     with open("README.md", "w", encoding="utf-8") as f:
         f.write(readme_content)
 
-    print(f"[+] Готово! Проверено: {total}, Рабочих каналов: {len(valid_channels)}, файлы обновлены.")
+    print(f"[+] Готово! Проверено: {total}, Рабочих каналов: {len(valid_channels)}, логотипы добавлены.")
 
 if __name__ == "__main__":
     main()
