@@ -9,7 +9,7 @@ ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
-# Список агентов: убрали Kodi, добавили Wink и hlswinkplayer
+# Список агентов: Wink, hlswinkplayer, стандартные браузеры и VLC
 CHECKER_AGENTS = [
     "Wink/1.31.1",
     "hlswinkplayer",
@@ -68,6 +68,7 @@ def main():
         print("[!] Файл channels.json не найден!")
         return
 
+    # ВАЖНО: Никаких срезов нет, берем все каналы до единого!
     total = len(channels)
     print(f"[*] Умная параллельная проверка ВСЕХ {total} каналов с кэшированием хостов...")
 
@@ -120,7 +121,7 @@ def main():
     <h1>⚡ Omega IPTV Status (Wink Edition)</h1>
     <p>Автоматический стелс-чекер IPTV с категориями и кэшированием хостов.</p>
     <a class="btn" href="playlist.m3u">Скачать рабочий M3U плейлист</a>
-    <h2>Рабочие каналы ({len(valid_channels)}):</h2>
+    <h2>Рабочие каналы ({len(valid_channels)} из {total}):</h2>
     <div>
 """
     for ch in valid_channels:
@@ -153,7 +154,7 @@ def main():
     with open("README.md", "w", encoding="utf-8") as f:
         f.write(readme_content)
 
-    print(f"[+] Готово! Проверено: {total}, Рабочих каналов: {len(valid_channels)}, кэш хостов применен.")
+    print(f"[+] Готово! Проверено: {total}, Рабочих каналов: {len(valid_channels)}, файлы обновлены.")
 
 if __name__ == "__main__":
     main()
