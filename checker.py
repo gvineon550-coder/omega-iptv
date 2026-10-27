@@ -2,24 +2,46 @@ import json
 import urllib.request
 import ssl
 import datetime
+from urllib.parse import urlparse
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
-# Маскировка бота при проверке каналов
+# Список агентов: убрали Kodi, добавили Wink и hlswinkplayer
 CHECKER_AGENTS = [
+    "Wink/1.31.1",
+    "hlswinkplayer",
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2.1 Safari/605.1.15",
-    "SmartIPTV/1.0 (Samsung Smart TV; Tizen)",
-    "Kodi/21.0 (Linux; Android 12)"
+    "Mozilla/5.0 (Linux; Android 6.0; Wink_Share_SE) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.92 Mobile Safari/537.36",
+    "VLC/3.0.20 LibVLC/3.0.20"
 ]
 
-# Чистый UA для вашего плеера (прописывается в playlist.m3u)
-PLAYLIST_USER_AGENT = "VLC/3.0.20 LibVLC/3.0.20"
+PLAYLIST_USER_AGENT = "Wink/1.31.1" # Основной UA для итогового плейлиста
 
-def check_stream(url):
-    for ua in CHECKER_AGENTS:
+# Глобальный кэш для успешных User-Agent по доменам (хостам)
+host_ua_cache = {}
+
+def get_host(url):
+    try:
+        return urlparse(url).netloc
+    except Exception:
+        return url
+
+def check_stream(ch):
+    global host_ua_cache
+    host = get_host(ch["url"])
+    
+    # Формируем порядок проверки: если для этого хоста уже найден рабочий UA, ставим его первыми
+    agents_to_try = list(CHECKER_AGENTS)
+    if host in host_ua_cache:
+        cached_ua = host_ua_cache[host]
+        if cached_ua in agents_to_try:
+            agents_to_try.remove(cached_ua)
+        agents_to_try.insert(0, cached_ua)
+
+    for ua in agents_to_try:
         headers = {
             "User-Agent": ua,
             "Accept": "*/*",
@@ -27,13 +49,16 @@ def check_stream(url):
             "Connection": "close"
         }
         try:
-            req = urllib.request.Request(url, headers=headers, method="GET")
-            with urllib.request.urlopen(req, timeout=3, context=ctx) as resp:
+            req = urllib.request.Request(ch["url"], headers=headers, method="GET")
+            with urllib.request.urlopen(req, timeout=2.5, context=ctx) as resp:
                 if resp.status in [200, 206, 302]:
-                    return True
+                    # Запоминаем успешный UA для всего хоста!
+                    host_ua_cache[host] = ua
+                    return ch, True
         except Exception:
             continue
-    return False
+            
+    return ch, False
 
 def main():
     try:
@@ -43,15 +68,29 @@ def main():
         print("[!] Файл channels.json не найден!")
         return
 
-    valid_channels = []
-    print(f"[*] Стелс-проверка {len(channels)} каналов с категориями...")
+    total = len(channels)
+    print(f"[*] Умная параллельная проверка ВСЕХ {total} каналов с кэшированием хостов...")
 
-    for i, ch in enumerate(channels):
-        is_working = check_stream(ch["url"])
-        status = "WORKING" if is_working else "DEAD"
-        print(f"[{i+1}/{len(channels)}] {status} -> [{ch['group']}] {ch['name']}")
-        if is_working:
-            valid_channels.append(ch)
+    valid_channels = []
+    checked_count = 0
+
+    # Параллельная проверка в 30 потоков
+    with ThreadPoolExecutor(max_workers=30) as executor:
+        futures = {executor.submit(check_stream, ch): ch for ch in channels}
+        
+        for future in as_completed(futures):
+            checked_count += 1
+            ch, is_working = future.result()
+            
+            if is_working:
+                valid_channels.append(ch)
+
+            # Прогресс-бар
+            percent = int((checked_count / total) * 100)
+            filled = int(percent / 5)
+            bar = "█" * filled + "░" * (20 - filled)
+            status_text = "WORKING" if is_working else "DEAD    "
+            print(f"[{bar}] {percent}% ({checked_count}/{total}) | {status_text} -> [{ch['group']}] {ch['name']}")
 
     # Генерация M3U плейлиста
     m3u_content = "#EXTM3U\n"
@@ -78,8 +117,8 @@ def main():
     </style>
 </head>
 <body>
-    <h1>⚡ Omega IPTV Status (Categorized)</h1>
-    <p>Автоматический стелс-чекер IPTV с категориями. Обновление каждые 6 часов.</p>
+    <h1>⚡ Omega IPTV Status (Wink Edition)</h1>
+    <p>Автоматический стелс-чекер IPTV с категориями и кэшированием хостов.</p>
     <a class="btn" href="playlist.m3u">Скачать рабочий M3U плейлист</a>
     <h2>Рабочие каналы ({len(valid_channels)}):</h2>
     <div>
@@ -94,15 +133,15 @@ def main():
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(html_content)
 
-    # Генерация README.md с вашим аккаунтом Gvineon550-coder
+    # Генерация README.md
     now = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
-    readme_content = f"""# ⚡ Omega IPTV Auto-Checker (Categorized)
+    readme_content = f"""# ⚡ Omega IPTV Auto-Checker (Wink Edition)
 
-Автоматический парсер, стелс-чекер и генератор плейлистов с категориями для российских и русскоязычных IPTV-каналов (`iptv-org`). Работает на GitHub Actions.
+Автоматический парсер, стелс-чекер и генератор плейлистов с поддержкой Wink и кэшированием хостов. Работает на GitHub Actions.
 
 ## 📊 Статус системы
 * **Последнее обновление:** `{now}`
-* **Всего проверено:** `{len(channels)}`
+* **Всего проверено:** `{total}`
 * **Рабочих каналов:** `{len(valid_channels)}`
 
 ---
@@ -114,7 +153,7 @@ def main():
     with open("README.md", "w", encoding="utf-8") as f:
         f.write(readme_content)
 
-    print(f"[+] Готово! Рабочих каналов: {len(valid_channels)}, README и плейлист обновлены.")
+    print(f"[+] Готово! Проверено: {total}, Рабочих каналов: {len(valid_channels)}, кэш хостов применен.")
 
 if __name__ == "__main__":
     main()
