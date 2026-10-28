@@ -11,18 +11,40 @@ def log(msg):
     print(msg)
     sys.stdout.flush()
 
+# Жесткая таблица транслитерации
+TRANSLIT_MAP = {
+    'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'e', 'ж': 'zh',
+    'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n', 'о': 'o',
+    'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u', 'ф': 'f', 'х': 'h', 'ц': 'ts',
+    'ч': 'ch', 'ш': 'sh', 'щ': 'sch', 'ъ': '', 'ы': 'y', 'ь': '', 'э': 'e', 'ю': 'yu',
+    'я': 'ya'
+}
+
+def translit(text):
+    return "".join(TRANSLIT_MAP.get(c, c) for c in text)
+
 def clean_name(name):
     if not name:
         return ""
     name = name.lower().strip()
+    
+    # Убираем скобки и их содержимое, а также квадратные скобки
     name = re.sub(r'\[.*?\]', '', name)
     name = re.sub(r'\(.*?\)', '', name)
-    name = re.sub(r'\b(hd|sd|4k|fhd|hq|1080p|720p|1080i|576i|576p|480p|480i|russia|ukraine|belarus|international|europe|asia|cis)\b', '', name)
+    
+    # Убираем временные сдвиги (+2, +4, -1 и т.д.)
+    name = re.sub(r'[\+\-]\s*\d+', '', name)
+    
+    # Убираем качество и лишние слова
+    garbage_words = r'\b(hd|sd|4k|fhd|hq|1080p|720p|1080i|576i|576p|480p|480i|russia|ukraine|belarus|international|europe|asia|cis|tv|channel|телеканал|канал)\b'
+    name = re.sub(garbage_words, '', name)
+    
+    # Оставляем только буквы и цифры
     name = re.sub(r'[^а-яa-z0-9]', '', name)
     return name
 
 def main():
-    log("[*] Запуск фильтрации EPG (исправленная версия)...")
+    log("[*] Запуск усиленной фильтрации EPG...")
     
     try:
         with open("channels.json", "r", encoding="utf-8") as f:
@@ -31,48 +53,48 @@ def main():
         log("[!] channels.json не найден")
         return
 
-    # Строим карту: базовый ID (без @SD) -> полный ID (с @SD)
     base_to_actual = {}
-    name_to_tvgid = {} # Нормализованное имя -> полный ID
+    name_to_tvgid = {}
     
+    # Строим базу имен из нашего плейлиста
     for c in channels:
         tvg_id = c.get("tvg_id")
         if tvg_id:
             base_id = tvg_id.split('@')[0]
             base_to_actual[base_id] = tvg_id
             
-            norm = c.get("norm_name")
-            if norm:
-                name_to_tvgid[clean_name(norm)] = tvg_id
+            # Берем как norm_name, так и обычное имя
+            for name_field in [c.get("norm_name"), c.get("name")]:
+                if name_field:
+                    clean = clean_name(name_field)
+                    if clean:
+                        name_to_tvgid[clean] = tvg_id
+                        name_to_tvgid[translit(clean)] = tvg_id
 
     valid_tvgids = set(base_to_actual.values())
     if not valid_tvgids:
         log("[!] Нет tvg-id для фильтрации")
         return
 
-    log(f"[*] В базе {len(valid_tvgids)} каналов. Загружаем альтернативные имена...")
+    log(f"[*] В базе {len(valid_tvgids)} каналов. Загружаем альтернативные имена из API...")
 
     try:
         api_url = "https://iptv-org.github.io/api/channels.json"
         req = urllib.request.Request(api_url, headers={"User-Agent": "Mozilla/5.0"})
         with urllib.request.urlopen(req, timeout=30) as response:
             api_data = json.loads(response.read().decode('utf-8'))
-            
-            added = 0
             for item in api_data:
                 ch_id = item.get("id")
                 if not ch_id or ch_id not in base_to_actual:
                     continue
-                
                 actual_id = base_to_actual[ch_id]
                 names = [item.get("name")] + item.get("alt_names", [])
                 for n in names:
                     if n:
-                        norm = clean_name(n)
-                        if norm and norm not in name_to_tvgid:
-                            name_to_tvgid[norm] = actual_id
-                            added += 1
-        log(f"[+] Загружено {added} новых альтернативных имен из API.")
+                        clean = clean_name(n)
+                        if clean:
+                            name_to_tvgid[clean] = actual_id
+                            name_to_tvgid[translit(clean)] = actual_id
     except Exception as e:
         log(f"[!] Ошибка загрузки API: {e}")
 
@@ -113,31 +135,32 @@ def main():
             
         matched_new_id = None
         
-        # 1. Прямое совпадение ID (редкость)
         if old_id in valid_tvgids:
             matched_new_id = old_id
             exact_matches += 1
         else:
             display_names = [dn.text for dn in channel.findall("display-name") if dn.text]
-            matched_name = None
             
             for dn in display_names:
                 norm_dn = clean_name(dn)
+                translit_dn = translit(norm_dn)
                 
-                # 2. Точное совпадение имени
+                # 1. Прямое совпадение по оригиналу или транслиту
                 if norm_dn in name_to_tvgid:
                     matched_new_id = name_to_tvgid[norm_dn]
                     exact_matches += 1
-                    matched_name = dn
+                    break
+                if translit_dn in name_to_tvgid:
+                    matched_new_id = name_to_tvgid[translit_dn]
+                    exact_matches += 1
                     break
                 
-                # 3. Нечеткое совпадение
-                if not matched_new_id and len(norm_dn) > 3:
-                    matches = difflib.get_close_matches(norm_dn, all_norm_names, n=1, cutoff=0.85)
+                # 2. Нечеткий поиск (только если слово длиннее 4 символов)
+                if not matched_new_id and len(norm_dn) > 4:
+                    matches = difflib.get_close_matches(norm_dn, all_norm_names, n=1, cutoff=0.70)
                     if matches:
                         matched_new_id = name_to_tvgid[matches[0]]
                         fuzzy_matches += 1
-                        matched_name = dn
                         break
             
             if not matched_new_id and display_names:
@@ -160,7 +183,12 @@ def main():
     log(f"[*] Точных совпадений: {exact_matches}")
     log(f"[*] Нечетких совпадений: {fuzzy_matches}")
     log(f"[*] ВСЕГО Сопоставлено каналов: {len(id_mapping)}")
-    log(f"[*] Найдено передач: {programme_count}")
+
+    if unmatched_epg_names:
+        with open("unmatched.txt", "w", encoding="utf-8") as f:
+            for name in sorted(set(unmatched_epg_names)):
+                f.write(f"{name}\n")
+        log(f"[!] Создан unmatched.txt с {len(set(unmatched_epg_names))} названиями.")
 
     log("[*] Сохранение epg_lite.xml.gz...")
     xml_bytes = ET.tostring(new_root, encoding="utf-8")
