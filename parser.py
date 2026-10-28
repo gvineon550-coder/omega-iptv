@@ -63,16 +63,16 @@ def smart_categorize(name, current_group):
 
     # --- 1. МАГАЗИНЫ ---
     if any(k in name_lower for k in ['shop', 'магазин', 'покупк', 'ювелир', 'leomax', 'shopping live']):
-        return 'Магазины'
+        return '🛒 Магазины'
 
     # --- 2. ДЕТСКИЕ ---
     kids_keywords = ['детск', 'мульт', 'disney', 'nickelodeon', 'nick jr', 'nicktoons',
                      'kids', 'baby', 'cartoon', 'радость моя', 'tiji', 'gulli', 'mult',
                      'никилодеон', 'сказки', 'карусель', 'carousel', 'kapitan fantastika',
                      'малыш', 'boomerang', 'unikum', 'detvora', 'tooku', 'anime', 'aqlvoy',
-                     'тамыр', 'tamyr', 'ryzhiy']
+                     'тамыр', 'tamyr', 'ryzhiy', 'fan', 'ani']
     if any(k in name_lower for k in kids_keywords) or any(g in group_lower for g in ['kids', 'детск', 'animation', 'cartoon']):
-        return 'Детские'
+        return '🧸 Детские'
 
     # --- 3. СПОРТ ---
     sports_keywords = ['спорт', 'матч!', 'футбол', 'хоккей', 'бой', 'бокс', 'ufc',
@@ -80,7 +80,7 @@ def smart_categorize(name, current_group):
                        'рпл', 'arena', 'extreme', 'шахмат', 'бильярд', 'setanta',
                        'eurosport', 'viju+ sport', 'khl', 'mma', 'okko futbol']
     if any(k in name_lower for k in sports_keywords) or any(g in group_lower for g in ['sport', 'спорт']):
-        return 'Спорт'
+        return '⚽ Спорт'
 
     # --- 4. МУЗЫКА ---
     music_keywords = ['музык', 'mtv', 'ru.tv', 'bridge', 'music', 'vh1', 'mcm', 'muz',
@@ -88,7 +88,7 @@ def smart_categorize(name, current_group):
                       'mezzo', 'trace', 'classic music', '1hd', 'first music', 'muzzone',
                       'songtv', 'strana fm', 'радио', 'шансон', 'hit fm', 'viva']
     if any(k in name_lower for k in music_keywords) or any(g in group_lower for g in ['music', 'музык']):
-        return 'Музыка'
+        return '🎵 Музыка'
 
     # --- 5. РЕГИОНАЛЬНЫЕ ---
     regional_keywords = ['гтрк', 'регион', 'область', 'край', 'москва 24', 'moscow 24', 'moskva 24', 
@@ -107,11 +107,11 @@ def smart_categorize(name, current_group):
                          'толк', 'tolk', 'крик', 'krik', 'архыз', 'arkhyz', 'волгоград', 'volgograd', 
                          'восток 24', 'vostok 24', 'запад 24', 'zapad 24', 'кавказ', 'kavkaz', 
                          'енисей', 'enisey', 'таврия', 'tavriya', 'луганск', 'lugansk', 'горловка', 'gorlovka', 
-                         'ялта', 'yalta', 'белогорья', 'belogorya', 'сургут', 'surgut', 'мурманск']
+                         'ялта', 'yalta', 'белогорья', 'belogorya', 'сургут', 'surgut', 'москва доверие', 'moskva doveriye']
     if any(k in name_lower for k in regional_keywords) or any(g in group_lower for g in ['local', 'regional', 'регион']):
-        return 'Региональные'
+        return '📍 Региональные'
 
-    # --- 6. ФЕДЕРАЛЬНЫЕ (ТОЧНОЕ СОВПАДЕНИЕ ПОСЛЕ ОЧИСТКИ) ---
+    # --- 6. ФЕДЕРАЛЬНЫЕ (ТОЧНОЕ СОВПАДЕНИЕ) ---
     federal_exact = {
         'channel one', '1tv', 'perviy', 'первый', 'первый канал',
         'russia 1', 'russia1', 'россия 1',
@@ -121,7 +121,7 @@ def smart_categorize(name, current_group):
         'ren tv', 'rentv', 'рен тв', 'рентв',
         'tnt', 'тнт',
         'sts', 'ctc', 'стс',
-        'tv 3', 'тв 3',
+        'tv 3', 'тв 3', 'тв3', 'tv3',
         'friday', 'пятница',
         'zvezda', 'звезда',
         'otr', 'отр',
@@ -136,7 +136,7 @@ def smart_categorize(name, current_group):
         'u', 'ю'
     }
     if base_name in federal_exact:
-        return 'Федеральные'
+        return '📺 Федеральные'
 
     # --- 7. КИНО И СЕРИАЛЫ ---
     movie_keywords = ['кино', 'фильм', 'сериал', 'movie', 'film', 'series', 'cinema',
@@ -149,7 +149,7 @@ def smart_categorize(name, current_group):
                       'tv 21', 'kino 1', 'kino 2', 'dom kino', 'saphire', 'premier',
                       'serial', 'hit hd', 'hit (', 'hit ', 'city eden', 'bollywood', 'hollywood', 'tnt4', 'tnt series']
     if any(k in name_lower for k in movie_keywords) or any(g in group_lower for g in ['movies', 'series', 'кино', 'фильм', 'cinema']):
-        return 'Кино и Сериалы'
+        return '🎬 Кино и Сериалы'
 
     # --- 8. НОВОСТИ ---
     news_keywords = ['новост', 'вести', 'известия', 'соловьев', 'news', 'рбк', 'cnn',
@@ -157,7 +157,7 @@ def smart_categorize(name, current_group):
                      'dw ', 'настоящее время', 't24', 'eurasia', '360° news', 'izvestia',
                      'russia 24', 'россия 24', 'millet', 'миллет', 'вестник']
     if any(k in name_lower for k in news_keywords) or any(g in group_lower for g in ['news', 'новост']):
-        return 'Новости'
+        return '📰 Новости'
 
     # --- 9. ПОЗНАВАТЕЛЬНЫЕ ---
     doc_keywords = ['познавательн', 'история', 'наук', 'discovery', 'national geographic',
@@ -168,16 +168,19 @@ def smart_categorize(name, current_group):
                     'дикая', 'dikaja', 'dikij', 'моя планета', 'moya planeta', 'наука 2.0',
                     'nauka', 'top secret', 'совершенно секретно', 'english class',
                     'зоопарк', 'zoopark', 'в мире животных', 'v mire zhivotnykh', 'zhivaya priroda',
-                    'moy mir', 'мой мир', 'usadba', 'усадьба', 'dacha', 'дача', 'drive', 'драйв']
+                    'moy mir', 'мой мир', 'usadba', 'усадьба', 'dacha', 'дача', 'drive', 'драйв',
+                    'foodtime', 'kulinar', 'kulinar tv', 'vkus', 'вкус', 'auto plus', 'avto24',
+                    'glazami turista', 'глазами туриста', 'top secret', 'совершенно секретно',
+                    'nano', 'нано', 'nano tv', '365 tv', '365 days tv', '365', 'moya planeta']
     if any(k in name_lower for k in doc_keywords) or any(g in group_lower for g in ['documentary', 'science', 'travel', 'education', 'outdoor', 'history', 'познават']):
-        return 'Познавательные'
+        return '🧠 Познавательные'
 
     # --- 10. РЕЛИГИОЗНЫЕ ---
     religious_keywords = ['религ', 'спас', 'religious', 'god', 'bible', 'союз', 'троица',
                           'ортодокс', 'мусульман', 'hope channel', '3abn', 'angel tv',
                           'tv mana', 'manasat', 'vera 24', 'вера', 'huzur', 'tsargrad', 'царьград']
     if any(k in name_lower for k in religious_keywords) or any(g in group_lower for g in ['religious', 'религ']):
-        return 'Религиозные'
+        return '🙏 Религиозные'
 
     # --- 11. РАЗВЛЕКАТЕЛЬНЫЕ ---
     fun_keywords = ['развлекательн', 'comedy', 'lifestyle', 'fashion', 'relax',
@@ -187,9 +190,9 @@ def smart_categorize(name, current_group):
                     'peretz', 'raz', 'kvartal', 'tnt international', 'tlc', 'tv brics', 
                     'voprosy i otvety', 'yapervyy', 'yumor', 'muzhskoe', 'priklyucheniya', '360', '555', '86']
     if any(k in name_lower for k in fun_keywords) or any(g in group_lower for g in ['entertainment', 'lifestyle', 'cooking', 'family', 'general', 'развлек']):
-        return 'Развлекательные'
+        return '🎭 Развлекательные'
 
-    return 'Общие'
+    return '📦 Общие'
 
 
 def load_iptv_org_epg_map():
