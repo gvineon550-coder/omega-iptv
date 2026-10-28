@@ -28,52 +28,72 @@ def is_valid_url(url):
         return False
 
 def smart_categorize(name, current_group):
-    """Элитная и строгая категоризация без единого сбоя"""
+    """Жесткая многоуровневая категоризация без свалки в 'Общих'"""
     name_lower = str(name).lower()
     group_lower = str(current_group).lower()
-    combined = f"{name_lower} {group_lower}"
 
-    # 1. СТРОГИЙ СПОРТ
-    sports_keywords = ['спорт', 'матч', 'футбол', 'хоккей', 'бой', 'бокс', 'ufc', 'formula', 'sport', 'fight', 'racing', 'nfl', 'nba', 'кхл', 'рпл', 'arena']
+    # 0. МАГАЗИНЫ
+    if any(k in name_lower for k in ['shop', 'магазин', 'покупк', 'ювелир', 'home shopping', 'top shop']):
+        return 'Магазины'
+
+    # 1. ФЕДЕРАЛЬНЫЕ
+    federal_keywords = [
+        'первый', 'россия 1', 'россия-1', 'нтв', 'матч тв', 'пятый канал', '5 канал', 
+        'отр', 'тв центр', 'твц', 'рен тв', 'спас', 'стс', 'домашний', 'тв-3', 'тв3', 
+        'пятница', 'звезда', 'мир', 'тнт', 'муз тв', 'ю', 'че', 'суббота', 'солнце', 'ю-тв'
+    ]
+    if any(k in name_lower for k in federal_keywords) and not 'регион' in name_lower:
+        return 'Федеральные'
+
+    # 2. РЕГИОНАЛЬНЫЕ
+    regional_keywords = [
+        'гтрк', 'регион', 'область', 'край', 'москва 24', 'санкт-петербург', 
+        'сибир', 'урал', 'кубан', 'дон', 'ника', 'телеканал санкт', 'региональный'
+    ]
+    if any(k in name_lower for k in regional_keywords) or 'local' in group_lower or 'regional' in group_lower:
+        return 'Региональные'
+
+    # 3. СПОРТ
+    sports_keywords = ['спорт', 'матч!', 'футбол', 'хоккей', 'бой', 'бокс', 'ufc', 'formula', 'sport', 'fight', 'racing', 'nfl', 'nba', 'кхл', 'рпл', 'arena', 'extreme']
     if any(k in name_lower for k in sports_keywords) or 'sport' in group_lower or 'спорт' in group_lower:
         return 'Спорт'
         
-    # 2. МУЗЫКА
-    music_keywords = ['музык', 'mtv', 'ru.tv', 'bridge', 'music', 'vh1', 'mcm', 'muz', 'europa plus', 'рекорд', 'chanson', 'strana', 'energy']
+    # 4. МУЗЫКА
+    music_keywords = ['музык', 'mtv', 'ru.tv', 'bridge', 'music', 'vh1', 'mcm', 'muz', 'europa plus', 'рекорд', 'chanson', 'strana', 'energy', 'ля-минор']
     if any(k in name_lower for k in music_keywords) or 'music' in group_lower or 'музыка' in group_lower:
         return 'Музыка'
 
-    # 3. ДЕТСКИЕ
-    kids_keywords = ['детск', 'мульт', 'карусель', 'disney', 'nickelodeon', 'kids', 'baby', 'animation', 'cartoon', 'радость моя', 'tiji', 'gulli', 'mult', 'nickelodeon']
+    # 5. ДЕТСКИЕ
+    kids_keywords = ['детск', 'мульт', 'карусель', 'disney', 'nickelodeon', 'kids', 'baby', 'animation', 'cartoon', 'радость моя', 'tiji', 'gulli', 'mult', 'никилодеон']
     if any(k in name_lower for k in kids_keywords) or 'kids' in group_lower or 'детские' in group_lower or 'animation' in group_lower:
         return 'Детские'
 
-    # 4. НОВОСТИ
-    news_keywords = ['новост', 'вести', 'известия', 'рнв', 'соловьев', 'news', 'рбк', 'cnn', 'bbc', 'euronews', 'мир 24', 'коммерсант', 'известия']
+    # 6. НОВОСТИ
+    news_keywords = ['новост', 'вести', 'известия', 'рнв', 'соловьев', 'news', 'рбк', 'cnn', 'bbc', 'euronews', 'мир 24', 'коммерсант', 'rbc']
     if any(k in name_lower for k in news_keywords) or 'news' in group_lower or 'новости' in group_lower:
         return 'Новости'
 
-    # 5. КИНО И СЕРИАЛЫ
-    movie_keywords = ['кино', 'фильм', 'сериал', 'movie', 'film', 'series', 'cinema', 'премиум', 'строго', 'тв-3', 'стс', 'тнт', 'paramount', 'hbo', 'mediateka', 'кинопремьера', 'fox', 'tv1000', 'amedia', 'мост']
+    # 7. КИНО И СЕРИАЛЫ
+    movie_keywords = ['кино', 'фильм', 'сериал', 'movie', 'film', 'series', 'cinema', 'премиум', 'строго', 'paramount', 'hbo', 'mediateka', 'кинопремьера', 'fox', 'tv1000', 'amedia', 'мост', 'картин', 'русский роман', 'эгоист']
     if any(k in name_lower for k in movie_keywords) or any(g in group_lower for g in ['movies', 'series', 'кино', 'фильмы']):
         return 'Кино и Сериалы'
 
-    # 6. ПОЗНАВАТЕЛЬНЫЕ
-    doc_keywords = ['познавательн', 'история', 'наук', 'discovery', 'national geographic', 'animal', 'science', 'travel', 'documentary', 'docu', 'viasat explore', 'nature', 'outdoor', 'auto', 'education', 'охота', 'рыбалка', 'живая природа', 'наука']
+    # 8. ПОЗНАВАТЕЛЬНЫЕ
+    doc_keywords = ['познавательн', 'история', 'наук', 'discovery', 'national geographic', 'animal', 'science', 'travel', 'documentary', 'docu', 'viasat explore', 'nature', 'outdoor', 'auto', 'education', 'охота', 'рыбалка', 'живая природа', 'наука', 'живой']
     if any(k in name_lower for k in doc_keywords) or any(g in group_lower for g in ['documentary', 'science', 'travel', 'education', 'outdoor']):
         return 'Познавательные'
 
-    # 7. РЕЛИГИОЗНЫЕ
-    religious_keywords = ['религ', 'пасха', 'спас', 'religious', 'god', 'bible', 'союз', 'троица', 'пасха']
+    # 9. РЕЛИГИОЗНЫЕ
+    religious_keywords = ['религ', 'пасха', 'спас', 'religious', 'god', 'bible', 'союз', 'троица']
     if any(k in name_lower for k in religious_keywords) or 'religious' in group_lower:
         return 'Религиозные'
 
-    # 8. РАЗВЛЕКАТЕЛЬНЫЕ
-    fun_keywords = ['развлекательн', 'comedy', 'lifestyle', 'fashion', 'relax', 'entertainment', 'shop', 'cooking', 'family', 'ржд', 'пятница', 'ю', 'че', 'супер', 'юмор']
-    if any(k in name_lower for k in fun_keywords) or any(g in group_lower for g in ['entertainment', 'lifestyle', 'shop', 'cooking', 'family']):
+    # 10. РАЗВЛЕКАТЕЛЬНЫЕ
+    fun_keywords = ['развлекательн', 'comedy', 'lifestyle', 'fashion', 'relax', 'entertainment', 'cooking', 'family', 'ржд', 'юмор', 'пельмени', 'наша rasha']
+    if any(k in name_lower for k in fun_keywords) or any(g in group_lower for g in ['entertainment', 'lifestyle', 'cooking', 'family']):
         return 'Развлекательные'
 
-    # 9. ОБЩИЕ (Федеральные и всё остальное)
+    # 11. ОБЩИЕ (Всё остальное)
     return 'Общие'
 
 def load_iptv_org_epg_map():
@@ -157,9 +177,13 @@ def parse_m3u_from_url(url, source_index, global_logos_by_norm_name, epg_map):
                         if logo and norm_name and norm_name not in global_logos_by_norm_name:
                             global_logos_by_norm_name[norm_name] = logo
 
+                        # УНИВЕРСАЛЬНЫЙ АВТО-ГЕНЕРАТОР TVG-ID ДЛЯ 100% ПОКРЫТИЯ
                         tvg_id = current_tvg_id
-                        if not tvg_id and norm_name in epg_map:
-                            tvg_id = epg_map[norm_name]
+                        if not tvg_id or tvg_id == "None":
+                            if norm_name in epg_map:
+                                tvg_id = epg_map[norm_name]
+                            else:
+                                tvg_id = norm_name
 
                         custom_ua = None
                         if re.search(r'[\+\-]\d+', current_name):
