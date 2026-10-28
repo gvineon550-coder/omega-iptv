@@ -1,4 +1,4 @@
-#EXTM3U url-tvg="https://i.mjh.nz/iptv-org/ru.xml.gz"
+#EXTM3U url-tvg="https://github.com/dgomp/epg-iptv/releases/latest/download/epg_latest.xml"
 #EXTINF:-1 tvg-id="Mir.ru@Plus4" group-title="Федеральные",Мир +4 (540p) [Not 24/7]
 #EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://hls.mirtv.cdnvideo.ru/mirtv-parampublish/mirtv3_2500/playlist.m3u8

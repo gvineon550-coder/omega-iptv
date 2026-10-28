@@ -1,4 +1,4 @@
-#EXTM3U url-tvg="https://i.mjh.nz/iptv-org/ru.xml.gz"
+#EXTM3U url-tvg="https://github.com/dgomp/epg-iptv/releases/latest/download/epg_latest.xml"
 #EXTINF:-1 tvg-id="5minuttishiny.ru@SD" tvg-logo="https://cdn2-static.ntv.ru/home/promo/24740/5minut_live.jpg" group-title="Кино и Сериалы",5 minut tishiny (1080p)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer
 https://cdn-dvr.ntv.ru/5_minut_tishiny/index.m3u8

@@ -1,4 +1,4 @@
-#EXTM3U url-tvg="https://i.mjh.nz/iptv-org/ru.xml.gz"
+#EXTM3U url-tvg="https://github.com/dgomp/epg-iptv/releases/latest/download/epg_latest.xml"
 #EXTINF:-1 tvg-id="scifi.ru@SD" tvg-logo="https://i.imgur.com/nSSUHcg.png" group-title="Познавательные",.sci-fi (576p)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer
 http://stream.mcquack.net/180/index.m3u8
