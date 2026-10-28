@@ -114,5 +114,5 @@ http://live-saha.cdnvideo.ru/saha/tooky/playlist.m3u8
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer
 https://stream8.cinerama.uz/1270/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="Tamyr.ru@SD" tvg-logo="https://i.imgur.com/z1hO3Lk.png" group-title="🧸 Детские",Тамыр (Уфа)
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer
+#EXTVLCOPT:http-user-agent=Wink/1.31.1
 https://bstonline.mediacdn.ru/cdn/tamyr/playlist.m3u8
