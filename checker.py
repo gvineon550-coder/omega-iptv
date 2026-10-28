@@ -17,8 +17,6 @@ ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
-EPG_URL = "https://github.com/dgomp/epg-iptv/releases/latest/download/epg_latest.xml"
-
 CHECKER_AGENTS = [
     "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "Mozilla/5.0 WINK/1.31.1 (AndroidTV/7.1.1) HlsWinkPlayer",
@@ -31,7 +29,6 @@ CHECKER_AGENTS = [
     "VLC/3.0.20 LibVLC/3.0.20",
 ]
 
-# Увеличили до 8 потоков на хост для ускорения
 host_locks: dict[str, threading.Semaphore] = defaultdict(lambda: threading.Semaphore(8))
 host_locks_guard = threading.Lock()
 
@@ -109,7 +106,7 @@ def check_stream(ch, retry=False):
     
     for ua in agents_to_try:
         use_range = not retry
-        timeout = 5 if retry else 3  # <--- УМЕНЬШИЛИ ТАЙМАУТЫ (было 7 и 5)
+        timeout = 5 if retry else 3
         
         ok, latency, reason = _attempt(url, ua, use_range, timeout)
         
@@ -120,11 +117,10 @@ def check_stream(ch, retry=False):
         if reason == "http_403":
             got_403 = True
             last_403_ua = ua
-            continue  # Если 403 - пробуем следующий UA
+            continue
         elif reason == "html_stub":
-            continue  # Если HTML-заглушка - тоже пробуем следующий UA
+            continue
         else:
-            # Если таймаут, 404, network_error - сервер мертв. Менять UA бесполезно.
             break
             
     if got_403:
@@ -173,7 +169,6 @@ def build_index_html(dashboard_data, active_count, total):
             </div>
             <div class="flex gap-2">
                 <button onclick="copyToClipboard(window.location.origin + window.location.pathname.replace('index.html', '') + 'playlist.m3u')" class="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-lg text-sm font-medium transition">📋 Копировать M3U</button>
-                <button onclick="copyToClipboard('{EPG_URL}')" class="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg text-sm font-medium transition">⚡ Копировать EPG</button>
             </div>
         </div>
 
@@ -425,7 +420,7 @@ def main():
 
     active_channels.sort(key=lambda x: (x.get("group", ""), x.get("name", "")))
 
-    lines = [f'#EXTM3U url-tvg="{EPG_URL}"']
+    lines = ['#EXTM3U']
     for ch in active_channels:
         tvg_id_attr = f' tvg-id="{m3u_clean(ch["tvg_id"])}"' if ch.get("tvg_id") else ""
         logo_attr = f' tvg-logo="{m3u_clean(ch["logo"])}"' if ch.get("logo") else ""
@@ -444,7 +439,7 @@ def main():
     categories = sorted({c["group"] for c in active_channels})
     for cat in categories:
         cat_channels = [c for c in active_channels if c["group"] == cat]
-        cat_lines = [f'#EXTM3U url-tvg="{EPG_URL}"']
+        cat_lines = ['#EXTM3U']
         for ch in cat_channels:
             tvg_id_attr = f' tvg-id="{m3u_clean(ch["tvg_id"])}"' if ch.get("tvg_id") else ""
             logo_attr = f' tvg-logo="{m3u_clean(ch["logo"])}"' if ch.get("logo") else ""
@@ -510,10 +505,8 @@ def main():
 ---
 
 ## 🔗 Ссылки для плеера
-* **Прямая ссылка на M3U плейлист (с авто-EPG):**
+* **Прямая ссылка на M3U плейлист:**
   `https://raw.githubusercontent.com/Gvineon550-coder/omega-iptv/main/playlist.m3u`
-* **Ссылка на телепрограмму (RU EPG):**
-  `{EPG_URL}`
 
 ## 🌐 Веб-дашборд
 * [Открыть интерактивную панель управления (GitHub Pages)](https://Gvineon550-coder.github.io/omega-iptv/)
