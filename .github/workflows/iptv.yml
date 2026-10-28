@@ -31,9 +31,11 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
@@ -48,7 +50,7 @@ jobs:
           test -s playlist.m3u || { echo "::error::playlist.m3u не создан"; exit 1; }
           lines=$(wc -l < playlist.m3u)
           if [ "$lines" -lt 50 ]; then
-            echo "::error::Плейлист подозрительно мал ($lines строк)"
+            echo "::error::Плейлист подозрительно мал ($lines строк) — не коммитим"
             exit 1
           fi
 
@@ -57,30 +59,29 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+          # 1. Синхронизируемся с удаленным репозиторием, игнорируя локальные ветки
+          git fetch origin ${{ github.ref_name }}
+          git checkout -B ${{ github.ref_name }}
+          
+          # 2. Сбрасываем HEAD на последний коммит в удаленном репо. 
+          # Наши только что сгенерированные файлы останутся в рабочей директории.
+          git reset --soft origin/${{ github.ref_name }}
+
+          # 3. Добавляем наши свежие файлы (они перезапишут старые в индексе)
           for f in playlist.m3u index.html channels.json README.md; do
             [ -f "$f" ] && git add "$f"
           done
           [ -d playlists ] && git add playlists/ || true
 
+          # 4. Проверяем, есть ли изменения
           if git diff --staged --quiet; then
-            echo "No changes"
+            echo "No changes to commit"
             exit 0
           fi
 
+          # 5. Коммитим и пушим (на этот раз конфликтов быть не может)
           git commit -m "chore: auto-update IPTV [$(date -u +'%Y-%m-%d %H:%M UTC')] [skip ci]"
-
-          for attempt in 1 2 3; do
-            if git push; then
-              echo "Pushed on attempt $attempt"
-              exit 0
-            fi
-            echo "Push failed, attempt $attempt — rebasing..."
-            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" || true
-            sleep 5
-          done
-
-          echo "::error::Push failed after 3 attempts"
-          exit 1
+          git push origin ${{ github.ref_name }}
 
       - name: Prepare Pages artifact
         run: |
@@ -88,11 +89,14 @@ jobs:
           cp index.html playlist.m3u README.md public/
           [ -d playlists ] && cp -r playlists public/ || true
 
-      - uses: actions/configure-pages@v5
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
 
-      - uses: actions/upload-pages-artifact@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: 'public'
 
-      - id: deployment
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
