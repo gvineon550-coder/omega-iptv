@@ -19,6 +19,7 @@ def normalize_name(name):
 
 
 def extract_display_name(extinf_line: str) -> str:
+    """Название канала = всё после первой запятой ВНЕ кавычек."""
     in_quotes = False
     for i, ch in enumerate(extinf_line):
         if ch == '"':
@@ -45,6 +46,7 @@ def is_valid_url(url):
 
 
 def _base_name(name_lower: str) -> str:
+    """Убирает качество и скобки — для точного сравнения коротких названий."""
     s = re.sub(r'[\(\)\[\]]', ' ', name_lower)
     s = re.sub(r'\b(hd|sd|fhd|4k|1080p|720p|1080i|576i|576p|480p|480i)\b', '', s)
     s = re.sub(r'\s+', ' ', s).strip()
@@ -55,10 +57,12 @@ def smart_categorize(name, current_group):
     name_lower = str(name).lower()
     group_lower = str(current_group).lower()
 
+    # 1. Магазины
     if any(k in name_lower for k in ['shop', 'магазин', 'покупк', 'ювелир',
                                        'home shopping', 'top shop', 'leomax', 'shopping live']):
         return 'Магазины'
 
+    # 2. Детские
     kids_keywords = ['детск', 'мульт', 'disney', 'nickelodeon', 'nick jr', 'nicktoons',
                      'kids', 'baby', 'cartoon', 'радость моя', 'tiji', 'gulli', 'mult',
                      'никилодеон', 'сказки', 'карусель', 'carousel', 'kapitan fantastika',
@@ -68,6 +72,7 @@ def smart_categorize(name, current_group):
        any(g in group_lower for g in ['kids', 'детск', 'animation', 'cartoon']):
         return 'Детские'
 
+    # 3. Спорт
     sports_keywords = ['спорт', 'матч!', 'футбол', 'хоккей', 'бой', 'бокс', 'ufc',
                        'formula', 'sport', 'fight', 'racing', 'nfl', 'nba', 'кхл',
                        'рпл', 'arena', 'extreme', 'шахмат', 'бильярд', 'setanta',
@@ -76,6 +81,7 @@ def smart_categorize(name, current_group):
        any(g in group_lower for g in ['sport', 'спорт']):
         return 'Спорт'
 
+    # 4. Музыка
     music_keywords = ['музык', 'mtv', 'ru.tv', 'bridge', 'music', 'vh1', 'mcm', 'muz',
                       'europa plus', 'рекорд', 'chanson', 'energy', 'жара', 'ля-минор',
                       'mezzo', 'trace', 'classic music', '1hd', 'first music', 'muzzone',
@@ -84,6 +90,7 @@ def smart_categorize(name, current_group):
        any(g in group_lower for g in ['music', 'музык']):
         return 'Музыка'
 
+    # 5. Кино и Сериалы
     movie_keywords = ['кино', 'фильм', 'сериал', 'movie', 'film', 'series', 'cinema',
                       'премиум', 'paramount', 'hbo', 'медиатека', 'кинопремьера',
                       'fox', 'tv1000', 'amedia', 'мост', 'картин', 'русский роман',
@@ -97,6 +104,7 @@ def smart_categorize(name, current_group):
        any(g in group_lower for g in ['movies', 'series', 'кино', 'фильм', 'cinema']):
         return 'Кино и Сериалы'
 
+    # 6. Новости
     news_keywords = ['новост', 'вести', 'известия', 'соловьев', 'news', 'рбк', 'cnn',
                      'bbc', 'euronews', 'мир 24', 'коммерсант', 'rbc', 'current time',
                      'dw ', 'настоящее время', 't24', 'eurasia', '360° news', 'izvestia',
@@ -105,6 +113,7 @@ def smart_categorize(name, current_group):
        any(g in group_lower for g in ['news', 'новост']):
         return 'Новости'
 
+    # 7. Познавательные
     doc_keywords = ['познавательн', 'история', 'наук', 'discovery', 'national geographic',
                     'nat geo', 'animal planet', 'science', 'travel', 'documentary', 'docu',
                     'viasat explore', 'viju explore', 'viju history', 'viju nature',
@@ -118,6 +127,7 @@ def smart_categorize(name, current_group):
                                        'outdoor', 'history', 'познават']):
         return 'Познавательные'
 
+    # 8. Религиозные
     religious_keywords = ['религ', 'спас', 'religious', 'god', 'bible', 'союз', 'троица',
                           'ортодокс', 'мусульман', 'hope channel', '3abn', 'angel tv',
                           'tv mana', 'manasat', 'vera 24', 'вера', 'huzur', 'спас']
@@ -125,6 +135,7 @@ def smart_categorize(name, current_group):
        any(g in group_lower for g in ['religious', 'религ']):
         return 'Религиозные'
 
+    # 9. Региональные
     regional_keywords = ['гтрк', 'регион', 'область', 'край', 'москва 24',
                          'санкт-петербург', 'спб', 'сибир', 'урал', 'кубан', 'дон',
                          'ника тв', 'телеканал санкт', 'подмосковье', 'нижний новгород',
@@ -140,17 +151,21 @@ def smart_categorize(name, current_group):
        any(g in group_lower for g in ['local', 'regional', 'регион']):
         return 'Региональные'
 
-    federal_exact = {'мир', 'солнце', 'первый', 'нтв', 'стс', 'тнт', 'рен тв',
-                     'тв-3', 'тв3', 'пятница', 'звезда', 'спас', 'ю', 'че',
-                     'суббота', 'тв центр', 'твц', 'отр', 'муз тв', 'матч тв'}
-    if _base_name(name_lower) in federal_exact:
+    # 10. Федеральные (ИСПРАВЛЕНО: ищем вхождение, а не точное совпадение)
+    federal_keywords = ['первый', 'россия 1', 'россия-1', 'нтв', 'стс', 'тнт', 
+                        'рен тв', 'рентв', 'тв-3', 'тв3', 'пятница', 'звезда', 'спас', 
+                        'тв центр', 'твц', 'отр', 'муз тв', 'муз-тв', 'матч тв', 'карусель',
+                        'че', 'ю', 'суббота', 'солнце']
+    
+    # Защита: "Мир" только если это отдельное слово или точное название канала
+    if 'мир' in name_lower and not any(x in name_lower for x in ['животных', 'природ', 'кино']):
+        if 'мир' in _base_name(name_lower).split() or name_lower == 'мир':
+            return 'Федеральные'
+
+    if any(k in name_lower for k in federal_keywords):
         return 'Федеральные'
 
-    federal_parts = ['россия 1', 'россия-1', 'пятый канал', '5 канал', 'рентв',
-                     'ren tv', 'тнт4', 'тнт-4', 'твцентр', 'ртр-планета', 'rtr planeta']
-    if any(k in name_lower for k in federal_parts):
-        return 'Федеральные'
-
+    # 11. Развлекательные
     fun_keywords = ['развлекательн', 'comedy', 'lifestyle', 'fashion', 'relax',
                     'entertainment', 'cooking', 'family', 'юмор', 'пельмени',
                     'наша russia', 'che!', 'сарафан', 'subbota', 'суббота',
@@ -315,6 +330,7 @@ def main():
 
     unique_channels = deduplicate_channels(all_channels)
 
+    # Переносим историю/fail_count/latency из старого кэша
     for ch in unique_channels:
         old = old_data_map.get(ch["url"], {})
         ch["fail_count"] = old.get("fail_count", 0)
