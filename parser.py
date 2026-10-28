@@ -2,7 +2,12 @@ import json
 import urllib.request
 import os
 import re
+import sys
 from urllib.parse import urlparse
+
+def log(msg):
+    print(msg)
+    sys.stdout.flush()
 
 def normalize_name(name):
     name = name.lower().strip()
@@ -24,38 +29,6 @@ def is_valid_url(url):
         return True
     except Exception:
         return False
-
-def cache_logo(logo_url, norm_name):
-    """Скачивает и кэширует логотип локально для защиты от удаления внешних хостингов"""
-    if not logo_url or not is_valid_url(logo_url):
-        return ""
-    
-    logos_dir = "logos"
-    os.makedirs(logos_dir, exist_ok=True)
-    
-    ext = ".png"
-    if ".jpg" in logo_url.lower() or ".jpeg" in logo_url.lower():
-        ext = ".jpg"
-    elif ".svg" in logo_url.lower():
-        ext = ".svg"
-        
-    filename = f"{norm_name}{ext}"
-    filepath = os.path.join(logos_dir, filename)
-    
-    if os.path.exists(filepath):
-        return f"./logos/{filename}"
-        
-    try:
-        req = urllib.request.Request(logo_url, headers={"User-Agent": "Mozilla/5.0"})
-        with urllib.request.urlopen(req, timeout=5) as resp:
-            data = resp.read()
-            if len(data) > 500: # Минимальный размер валидной картинки
-                with open(filepath, "wb") as f:
-                    f.write(data)
-                return f"./logos/{filename}"
-    except Exception:
-        pass
-    return logo_url # Возвращаем оригинал, если скачать не удалось
 
 def smart_categorize(name, current_group):
     name_lower = str(name).lower()
@@ -116,6 +89,7 @@ def smart_categorize(name, current_group):
 def load_iptv_org_epg_map():
     epg_map = {}
     url = "https://iptv-org.github.io/api/channels.json"
+    log("[*] Загрузка официальной базы tvg-id (iptv-org)...")
     try:
         req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
         with urllib.request.urlopen(req, timeout=10) as response:
@@ -130,15 +104,17 @@ def load_iptv_org_epg_map():
                         norm = normalize_name(alias)
                         if norm and norm not in epg_map:
                             epg_map[norm] = channel_id
-    except Exception:
-        pass
+        log(f"[+] База tvg-id успешно загружена. Записей: {len(epg_map)}")
+    except Exception as e:
+        log(f"[!] Ошибка загрузки базы tvg-id: {e}")
     return epg_map
 
 def parse_m3u_from_url(url, source_index, global_logos_by_norm_name, epg_map):
+    log(f"[*] Скачивание плейлиста из источника #{source_index + 1}: {url}")
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
     channels = []
     try:
-        with urllib.request.urlopen(req) as response:
+        with urllib.request.urlopen(req, timeout=15) as response:
             content = response.read().decode('utf-8', errors='ignore')
             lines = content.splitlines()
             current_group = "Общие"
@@ -173,7 +149,7 @@ def parse_m3u_from_url(url, source_index, global_logos_by_norm_name, epg_map):
                                 logo = global_logos_by_norm_name[norm_name]
 
                         if logo and norm_name and norm_name not in global_logos_by_norm_name:
-                            global_logos_by_norm_name[norm_name] = cache_logo(logo, norm_name)
+                            global_logos_by_norm_name[norm_name] = logo
 
                         tvg_id = current_tvg_id
                         if not tvg_id or tvg_id == "None":
@@ -185,18 +161,20 @@ def parse_m3u_from_url(url, source_index, global_logos_by_norm_name, epg_map):
                         channels.append({
                             "name": current_name,
                             "group": final_group,
-                            "logo": logo if logo.startswith("./logos/") else cache_logo(logo, norm_name),
+                            "logo": logo,
                             "tvg_id": tvg_id,
                             "url": line,
                             "user_agent": custom_ua,
                             "norm_name": norm_name
                         })
                         current_name, current_logo, current_tvg_id = "", "", ""
-    except Exception:
-        pass
+        log(f"[+] Источник #{source_index + 1} обработан. Найдено каналов: {len(channels)}")
+    except Exception as e:
+        log(f"[!] Ошибка при скачивании источника {url}: {e}")
     return channels
 
 def main():
+    log("[*] Запуск парсера каналов...")
     old_data_map = {}
     if os.path.exists("channels.json"):
         try:
@@ -205,6 +183,7 @@ def main():
                 for ch in old_list:
                     if "url" in ch:
                         old_data_map[ch["url"]] = ch
+            log(f"[*] Загружен старый кэш. Каналов в кэше: {len(old_data_map)}")
         except Exception:
             pass
 
@@ -235,8 +214,13 @@ def main():
             if not unique_by_url[url].get("logo") and ch.get("logo"):
                 unique_by_url[url]["logo"] = ch["logo"]
 
+    final_list = list(unique_by_url.values())
+    log(f"[*] Всего уникальных ссылок: {len(final_list)}")
+
     with open("channels.json", "w", encoding="utf-8") as f:
-        json.dump(list(unique_by_url.values()), f, ensure_ascii=False, indent=2)
+        json.dump(final_list, f, ensure_ascii=False, indent=2)
+    
+    log("[+] Парсинг успешно завершен, данные сохранены в channels.json")
 
 if __name__ == "__main__":
     main()
