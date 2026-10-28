@@ -2,59 +2,77 @@ import json
 import urllib.request
 import time
 import os
+import sys
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
-def check_stream(url, user_agent=None):
+def log(msg):
+    print(msg)
+    sys.stdout.flush()
+
+def check_stream(ch):
+    url = ch.get("url")
+    user_agent = ch.get("user_agent")
     start_time = time.time()
     headers = {"User-Agent": user_agent or "Mozilla/5.0"}
+    
+    success = False
+    latency = 999.0
+    
     try:
         req = urllib.request.Request(url, headers=headers, method="GET")
-        with urllib.request.urlopen(req, timeout=4) as resp:
+        with urllib.request.urlopen(req, timeout=3) as resp:
             chunk = resp.read(1024)
             if chunk:
                 latency = round(time.time() - start_time, 3)
-                return True, latency
+                success = True
     except Exception:
         pass
-    return False, 999.0
+        
+    return ch, success, latency
 
 def main():
+    log("[*] Запуск проверки каналов...")
     if not os.path.exists("channels.json"):
-        print("[!] channels.json не найден. Сначала запустите parser.py")
+        log("[!] channels.json не найден. Сначала запустите parser.py")
         return
 
     with open("channels.json", "r", encoding="utf-8") as f:
         channels = json.load(f)
 
-    print(f"[*] Проверка {len(channels)} каналов...")
+    log(f"[*] Всего каналов для проверки: {len(channels)}. Запуск многопоточного сканирования...")
 
-    for ch in channels:
-        success, latency = check_stream(ch.get("url"), ch.get("user_agent"))
+    updated_channels = []
+    with ThreadPoolExecutor(max_workers=50) as executor:
+        futures = [executor.submit(check_stream, ch) for ch in channels]
         
-        # Обновляем историю стабильности (храним последние 10 запусков)
-        history = ch.get("history", [])
-        history.append(1 if success else 0)
-        if len(history) > 10:
-            history.pop(0)
-        ch["history"] = history
+        for future in as_completed(futures):
+            ch, success, latency = future.result()
+            
+            history = ch.get("history", [])
+            history.append(1 if success else 0)
+            if len(history) > 10:
+                history.pop(0)
+            ch["history"] = history
 
-        if success:
-            ch["fail_count"] = 0
-            ch["latency"] = latency
-        else:
-            ch["fail_count"] = ch.get("fail_count", 0) + 1
-            ch["latency"] = 999.0
+            if success:
+                ch["fail_count"] = 0
+                ch["latency"] = latency
+            else:
+                ch["fail_count"] = ch.get("fail_count", 0) + 1
+                ch["latency"] = 999.0
+                
+            updated_channels.append(ch)
 
-    # Сохраняем обновленные данные с историей и пингом в channels.json
+    log("[+] Проверка потоков завершена. Сохранение данных...")
+
     with open("channels.json", "w", encoding="utf-8") as f:
-        json.dump(channels, f, ensure_ascii=False, indent=2)
+        json.dump(updated_channels, f, ensure_ascii=False, indent=2)
 
-    # Фильтруем мертвые каналы (упавшие более 5 раз подряд)
-    active_channels = [c for c in channels if c.get("fail_count", 0) < 5]
+    active_channels = [c for c in updated_channels if c.get("fail_count", 0) < 5]
+    log(f"[*] Активных каналов после фильтрации: {len(active_channels)}")
 
-    # Сортируем внутри групп: сначала стабильные по истории, потом по пингу (скорости)
     active_channels.sort(key=lambda x: (-sum(x.get("history", [0])), x.get("latency", 999.0)))
 
-    # 1. Генерация единого мастер-плейлиста
     master_m3u = '#EXTM3U url-tvg="https://epg.pw/xmltv/epg_RU.xml.gz"\n'
     for ch in active_channels:
         master_m3u += f'#EXTINF:-1 tvg-id="{ch["tvg_id"]}" tvg-logo="{ch["logo"]}" group-title="{ch["group"]}",{ch["name"]}\n'
@@ -65,7 +83,6 @@ def main():
     with open("playlist.m3u", "w", encoding="utf-8") as f:
         f.write(master_m3u)
 
-    # 2. Генерация раздельных плейлистов по категориям
     os.makedirs("playlists", exist_ok=True)
     categories = set(c["group"] for c in active_channels)
     for cat in categories:
@@ -81,7 +98,6 @@ def main():
         with open(filename, "w", encoding="utf-8") as f:
             f.write(cat_m3u)
 
-    # Подготовка данных для дашборда
     dashboard_data = [{
         "name": c["name"],
         "group": c["group"],
@@ -91,7 +107,6 @@ def main():
         "stability": round((sum(c.get("history", [0])) / len(c.get("history", [1]))) * 100)
     } for c in active_channels]
 
-    # 3. Автоматическая генерация index.html с запеченными данными
     html_content = f"""<!DOCTYPE html>
 <html lang="ru" class="dark">
 <head>
@@ -234,7 +249,7 @@ def main():
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(html_content)
 
-    print("[+] Проверка завершена. Плейлисты, структура и index.html полностью обновлены.")
+    log("[+] index.html успешно сгенерирован. Всё готово!")
 
 if __name__ == "__main__":
     main()
