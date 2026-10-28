@@ -44,7 +44,7 @@ def main():
 
     log(f"[*] В базе {len(valid_tvgids)} каналов. Скачиваем полный EPG (RU)...")
 
-    url = "http://epgshare01.online/epgshare01/epg_ripper_RU1.xml.gz"
+    url = "https://www.teleguide.info/download/new3/xmltv.xml.gz"
     try:
         req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
         with urllib.request.urlopen(req, timeout=60) as response:
