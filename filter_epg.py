@@ -6,6 +6,8 @@ import sys
 import io
 import re
 import difflib
+import http.client
+import time
 
 def log(msg):
     print(msg)
@@ -33,6 +35,31 @@ def clean_name(name):
     name = re.sub(garbage_words, '', name)
     name = re.sub(r'[^а-яa-z0-9]', '', name)
     return name
+
+def download_gz_data(url):
+    """Скачивает файл с 3 попытками на случай обрыва соединения"""
+    ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+    for attempt in range(3):
+        log(f"[*] Попытка скачивания EPG #{attempt+1}...")
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": ua})
+            with urllib.request.urlopen(req, timeout=120) as response:
+                data = b""
+                while True:
+                    chunk = response.read(1024 * 64) # Читаем по 64 КБ
+                    if not chunk:
+                        break
+                    data += chunk
+                return data
+        except http.client.IncompleteRead as e:
+            log(f"[!] Оборвано соединение (получено {len(e.partial)} байт). Повтор...")
+            time.sleep(3)
+        except Exception as e:
+            log(f"[!] Ошибка сети: {e}. Повтор...")
+            time.sleep(3)
+            
+    log("[!] Не удалось скачать EPG после 3 попыток.")
+    return None
 
 def main():
     log("[*] Запуск усиленной фильтрации EPG...")
@@ -88,15 +115,11 @@ def main():
         log(f"[!] Ошибка загрузки API: {e}")
 
     log(f"[*] Всего имен для поиска: {len(name_to_tvgid)}")
-    log("[*] Скачиваем EPG от teleguide.info...")
     
     url = "https://www.teleguide.info/download/new3/xmltv.xml.gz"
-    try:
-        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-        with urllib.request.urlopen(req, timeout=90) as response:
-            gz_data = response.read()
-    except Exception as e:
-        log(f"[!] Ошибка скачивания EPG: {e}")
+    gz_data = download_gz_data(url)
+    
+    if not gz_data:
         return
 
     log("[*] Анализ XML и поиск совпадений...")
@@ -171,7 +194,6 @@ def main():
     log(f"[*] Нечетких совпадений: {fuzzy_matches}")
     log(f"[*] ВСЕГО Сопоставлено каналов: {len(id_mapping)}")
 
-    # ВЫВОДИМ СПИСОК ПОТЕРЯШЕК ПРЯМО В ЛОГ (первые 60 штук)
     log("==========================================")
     log(f"ТОП-60 НЕСОПОСТАВЛЕННЫХ КАНАЛОВ ИЗ EPG ({len(unmatched_epg_names)} всего):")
     for name in sorted(list(set(unmatched_epg_names)))[:60]:
