@@ -37,7 +37,7 @@ def clean_name(name):
     return name
 
 def download_gz_data(url):
-    """Скачивает файл с 3 попытками на случай обрыва соединения"""
+    """Скачивает файл с 3 попытками и проверяет целостность GZIP"""
     ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
     for attempt in range(3):
         log(f"[*] Попытка скачивания EPG #{attempt+1}...")
@@ -46,19 +46,25 @@ def download_gz_data(url):
             with urllib.request.urlopen(req, timeout=120) as response:
                 data = b""
                 while True:
-                    chunk = response.read(1024 * 64) # Читаем по 64 КБ
+                    chunk = response.read(1024 * 64)
                     if not chunk:
                         break
                     data += chunk
-                return data
+            
+            # Проверка целостности (распаковываем первые 10 КБ)
+            with gzip.GzipFile(fileobj=io.BytesIO(data)) as f:
+                f.read(1024 * 10)
+                
+            return data
+            
         except http.client.IncompleteRead as e:
-            log(f"[!] Оборвано соединение (получено {len(e.partial)} байт). Повтор...")
+            log(f"[!] Оборвано соединение. Повтор...")
             time.sleep(3)
         except Exception as e:
-            log(f"[!] Ошибка сети: {e}. Повтор...")
+            log(f"[!] Ошибка (возможно, битый файл): {e}. Повтор...")
             time.sleep(3)
             
-    log("[!] Не удалось скачать EPG после 3 попыток.")
+    log("[!] Не удалось скачать валидный EPG после 3 попыток.")
     return None
 
 def main():
@@ -120,6 +126,7 @@ def main():
     gz_data = download_gz_data(url)
     
     if not gz_data:
+        log("[!] Пропускаем генерацию EPG, так как файл не скачан.")
         return
 
     log("[*] Анализ XML и поиск совпадений...")
