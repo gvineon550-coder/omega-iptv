@@ -11,7 +11,6 @@ def log(msg):
     print(msg)
     sys.stdout.flush()
 
-# Жесткая таблица транслитерации
 TRANSLIT_MAP = {
     'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'e', 'ж': 'zh',
     'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n', 'о': 'o',
@@ -27,19 +26,11 @@ def clean_name(name):
     if not name:
         return ""
     name = name.lower().strip()
-    
-    # Убираем скобки и их содержимое, а также квадратные скобки
     name = re.sub(r'\[.*?\]', '', name)
     name = re.sub(r'\(.*?\)', '', name)
-    
-    # Убираем временные сдвиги (+2, +4, -1 и т.д.)
     name = re.sub(r'[\+\-]\s*\d+', '', name)
-    
-    # Убираем качество и лишние слова
     garbage_words = r'\b(hd|sd|4k|fhd|hq|1080p|720p|1080i|576i|576p|480p|480i|russia|ukraine|belarus|international|europe|asia|cis|tv|channel|телеканал|канал)\b'
     name = re.sub(garbage_words, '', name)
-    
-    # Оставляем только буквы и цифры
     name = re.sub(r'[^а-яa-z0-9]', '', name)
     return name
 
@@ -56,14 +47,12 @@ def main():
     base_to_actual = {}
     name_to_tvgid = {}
     
-    # Строим базу имен из нашего плейлиста
     for c in channels:
         tvg_id = c.get("tvg_id")
         if tvg_id:
             base_id = tvg_id.split('@')[0]
             base_to_actual[base_id] = tvg_id
             
-            # Берем как norm_name, так и обычное имя
             for name_field in [c.get("norm_name"), c.get("name")]:
                 if name_field:
                     clean = clean_name(name_field)
@@ -145,7 +134,6 @@ def main():
                 norm_dn = clean_name(dn)
                 translit_dn = translit(norm_dn)
                 
-                # 1. Прямое совпадение по оригиналу или транслиту
                 if norm_dn in name_to_tvgid:
                     matched_new_id = name_to_tvgid[norm_dn]
                     exact_matches += 1
@@ -155,7 +143,6 @@ def main():
                     exact_matches += 1
                     break
                 
-                # 2. Нечеткий поиск (только если слово длиннее 4 символов)
                 if not matched_new_id and len(norm_dn) > 4:
                     matches = difflib.get_close_matches(norm_dn, all_norm_names, n=1, cutoff=0.70)
                     if matches:
@@ -184,11 +171,12 @@ def main():
     log(f"[*] Нечетких совпадений: {fuzzy_matches}")
     log(f"[*] ВСЕГО Сопоставлено каналов: {len(id_mapping)}")
 
-    if unmatched_epg_names:
-        with open("unmatched.txt", "w", encoding="utf-8") as f:
-            for name in sorted(set(unmatched_epg_names)):
-                f.write(f"{name}\n")
-        log(f"[!] Создан unmatched.txt с {len(set(unmatched_epg_names))} названиями.")
+    # ВЫВОДИМ СПИСОК ПОТЕРЯШЕК ПРЯМО В ЛОГ (первые 60 штук)
+    log("==========================================")
+    log(f"ТОП-60 НЕСОПОСТАВЛЕННЫХ КАНАЛОВ ИЗ EPG ({len(unmatched_epg_names)} всего):")
+    for name in sorted(list(set(unmatched_epg_names)))[:60]:
+        log(f"  - {name}")
+    log("==========================================")
 
     log("[*] Сохранение epg_lite.xml.gz...")
     xml_bytes = ET.tostring(new_root, encoding="utf-8")
