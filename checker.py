@@ -17,29 +17,22 @@ ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
-EPG_URL = "https://i.mjh.nz/iptv-org/ru.xml.gz"
+EPG_URL = "https://github.com/dgomp/epg-iptv/releases/latest/download/epg_latest.xml"
 
-# ПУЛ ДЛЯ МАСКИРОВКИ (Чекер перебирает по очереди, начиная с самых "правдоподобных")
 CHECKER_AGENTS = [
-    # 1. Полные строки, имитирующие официальное приложение Wink на Android TV
     "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "Mozilla/5.0 WINK/1.31.1 (AndroidTV/7.1.1) HlsWinkPlayer",
     "WINK/1.28.2 (AndroidTV/9) HlsWinkPlayer",
-    
-    # 2. Полное имя класса плеера (встречается в конфигах)
     "ru.rt.video.player.hls.HlsWinkPlayer",
-    
-    # 3. Базовые/универсальные UA для Wink (как у CrocoUser)
     "HlsWinkPlayer",
     "Wink/1.31.1",
-    
-    # 4. Стандартные UA для проверки других потоков
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
     "Mozilla/5.0 (Linux; Android 6.0; Wink_Share_SE) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.92 Mobile Safari/537.36",
     "VLC/3.0.20 LibVLC/3.0.20",
 ]
 
-host_locks: dict[str, threading.Semaphore] = defaultdict(lambda: threading.Semaphore(4))
+# Увеличили до 8 потоков на хост для ускорения
+host_locks: dict[str, threading.Semaphore] = defaultdict(lambda: threading.Semaphore(8))
 host_locks_guard = threading.Lock()
 
 
@@ -106,7 +99,6 @@ def check_stream(ch, retry=False):
     
     agents_to_try = list(CHECKER_AGENTS)
     
-    # Если есть сохраненный UA, ставим его первым в очереди (он уже срабатывал раньше)
     if saved_ua:
         if saved_ua in agents_to_try:
             agents_to_try.remove(saved_ua)
@@ -117,7 +109,7 @@ def check_stream(ch, retry=False):
     
     for ua in agents_to_try:
         use_range = not retry
-        timeout = 7 if retry else 5
+        timeout = 5 if retry else 3  # <--- УМЕНЬШИЛИ ТАЙМАУТЫ (было 7 и 5)
         
         ok, latency, reason = _attempt(url, ua, use_range, timeout)
         
@@ -128,8 +120,13 @@ def check_stream(ch, retry=False):
         if reason == "http_403":
             got_403 = True
             last_403_ua = ua
+            continue  # Если 403 - пробуем следующий UA
+        elif reason == "html_stub":
+            continue  # Если HTML-заглушка - тоже пробуем следующий UA
+        else:
+            # Если таймаут, 404, network_error - сервер мертв. Менять UA бесполезно.
+            break
             
-    # Если ни один UA не дал 200, но был 403 (геоблок), считаем канал живым
     if got_403:
         ch["user_agent"] = last_403_ua
         return ch, True, 999.0
