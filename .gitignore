@@ -1,0 +1,9 @@
+/public/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.log
+guide.xml
+guide.xml.gz
+channels.xml
