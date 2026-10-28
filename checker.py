@@ -1,350 +1,240 @@
 import json
 import urllib.request
-import ssl
-import datetime
 import time
-import re
-from urllib.parse import urlparse
-from concurrent.futures import ThreadPoolExecutor, as_completed
+import os
 
-ctx = ssl.create_default_context()
-ctx.check_hostname = False
-ctx.verify_mode = ssl.CERT_NONE
-
-CHECKER_AGENTS = [
-    "Wink/1.31.1",
-    "HlsWinkPlayer",
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
-    "Mozilla/5.0 (Linux; Android 6.0; Wink_Share_SE) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.92 Mobile Safari/537.36",
-    "VLC/3.0.20 LibVLC/3.0.20"
-]
-
-PLAYLIST_USER_AGENT = "Wink/1.31.1"
-host_ua_cache = {}
-
-def get_host(url):
+def check_stream(url, user_agent=None):
+    start_time = time.time()
+    headers = {"User-Agent": user_agent or "Mozilla/5.0"}
     try:
-        return urlparse(url).netloc
+        req = urllib.request.Request(url, headers=headers, method="GET")
+        with urllib.request.urlopen(req, timeout=4) as resp:
+            chunk = resp.read(1024)
+            if chunk:
+                latency = round(time.time() - start_time, 3)
+                return True, latency
     except Exception:
-        return url
-
-def is_protected_channel(name):
-    if re.search(r'\+\d+', name) or re.search(r'\(\+\d+\)', name) or re.search(r'\-\d+', name):
-        return True
-    return False
-
-def check_stream(ch):
-    global host_ua_cache
-    host = get_host(ch["url"])
-    is_protected = is_protected_channel(ch["name"])
-
-    agents_to_try = list(CHECKER_AGENTS)
-    
-    if ch.get("user_agent"):
-        target_ua = "HlsWinkPlayer" if ch["user_agent"].lower() == "hlswinkplayer" else ch["user_agent"]
-        if target_ua in agents_to_try:
-            agents_to_try.remove(target_ua)
-        agents_to_try.insert(0, target_ua)
-
-    if host in host_ua_cache:
-        cached_ua = host_ua_cache[host]
-        if cached_ua in agents_to_try:
-            agents_to_try.remove(cached_ua)
-        agents_to_try.insert(0, cached_ua)
-
-    for ua in agents_to_try:
-        headers = {
-            "User-Agent": ua,
-            "Accept": "*/*",
-            "Range": "bytes=0-2048",
-            "Connection": "close"
-        }
-        try:
-            req = urllib.request.Request(ch["url"], headers=headers, method="GET")
-            timeout_val = 3.5 if is_protected else 2.5
-            
-            start_time = time.time()
-            with urllib.request.urlopen(req, timeout=timeout_val, context=ctx) as resp:
-                latency = round((time.time() - start_time) * 1000)
-                
-                if resp.status in [200, 206, 302, 403]:
-                    content_type = resp.headers.get("Content-Type", "").lower()
-                    if "text/html" in content_type and not is_protected:
-                        continue  
-                        
-                    host_ua_cache[host] = ua
-                    ch["checked_user_agent"] = ua
-                    ch["latency"] = latency
-                    return ch, True
-        except Exception:
-            continue
-            
-    if is_protected:
-        ch["checked_user_agent"] = "HlsWinkPlayer"
-        ch["latency"] = 150
-        return ch, True
-
-    return ch, False
+        pass
+    return False, 999.0
 
 def main():
-    try:
-        with open("channels.json", "r", encoding="utf-8") as f:
-            channels = json.load(f)
-    except FileNotFoundError:
-        print("[!] Файл channels.json не найден! Сначала запустите парсер.")
+    if not os.path.exists("channels.json"):
+        print("[!] channels.json не найден. Сначала запустите parser.py")
         return
 
-    total = len(channels)
-    print(f"\033[1;36m[*] Элитная проверка {total} каналов с пинг-аналитикой...\033[0m")
+    with open("channels.json", "r", encoding="utf-8") as f:
+        channels = json.load(f)
 
-    updated_channels = []
-    checked_count = 0
-    working_count = 0
+    print(f"[*] Проверка {len(channels)} каналов...")
 
-    with ThreadPoolExecutor(max_workers=30) as executor:
-        futures = {executor.submit(check_stream, ch): ch for ch in channels}
+    for ch in channels:
+        success, latency = check_stream(ch.get("url"), ch.get("user_agent"))
         
-        for future in as_completed(futures):
-            checked_count += 1
-            ch, is_working = future.result()
-            
-            if is_working:
-                ch["fail_count"] = 0
-                working_count += 1
-                updated_channels.append(ch)
-                status_text = f"\033[1;32m[WORKING {ch.get('latency', 0)}ms]\033[0m"
-            else:
-                ch["fail_count"] = ch.get("fail_count", 0) + 1
-                
-                if ch["fail_count"] < 3:
-                    updated_channels.append(ch)
-                    status_text = f"\033[1;33m[GLITCH {ch['fail_count']}/3]\033[0m"
-                else:
-                    status_text = "\033[1;31m[DEAD]   \033[0m"
+        # Обновляем историю стабильности (храним последние 10 запусков)
+        history = ch.get("history", [])
+        history.append(1 if success else 0)
+        if len(history) > 10:
+            history.pop(0)
+        ch["history"] = history
 
-            percent = int((checked_count / total) * 100)
-            filled = int(percent / 5)
-            bar = "█" * filled + "░" * (20 - filled)
-            bar_colored = f"\033[1;34m[{bar}]\033[0m"
-            
-            print(f"{bar_colored} \033[1;33m{percent}%\033[0m ({checked_count}/{total}) | {status_text} -> \033[1;36m[{ch['group']}]\033[0m {ch['name']}")
-
-    with open("channels.json", "w", encoding="utf-8") as f:
-        json.dump(updated_channels, f, ensure_ascii=False, indent=2)
-
-    active_channels = [ch for ch in updated_channels if ch.get("fail_count", 0) < 3]
-
-    # Обработка дублей с именами (РЕН ТВ, НТВ и др.)
-    name_counts = {}
-    for ch in active_channels:
-        orig_name = ch['name']
-        name_counts[orig_name] = name_counts.get(orig_name, 0) + 1
-
-    name_seen = {}
-    for ch in active_channels:
-        orig_name = ch['name']
-        if name_counts[orig_name] > 1:
-            seen_idx = name_seen.get(orig_name, 0) + 1
-            name_seen[orig_name] = seen_idx
-            if seen_idx > 1:
-                ch['display_name'] = f"{orig_name} #{seen_idx}"
-            else:
-                ch['display_name'] = orig_name
+        if success:
+            ch["fail_count"] = 0
+            ch["latency"] = latency
         else:
-            ch['display_name'] = orig_name
+            ch["fail_count"] = ch.get("fail_count", 0) + 1
+            ch["latency"] = 999.0
 
-    # Сортировка
-    priority_channels = ['первый', 'россия 1', 'матч тв', 'нтв', 'россия к', 'карусель', 'тнт', 'стс', 'рен тв']
-    def sort_key(ch):
-        name_lower = ch['name'].lower()
-        for idx, p in enumerate(priority_channels):
-            if p in name_lower:
-                return (0, idx, ch.get('latency', 999), ch['display_name'])
-        return (1, 0, ch.get('latency', 999), ch['display_name'])
+    # Сохраняем обновленные данные с историей и пингом в channels.json
+    with open("channels.json", "w", encoding="utf-8") as f:
+        json.dump(channels, f, ensure_ascii=False, indent=2)
 
-    active_channels.sort(key=sort_key)
+    # Фильтруем мертвые каналы (упавшие более 5 раз подряд)
+    active_channels = [c for c in channels if c.get("fail_count", 0) < 5]
 
-    latencies = [ch.get('latency', 0) for ch in active_channels if 'latency' in ch]
-    avg_latency = round(sum(latencies) / len(latencies)) if latencies else 0
+    # Сортируем внутри групп: сначала стабильные по истории, потом по пингу (скорости)
+    active_channels.sort(key=lambda x: (-sum(x.get("history", [0])), x.get("latency", 999.0)))
 
-    group_stats = {}
+    # 1. Генерация единого мастер-плейлиста
+    master_m3u = '#EXTM3U url-tvg="https://epg.pw/xmltv/epg_RU.xml.gz"\n'
     for ch in active_channels:
-        g = ch['group']
-        group_stats[g] = group_stats.get(g, 0) + 1
-
-    epg_url = "https://epg.pw/xmltv/epg_RU.xml.gz"
-
-    # Генерация M3U с встроенной авто-ссылкой на EPG в заголовке
-    m3u_content = f"#EXTM3U url-tvg=\"{epg_url}\"\n"
-    for ch in active_channels:
-        ua_to_use = ch.get("checked_user_agent") or ch.get("user_agent") or PLAYLIST_USER_AGENT
-        m3u_content += f"#EXTVLCOPT:http-user-agent={ua_to_use}\n"
-        
-        logo_attr = f' tvg-logo="{ch["logo"]}"' if ch.get("logo") else ""
-        tvg_id_attr = f' tvg-id="{ch["tvg_id"]}"' if ch.get("tvg_id") else ""
-        
-        m3u_content += f"#EXTINF:-1{tvg_id_attr}{logo_attr} group-title=\"{ch['group']}\",{ch['display_name']}\n{ch['url']}\n"
+        master_m3u += f'#EXTINF:-1 tvg-id="{ch["tvg_id"]}" tvg-logo="{ch["logo"]}" group-title="{ch["group"]}",{ch["name"]}\n'
+        if ch.get("user_agent"):
+            master_m3u += f'#EXTVLCOPT:http-user-agent={ch["user_agent"]}\n'
+        master_m3u += f'{ch["url"]}\n'
 
     with open("playlist.m3u", "w", encoding="utf-8") as f:
-        f.write(m3u_content)
+        f.write(master_m3u)
 
-    # Генерация сайта
-    groups = sorted(list(group_stats.keys()))
-    m3u_raw_url = "https://raw.githubusercontent.com/Gvineon550-coder/omega-iptv/main/playlist.m3u"
+    # 2. Генерация раздельных плейлистов по категориям
+    os.makedirs("playlists", exist_ok=True)
+    categories = set(c["group"] for c in active_channels)
+    for cat in categories:
+        cat_channels = [c for c in active_channels if c["group"] == cat]
+        cat_m3u = '#EXTM3U url-tvg="https://epg.pw/xmltv/epg_RU.xml.gz"\n'
+        for ch in cat_channels:
+            cat_m3u += f'#EXTINF:-1 tvg-id="{ch["tvg_id"]}" tvg-logo="{ch["logo"]}" group-title="{ch["group"]}",{ch["name"]}\n'
+            if ch.get("user_agent"):
+                cat_m3u += f'#EXTVLCOPT:http-user-agent={ch["user_agent"]}\n'
+            cat_m3u += f'{ch["url"]}\n'
+        
+        filename = f"playlists/{cat.lower().replace(' ', '_')}.m3u"
+        with open(filename, "w", encoding="utf-8") as f:
+            f.write(cat_m3u)
 
+    # Подготовка данных для дашборда
+    dashboard_data = [{
+        "name": c["name"],
+        "group": c["group"],
+        "logo": c["logo"],
+        "url": c["url"],
+        "latency": c["latency"],
+        "stability": round((sum(c.get("history", [0])) / len(c.get("history", [1]))) * 100)
+    } for c in active_channels]
+
+    # 3. Автоматическая генерация index.html с запеченными данными
     html_content = f"""<!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Omega IPTV Dashboard</title>
-    <style>
-        :root {{ --bg: #0f172a; --card-bg: #1e293b; --text: #f8fafc; --accent: #38bdf8; --border: #334155; }}
-        body {{ font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); padding: 20px; max-width: 900px; margin: auto; }}
-        h1 {{ color: var(--accent); margin-bottom: 5px; }}
-        .header-box {{ display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 20px; }}
-        .btn-group {{ display: flex; gap: 10px; flex-wrap: wrap; }}
-        .btn {{ background: #0ea5e9; color: white; padding: 12px 20px; text-decoration: none; border-radius: 8px; font-weight: bold; border: none; cursor: pointer; transition: background 0.2s; display: inline-flex; align-items: center; gap: 8px; }}
-        .btn:hover {{ background: #0284c7; }}
-        .btn-success {{ background: #22c55e; }}
-        .btn-success:hover {{ background: #16a34a; }}
-        .btn-purple {{ background: #8b5cf6; }}
-        .btn-purple:hover {{ background: #7c3aed; }}
-        .controls {{ display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }}
-        input {{ background: var(--card-bg); border: 1px solid var(--border); color: var(--text); padding: 10px 15px; border-radius: 8px; font-size: 1em; outline: none; flex: 1; min-width: 200px; }}
-        input:focus {{ border-color: var(--accent); }}
-        .filters {{ display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }}
-        .filter-btn {{ background: var(--card-bg); border: 1px solid var(--border); color: var(--text); padding: 6px 14px; border-radius: 20px; cursor: pointer; font-size: 0.9em; transition: all 0.2s; }}
-        .filter-btn.active, .filter-btn:hover {{ background: var(--accent); color: var(--bg); border-color: var(--accent); font-weight: bold; }}
-        .card {{ background: var(--card-bg); padding: 12px 15px; margin-bottom: 10px; border-radius: 8px; border-left: 4px solid #22c55e; display: flex; align-items: center; gap: 12px; word-break: break-all; transition: transform 0.1s; }}
-        .card:hover {{ transform: translateY(-1px); }}
-        .logo {{ width: 36px; height: 36px; object-fit: contain; background: #0f172a; border-radius: 6px; padding: 3px; flex-shrink: 0; }}
-        .badge {{ background: var(--border); color: var(--accent); padding: 3px 8px; border-radius: 4px; font-size: 0.75em; font-weight: bold; white-space: nowrap; }}
-        .latency {{ background: #065f46; color: #34d399; padding: 2px 6px; border-radius: 4px; font-size: 0.75em; font-weight: bold; margin-left: 8px; }}
-        .stats-bar {{ display: flex; gap: 15px; flex-wrap: wrap; background: var(--card-bg); padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid var(--border); font-size: 0.95em; }}
-        .stat-item {{ color: #94a3b8; }}
-        .stat-item strong {{ color: var(--text); }}
-    </style>
+    <title>IPTV Auto Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script>tailwind.config = {{ darkMode: 'class' }}</script>
 </head>
-<body>
-    <div class="header-box">
-        <div>
-            <h1>⚡ Omega IPTV Dashboard</h1>
-            <p style="color: #94a3b8; margin: 0;">Автоматическая проверка, EPG и аналитика потоков</p>
+<body class="bg-gray-900 text-gray-100 min-h-screen transition-colors duration-300">
+    <header class="bg-gray-800 border-b border-gray-700 sticky top-0 z-50 p-4 shadow-md">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent">📺 IPTV Control Center</h1>
+            <div class="flex items-center gap-3 w-full md:w-auto">
+                <input type="text" id="searchInput" placeholder="Поиск каналов..." class="bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 w-full md:w-64 focus:outline-none focus:border-blue-500">
+                <button onclick="toggleTheme()" class="bg-gray-700 p-2 rounded-lg hover:bg-gray-600 transition">🌓</button>
+            </div>
         </div>
-        <div class="btn-group">
-            <button class="btn btn-success" onclick="copyText('{m3u_raw_url}', this, '📋 Скопировать ссылку M3U', '✅ Ссылка M3U скопирована!')">📋 Скопировать M3U</button>
-            <button class="btn btn-purple" onclick="copyText('{epg_url}', this, '📅 Скопировать ссылку EPG', '✅ Ссылка EPG скопирована!')">📅 Скопировать EPG</button>
-            <a class="btn" href="playlist.m3u" target="_blank">📥 Скачать M3U</a>
+    </header>
+
+    <main class="max-w-7xl mx-auto p-4 md:p-6 space-y-6">
+        <div class="bg-gray-800 p-4 rounded-xl border border-gray-700 flex flex-wrap gap-4 justify-between items-center">
+            <div>
+                <h3 class="font-semibold text-lg">Прямые ссылки плейлиста</h3>
+                <p class="text-sm text-gray-400">Используйте в TiviMate, OTT Navigator или VLC</p>
+            </div>
+            <div class="flex gap-2">
+                <button onclick="copyToClipboard(window.location.origin + window.location.pathname.replace('index.html', '') + 'playlist.m3u')" class="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-lg text-sm font-medium transition">📋 Копировать M3U</button>
+                <button onclick="copyToClipboard('https://epg.pw/xmltv/epg_RU.xml.gz')" class="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg text-sm font-medium transition">⚡ Копировать EPG</button>
+            </div>
+        </div>
+
+        <div id="categoryFilters" class="flex flex-wrap gap-2">
+            <button onclick="filterCategory('All')" class="category-btn bg-blue-600 px-4 py-2 rounded-lg text-sm font-medium transition">Все каналы</button>
+        </div>
+
+        <div id="channelsGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+    </main>
+
+    <div id="playerModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-gray-800 rounded-2xl w-full max-w-3xl overflow-hidden border border-gray-700 shadow-2xl">
+            <div class="flex justify-between items-center p-4 border-b border-gray-700">
+                <h3 id="modalTitle" class="font-bold text-lg">Плеер</h3>
+                <button onclick="closePlayer()" class="text-gray-400 hover:text-white text-xl font-bold">&times;</button>
+            </div>
+            <div class="relative aspect-video bg-black">
+                <video id="videoPlayer" controls autoplay class="w-full h-full"></video>
+            </div>
         </div>
     </div>
-
-    <div class="stats-bar">
-        <div class="stat-item">🟢 Активных каналов: <strong style="color: #22c55e;">{len(active_channels)}</strong></div>
-        <div class="stat-item">📊 Всего в базе: <strong>{total}</strong></div>
-        <div class="stat-item">⚡ Средний пинг: <strong style="color: #34d399;">{avg_latency} ms</strong></div>
-    </div>
-
-    <div class="controls">
-        <input type="text" id="search" placeholder="🔍 Поиск канала по названию..." onkeyup="filterChannels()">
-    </div>
-
-    <div class="filters" id="category-filters">
-        <button class="filter-btn active" onclick="filterCategory('all', this)">Все категории ({len(active_channels)})</button>
-"""
-    for g in groups:
-        html_content += f'        <button class="filter-btn" onclick="filterCategory(\'{g}\', this)">{g} ({group_stats[g]})</button>\n'
-
-    html_content += """    </div>
-
-    <div id="channels-list">
-"""
-    for ch in active_channels:
-        logo_img = f'<img class="logo" src="{ch["logo"]}" onerror="this.style.display=\'none\'">' if ch.get("logo") else '<div class="logo"></div>'
-        lat = ch.get("latency", 0)
-        html_content += f'        <div class="card" data-name="{ch["display_name"].lower()}" data-group="{ch["group"]}">{logo_img}<div><span class="badge">{ch["group"]}</span> <strong>{ch["display_name"]}</strong><span class="latency">⚡ {lat}ms</span><br><small style="color: #94a3b8;">{ch["url"]}</small></div></div>\n'
-
-    html_content += f"""    </div>
 
     <script>
-        let currentCategory = 'all';
+        const channelsData = {json.dumps(dashboard_data, ensure_ascii=False)};
+        let currentCategory = 'All';
+        let hls = null;
 
-        function copyText(text, btn, originalText, successText) {{
-            navigator.clipboard.writeText(text).then(() => {{
-                btn.innerHTML = successText;
-                setTimeout(() => {{ btn.innerHTML = originalText; }}, 2000);
-            }});
+        function renderCategories() {{
+            const container = document.getElementById('categoryFilters');
+            const categories = ['All', ...new Set(channelsData.map(c => c.group))];
+            container.innerHTML = categories.map(cat => `
+                <button onclick="filterCategory('${{cat}}')" class="category-btn ${{cat === currentCategory ? 'bg-blue-600' : 'bg-gray-800 hover:bg-gray-700'}} border border-gray-700 px-4 py-2 rounded-lg text-sm font-medium transition">
+                    ${{cat === 'All' ? 'Все каналы' : cat}}
+                </button>
+            `).join('');
         }}
 
-        function filterChannels() {{
-            let query = document.getElementById('search').value.toLowerCase();
-            let cards = document.getElementsByClassName('card');
+        function filterCategory(cat) {{
+            currentCategory = cat;
+            renderCategories();
+            renderChannels();
+        }}
 
-            for (let card of cards) {{
-                let name = card.getAttribute('data-name');
-                let group = card.getAttribute('data-group');
-                
-                let matchesSearch = name.includes(query);
-                let matchesCategory = (currentCategory === 'all' || group === currentCategory);
+        function renderChannels() {{
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const grid = document.getElementById('channelsGrid');
+            const filtered = channelsData.filter(c => {{
+                const matchCat = currentCategory === 'All' || c.group === currentCategory;
+                const matchSearch = c.name.toLowerCase().includes(search);
+                return matchCat && matchSearch;
+            }});
 
-                if (matchesSearch && matchesCategory) {{
-                    card.style.display = 'flex';
-                }} else {{
-                    card.style.display = 'none';
-                }}
+            grid.innerHTML = filtered.map(c => `
+                <div onclick="playChannel('${{c.url}}', '${{c.name}}')" class="bg-gray-800 border border-gray-700 hover:border-blue-500 rounded-xl p-4 flex items-center gap-4 cursor-pointer transition transform hover:-translate-y-1">
+                    <img src="${{c.logo || 'https://via.placeholder.com/48'}}" alt="" class="w-12 h-12 object-contain bg-gray-900 rounded-lg p-1" onerror="this.src='https://via.placeholder.com/48'">
+                    <div class="overflow-hidden flex-1">
+                        <h4 class="font-semibold truncate">${{c.name}}</h4>
+                        <div class="flex items-center gap-2 mt-1">
+                            <span class="text-xs px-2 py-0.5 rounded bg-gray-700 text-gray-300">${{c.group}}</span>
+                            <span class="text-xs text-green-400 font-mono">${{c.latency < 999 ? c.latency + 's' : 'offline'}}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }}
+
+        function playChannel(url, name) {{
+            const modal = document.getElementById('playerModal');
+            const video = document.getElementById('videoPlayer');
+            document.getElementById('modalTitle').innerText = name;
+            modal.classList.remove('hidden');
+
+            if (Hls.isSupported()) {{
+                if (hls) hls.destroy();
+                hls = new Hls();
+                hls.loadSource(url);
+                hls.attachMedia(video);
+                hls.on(Hls.Events.MANIFEST_PARSED, () => video.play());
+            }} else if (video.canPlayType('application/vnd.apple.mpegurl')) {{
+                video.src = url;
+                video.addEventListener('loadedmetadata', () => video.play());
             }}
         }}
 
-        function filterCategory(category, btn) {{
-            currentCategory = category;
-            let buttons = document.getElementsByClassName('filter-btn');
-            for (let b of buttons) {{ b.classList.remove('active'); }}
-            btn.classList.add('active');
-            filterChannels();
+        function closePlayer() {{
+            const modal = document.getElementById('playerModal');
+            const video = document.getElementById('videoPlayer');
+            video.pause();
+            video.src = "";
+            if (hls) hls.destroy();
+            modal.classList.add('hidden');
         }}
+
+        function toggleTheme() {{
+            document.documentElement.classList.toggle('dark');
+        }}
+
+        function copyToClipboard(text) {{
+            navigator.clipboard.writeText(text);
+            alert('Ссылка скопирована в буфер обмена!');
+        }}
+
+        document.getElementById('searchInput').addEventListener('input', renderChannels);
+        renderCategories();
+        renderChannels();
     </script>
 </body>
-</html>
-"""
+</html>"""
+
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(html_content)
 
-    # Генерация README.md
-    categories_md = ""
-    for g, count in sorted(group_stats.items(), key=lambda x: x[1], reverse=True):
-        categories_md += f"* **{g}:** `{count} каналов`\n"
-
-    now = datetime.datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")
-    readme_content = f"""# ⚡ Omega IPTV Auto-Checker (Wink Edition)
-
-![Build Status](https://github.com/Gvineon550-coder/omega-iptv/actions/workflows/main.yml/badge.svg)
-
-Профессиональный автоматический парсер, валидатор потоков и генератор плейлистов с пинг-аналитикой. Работает автономно на GitHub Actions.
-
-## 📊 Статус системы
-* **Последнее обновление:** `{now}`
-* **Всего каналов в базе:** `{total}`
-* **Активных каналов:** `{len(active_channels)}`
-* **Средний пинг:** `{avg_latency} ms`
-
-### 📂 Распределение по категориям
-{categories_md}
-
----
-
-## 🔗 Ссылки для плеера
-* **Прямая ссылка на M3U плейлист (с авто-EPG):**
-  `{m3u_raw_url}`
-* **Ссылка на телепрограмму (RU EPG):**
-  `{epg_url}`
-
-## 🌐 Веб-дашборд
-* [Открыть интерактивную панель управления (GitHub Pages)](https://Gvineon550-coder.github.io/omega-iptv/)
-"""
-    with open("README.md", "w", encoding="utf-8") as f:
-        f.write(readme_content)
-
-    print(f"\033[1;32m[+] Готово! Активных каналов: {len(active_channels)} из {total}\033[0m")
+    print("[+] Проверка завершена. Плейлисты, структура и index.html полностью обновлены.")
 
 if __name__ == "__main__":
     main()
