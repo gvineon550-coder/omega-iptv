@@ -17,6 +17,10 @@ ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
+# ССЫЛКА НА НАШ СОБСТВЕННЫЙ ЛАЙТ-EPG
+EPG_URL = "https://raw.githubusercontent.com/Gvineon550-coder/omega-iptv/main/epg_lite.xml.gz"
+PLACEHOLDER_LOGO = "https://i.imgur.com/z1hO3Lk.png"
+
 CHECKER_AGENTS = [
     "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "Mozilla/5.0 WINK/1.31.1 (AndroidTV/7.1.1) HlsWinkPlayer",
@@ -169,6 +173,7 @@ def build_index_html(dashboard_data, active_count, total):
             </div>
             <div class="flex gap-2">
                 <button onclick="copyToClipboard(window.location.origin + window.location.pathname.replace('index.html', '') + 'playlist.m3u')" class="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-lg text-sm font-medium transition">📋 Копировать M3U</button>
+                <button onclick="copyToClipboard('{EPG_URL}')" class="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg text-sm font-medium transition">⚡ Копировать EPG</button>
             </div>
         </div>
 
@@ -420,10 +425,11 @@ def main():
 
     active_channels.sort(key=lambda x: (x.get("group", ""), x.get("name", "")))
 
-    lines = ['#EXTM3U']
+    lines = [f'#EXTM3U url-tvg="{EPG_URL}"']
     for ch in active_channels:
         tvg_id_attr = f' tvg-id="{m3u_clean(ch["tvg_id"])}"' if ch.get("tvg_id") else ""
-        logo_attr = f' tvg-logo="{m3u_clean(ch["logo"])}"' if ch.get("logo") else ""
+        logo = ch.get("logo") or PLACEHOLDER_LOGO
+        logo_attr = f' tvg-logo="{m3u_clean(logo)}"'
         group = m3u_clean(ch.get("group", ""))
         name = m3u_clean(ch.get("name", ""))
         lines.append(f'#EXTINF:-1{tvg_id_attr}{logo_attr} group-title="{group}",{name}')
@@ -439,10 +445,11 @@ def main():
     categories = sorted({c["group"] for c in active_channels})
     for cat in categories:
         cat_channels = [c for c in active_channels if c["group"] == cat]
-        cat_lines = ['#EXTM3U']
+        cat_lines = [f'#EXTM3U url-tvg="{EPG_URL}"']
         for ch in cat_channels:
             tvg_id_attr = f' tvg-id="{m3u_clean(ch["tvg_id"])}"' if ch.get("tvg_id") else ""
-            logo_attr = f' tvg-logo="{m3u_clean(ch["logo"])}"' if ch.get("logo") else ""
+            logo = ch.get("logo") or PLACEHOLDER_LOGO
+            logo_attr = f' tvg-logo="{m3u_clean(logo)}"'
             group = m3u_clean(ch.get("group", ""))
             name = m3u_clean(ch.get("name", ""))
             cat_lines.append(f'#EXTINF:-1{tvg_id_attr}{logo_attr} group-title="{group}",{name}')
@@ -463,7 +470,7 @@ def main():
         dashboard_data.append({
             "name": c["name"],
             "group": c["group"],
-            "logo": c.get("logo", ""),
+            "logo": c.get("logo") or PLACEHOLDER_LOGO,
             "url": c["url"],
             "latency": c["latency"],
             "stability": stability,
@@ -505,8 +512,10 @@ def main():
 ---
 
 ## 🔗 Ссылки для плеера
-* **Прямая ссылка на M3U плейлист:**
+* **Прямая ссылка на M3U плейлист (с авто-EPG):**
   `https://raw.githubusercontent.com/Gvineon550-coder/omega-iptv/main/playlist.m3u`
+* **Ссылка на телепрограмму (Лайт-EPG):**
+  `{EPG_URL}`
 
 ## 🌐 Веб-дашборд
 * [Открыть интерактивную панель управления (GitHub Pages)](https://Gvineon550-coder.github.io/omega-iptv/)
