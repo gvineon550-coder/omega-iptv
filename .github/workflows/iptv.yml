@@ -2,16 +2,15 @@ name: Omega IPTV Auto Pipeline
 
 on:
   schedule:
-    - cron: '0 3 1 * *'
-  workflow_dispatch:
+    - cron: '0 3 1 * *'  # Запуск 1-го числа каждого месяца в 03:00 UTC (06:00 МСК)
+  workflow_dispatch:     # Кнопка ручного запуска (остается)
   push:
     branches: [main]
     paths:
       - 'playlist.m3u'
       - 'index.html'
       - 'README.md'
-      - 'parser.py'
-      - 'checker.py'
+      - 'epg_lite.xml.gz'
 
 permissions:
   contents: write
@@ -45,6 +44,9 @@ jobs:
       - name: Run Checker
         run: python checker.py
 
+      - name: Filter EPG
+        run: python filter_epg.py
+
       - name: Sanity check playlist
         run: |
           test -s playlist.m3u || { echo "::error::playlist.m3u не создан"; exit 1; }
@@ -59,27 +61,20 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          # 1. Синхронизируемся с удаленным репозиторием, игнорируя локальные ветки
           git fetch origin ${{ github.ref_name }}
           git checkout -B ${{ github.ref_name }}
-          
-          # 2. Сбрасываем HEAD на последний коммит в удаленном репо. 
-          # Наши только что сгенерированные файлы останутся в рабочей директории.
           git reset --soft origin/${{ github.ref_name }}
 
-          # 3. Добавляем наши свежие файлы (они перезапишут старые в индексе)
-          for f in playlist.m3u index.html channels.json README.md; do
+          for f in playlist.m3u index.html channels.json README.md epg_lite.xml.gz; do
             [ -f "$f" ] && git add "$f"
           done
           [ -d playlists ] && git add playlists/ || true
 
-          # 4. Проверяем, есть ли изменения
           if git diff --staged --quiet; then
             echo "No changes to commit"
             exit 0
           fi
 
-          # 5. Коммитим и пушим (на этот раз конфликтов быть не может)
           git commit -m "chore: auto-update IPTV [$(date -u +'%Y-%m-%d %H:%M UTC')] [skip ci]"
           git push origin ${{ github.ref_name }}
 
@@ -87,6 +82,7 @@ jobs:
         run: |
           mkdir -p public
           cp index.html playlist.m3u README.md public/
+          [ -f epg_lite.xml.gz ] && cp epg_lite.xml.gz public/ || true
           [ -d playlists ] && cp -r playlists public/ || true
 
       - name: Setup Pages
