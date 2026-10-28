@@ -73,9 +73,14 @@ def main():
 
     active_channels.sort(key=lambda x: (-sum(x.get("history", [0])), x.get("latency", 999.0)))
 
-    master_m3u = '#EXTM3U url-tvg="https://epg.pw/xmltv/epg_RU.xml.gz"\n'
+    # Официальный EPG от iptv-org
+    epg_url = "https://iptv-org.github.io/epg/guides/ru.xml"
+
+    # 1. Генерация единого мастер-плейлиста
+    master_m3u = f'#EXTM3U url-tvg="{epg_url}"\n'
     for ch in active_channels:
-        master_m3u += f'#EXTINF:-1 tvg-id="{ch["tvg_id"]}" tvg-logo="{ch["logo"]}" group-title="{ch["group"]}",{ch["name"]}\n'
+        tvg_id_attr = f' tvg-id="{ch["tvg_id"]}"' if ch.get("tvg_id") else ''
+        master_m3u += f'#EXTINF:-1{tvg_id_attr} tvg-logo="{ch["logo"]}" group-title="{ch["group"]}",{ch["name"]}\n'
         if ch.get("user_agent"):
             master_m3u += f'#EXTVLCOPT:http-user-agent={ch["user_agent"]}\n'
         master_m3u += f'{ch["url"]}\n'
@@ -83,13 +88,15 @@ def main():
     with open("playlist.m3u", "w", encoding="utf-8") as f:
         f.write(master_m3u)
 
+    # 2. Генерация раздельных плейлистов по категориям
     os.makedirs("playlists", exist_ok=True)
     categories = set(c["group"] for c in active_channels)
     for cat in categories:
         cat_channels = [c for c in active_channels if c["group"] == cat]
-        cat_m3u = '#EXTM3U url-tvg="https://epg.pw/xmltv/epg_RU.xml.gz"\n'
+        cat_m3u = f'#EXTM3U url-tvg="{epg_url}"\n'
         for ch in cat_channels:
-            cat_m3u += f'#EXTINF:-1 tvg-id="{ch["tvg_id"]}" tvg-logo="{ch["logo"]}" group-title="{ch["group"]}",{ch["name"]}\n'
+            tvg_id_attr = f' tvg-id="{ch["tvg_id"]}"' if ch.get("tvg_id") else ''
+            cat_m3u += f'#EXTINF:-1{tvg_id_attr} tvg-logo="{ch["logo"]}" group-title="{ch["group"]}",{ch["name"]}\n'
             if ch.get("user_agent"):
                 cat_m3u += f'#EXTVLCOPT:http-user-agent={ch["user_agent"]}\n'
             cat_m3u += f'{ch["url"]}\n'
@@ -107,6 +114,7 @@ def main():
         "stability": round((sum(c.get("history", [0])) / len(c.get("history", [1]))) * 100)
     } for c in active_channels]
 
+    # 3. Автоматическая генерация index.html
     html_content = f"""<!DOCTYPE html>
 <html lang="ru" class="dark">
 <head>
@@ -136,7 +144,7 @@ def main():
             </div>
             <div class="flex gap-2">
                 <button onclick="copyToClipboard(window.location.origin + window.location.pathname.replace('index.html', '') + 'playlist.m3u')" class="bg-blue-600 hover:bg-blue-500 px-4 py-2 rounded-lg text-sm font-medium transition">📋 Копировать M3U</button>
-                <button onclick="copyToClipboard('https://epg.pw/xmltv/epg_RU.xml.gz')" class="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg text-sm font-medium transition">⚡ Копировать EPG</button>
+                <button onclick="copyToClipboard('{epg_url}')" class="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg text-sm font-medium transition">⚡ Копировать EPG</button>
             </div>
         </div>
 
@@ -249,7 +257,7 @@ def main():
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(html_content)
 
-    log("[+] index.html успешно сгенерирован. Всё готово!")
+    log("[+] index.html успешно сгенерирован. Проверка и сборка завершены!")
 
 if __name__ == "__main__":
     main()
