@@ -11,7 +11,7 @@ def log(msg):
 
 def normalize_name(name):
     name = name.lower().strip()
-    name = re.sub(r'\b(hd|sd|4k|fhd|hq|1080p|720p|576i)\b', '', name)
+    name = re.sub(r'\b(hd|sd|4k|fhd|hq|1080p|720p|576i|1080|720)\b', '', name)
     name = re.sub(r'[^а-яa-z0-9]', '', name)
     return name
 
@@ -34,54 +34,66 @@ def smart_categorize(name, current_group):
     name_lower = str(name).lower()
     group_lower = str(current_group).lower()
 
-    if any(k in name_lower for k in ['shop', 'магазин', 'покупк', 'ювелир', 'home shopping', 'top shop']):
+    # Магазины
+    if any(k in name_lower for k in ['shop', 'магазин', 'покупк', 'ювелир', 'home shopping', 'top shop', 'рынок']):
         return 'Магазины'
 
+    # Федеральные
     federal_keywords = [
         'первый', 'россия 1', 'россия-1', 'нтв', 'матч тв', 'пятый канал', '5 канал', 
         'отр', 'тв центр', 'твц', 'рен тв', 'спас', 'стс', 'домашний', 'тв-3', 'тв3', 
-        'пятница', 'звезда', 'мир', 'тнт', 'муз тв', 'ю', 'че', 'суббота', 'солнце', 'ю-тв'
+        'пятница', 'звезда', 'мир', 'тнт', 'муз тв', 'ю', 'че', 'суббота', 'солнце', 'ю-тв', 'карусель'
     ]
     if any(k in name_lower for k in federal_keywords) and not 'регион' in name_lower:
         return 'Федеральные'
 
+    # Региональные
     regional_keywords = [
-        'гтрк', 'регион', 'область', 'край', 'москва 24', 'санкт-петербург', 
-        'сибир', 'урал', 'кубан', 'дон', 'ника', 'телеканал санкт', 'региональный'
+        'гтрк', 'регион', 'область', 'край', 'москва 24', 'санкт-петербург', 'спб',
+        'сибир', 'урал', 'кубан', 'дон', 'ника', 'телеканал санкт', 'региональный',
+        'москва', 'подмосковье', 'уральск', 'нижний новгород', 'казань', 'татарстан'
     ]
     if any(k in name_lower for k in regional_keywords) or 'local' in group_lower or 'regional' in group_lower:
         return 'Региональные'
 
-    sports_keywords = ['спорт', 'матч!', 'футбол', 'хоккей', 'бой', 'бокс', 'ufc', 'formula', 'sport', 'fight', 'racing', 'nfl', 'nba', 'кхл', 'рпл', 'arena', 'extreme']
+    # Спорт
+    sports_keywords = ['спорт', 'матч!', 'футбол', 'хоккей', 'бой', 'бокс', 'ufc', 'formula', 'sport', 'fight', 'racing', 'nfl', 'nba', 'кхл', 'рпл', 'arena', 'extreme', 'шахмат', 'бильярд']
     if any(k in name_lower for k in sports_keywords) or 'sport' in group_lower or 'спорт' in group_lower:
         return 'Спорт'
         
-    music_keywords = ['музык', 'mtv', 'ru.tv', 'bridge', 'music', 'vh1', 'mcm', 'muz', 'europa plus', 'рекорд', 'chanson', 'strana', 'energy', 'ля-минор']
+    # Музыка
+    music_keywords = ['музык', 'mtv', 'ru.tv', 'bridge', 'music', 'vh1', 'mcm', 'muz', 'europa plus', 'рекорд', 'chanson', 'strana', 'energy', 'ля-минор', 'жара', 'Europa Plus TV']
     if any(k in name_lower for k in music_keywords) or 'music' in group_lower or 'музыка' in group_lower:
         return 'Музыка'
 
-    kids_keywords = ['детск', 'мульт', 'карусель', 'disney', 'nickelodeon', 'kids', 'baby', 'animation', 'cartoon', 'радость моя', 'tiji', 'gulli', 'mult', 'никилодеон']
+    # Детские
+    kids_keywords = ['детск', 'мульт', 'disney', 'nickelodeon', 'kids', 'baby', 'animation', 'cartoon', 'радость моя', 'tiji', 'gulli', 'mult', 'никилодеон', 'телеканал дедушка', 'сказки', 'nickelodeon']
     if any(k in name_lower for k in kids_keywords) or 'kids' in group_lower or 'детские' in group_lower or 'animation' in group_lower:
         return 'Детские'
 
-    news_keywords = ['новост', 'вести', 'известия', 'рнв', 'соловьев', 'news', 'рбк', 'cnn', 'bbc', 'euronews', 'мир 24', 'коммерсант', 'rbc']
+    # Новости
+    news_keywords = ['новост', 'вести', 'известия', 'рнв', 'соловьев', 'news', 'рбк', 'cnn', 'bbc', 'euronews', 'мир 24', 'коммерсант', 'rbc', 'известия']
     if any(k in name_lower for k in news_keywords) or 'news' in group_lower or 'новости' in group_lower:
         return 'Новости'
 
-    movie_keywords = ['кино', 'фильм', 'сериал', 'movie', 'film', 'series', 'cinema', 'премиум', 'строго', 'paramount', 'hbo', 'mediateka', 'кинопремьера', 'fox', 'tv1000', 'amedia', 'мост', 'картин', 'русский роман', 'эгоист']
-    if any(k in name_lower for k in movie_keywords) or any(g in group_lower for g in ['movies', 'series', 'кино', 'фильмы']):
+    # Кино и Сериалы
+    movie_keywords = ['кино', 'фильм', 'сериал', 'movie', 'film', 'series', 'cinema', 'премиум', 'paramount', 'hbo', 'mediateka', 'кинопремьера', 'fox', 'tv1000', 'amedia', 'мост', 'картин', 'русский роман', 'эгоист', 'строго', 'наше кино', 'советское кино']
+    if any(k in name_lower for k in movie_keywords) or any(g in group_lower for g in ['movies', 'series', 'кино', 'фильмы', 'cinema']):
         return 'Кино и Сериалы'
 
-    doc_keywords = ['познавательн', 'история', 'наук', 'discovery', 'national geographic', 'animal', 'science', 'travel', 'documentary', 'docu', 'viasat explore', 'nature', 'outdoor', 'auto', 'education', 'охота', 'рыбалка', 'живая природа', 'наука', 'живой']
-    if any(k in name_lower for k in doc_keywords) or any(g in group_lower for g in ['documentary', 'science', 'travel', 'education', 'outdoor']):
+    # Познавательные
+    doc_keywords = ['познавательн', 'история', 'наук', 'discovery', 'national geographic', 'animal', 'science', 'travel', 'documentary', 'docu', 'viasat explore', 'nature', 'outdoor', 'auto', 'education', 'охота', 'рыбалка', 'живая природа', 'наука', 'живой', 'кроха', 'успех']
+    if any(k in name_lower for k in doc_keywords) or any(g in group_lower for g in ['documentary', 'science', 'travel', 'education', 'outdoor', 'history']):
         return 'Познавательные'
 
-    religious_keywords = ['религ', 'пасха', 'спас', 'religious', 'god', 'bible', 'союз', 'троица']
+    # Религиозные
+    religious_keywords = ['религ', 'пасха', 'спас', 'religious', 'god', 'bible', 'союз', 'троица', 'ортодокс', 'мусульман', 'спасатель']
     if any(k in name_lower for k in religious_keywords) or 'religious' in group_lower:
         return 'Религиозные'
 
-    fun_keywords = ['развлекательн', 'comedy', 'lifestyle', 'fashion', 'relax', 'entertainment', 'cooking', 'family', 'ржд', 'юмор', 'пельмени', 'наша rasha']
-    if any(k in name_lower for k in fun_keywords) or any(g in group_lower for g in ['entertainment', 'lifestyle', 'cooking', 'family']):
+    # Развлекательные
+    fun_keywords = ['развлекательн', 'comedy', 'lifestyle', 'fashion', 'relax', 'entertainment', 'cooking', 'family', 'ржд', 'юмор', 'пельмени', 'наша rasha', 'пятница', 'che', 'юмор тв', 'сарафан']
+    if any(k in name_lower for k in fun_keywords) or any(g in group_lower for g in ['entertainment', 'lifestyle', 'cooking', 'family', 'general']):
         return 'Развлекательные'
 
     return 'Общие'
@@ -153,7 +165,7 @@ def parse_m3u_from_url(url, source_index, global_logos_by_norm_name, epg_map):
 
                         tvg_id = current_tvg_id
                         if not tvg_id or tvg_id == "None":
-                            tvg_id = epg_map.get(norm_name, norm_name)
+                            tvg_id = epg_map.get(norm_name, "") # Если нет в базе, оставляем пустым, чтобы плейлист не ломался левыми ID
 
                         custom_ua = "HlsWinkPlayer" if re.search(r'[\+\-]\d+', current_name) else None
                         final_group = smart_categorize(current_name, current_group)
