@@ -13,14 +13,31 @@ from datetime import datetime, timezone
 from html import escape as html_escape
 from urllib.parse import urlparse
 
-# Осознанно: часть IPTV-источников отдаёт просроченные сертификаты
 ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
-# ИСПРАВЛЕНО: Рабочая ссылка на EPG с ID от iptv-org
 EPG_URL = "https://i.mjh.nz/iptv-org/ru.xml.gz"
-PLAYLIST_USER_AGENT = "HlsWinkPlayer"
+
+# ПУЛ ДЛЯ МАСКИРОВКИ (Чекер перебирает по очереди, начиная с самых "правдоподобных")
+CHECKER_AGENTS = [
+    # 1. Полные строки, имитирующие официальное приложение Wink на Android TV
+    "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
+    "Mozilla/5.0 WINK/1.31.1 (AndroidTV/7.1.1) HlsWinkPlayer",
+    "WINK/1.28.2 (AndroidTV/9) HlsWinkPlayer",
+    
+    # 2. Полное имя класса плеера (встречается в конфигах)
+    "ru.rt.video.player.hls.HlsWinkPlayer",
+    
+    # 3. Базовые/универсальные UA для Wink (как у CrocoUser)
+    "HlsWinkPlayer",
+    "Wink/1.31.1",
+    
+    # 4. Стандартные UA для проверки других потоков
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Linux; Android 6.0; Wink_Share_SE) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.92 Mobile Safari/537.36",
+    "VLC/3.0.20 LibVLC/3.0.20",
+]
 
 host_locks: dict[str, threading.Semaphore] = defaultdict(lambda: threading.Semaphore(4))
 host_locks_guard = threading.Lock()
@@ -51,7 +68,7 @@ def m3u_clean(s):
 
 def _attempt(url, user_agent, use_range, timeout):
     headers = {
-        "User-Agent": user_agent or "Mozilla/5.0",
+        "User-Agent": user_agent,
         "Accept": "*/*",
         "Connection": "close",
     }
@@ -77,7 +94,7 @@ def _attempt(url, user_agent, use_range, timeout):
         return True, round(time.time() - start, 3), "ok"
     except urllib.error.HTTPError as e:
         if e.code == 403:
-            return True, 999.0, "http_403_alive"
+            return False, 999.0, "http_403"
         return False, 999.0, f"http_{e.code}"
     except Exception:
         return False, 999.0, "network_error"
@@ -85,15 +102,39 @@ def _attempt(url, user_agent, use_range, timeout):
 
 def check_stream(ch, retry=False):
     url = ch.get("url")
-    user_agent = ch.get("user_agent")
-
-    if retry:
-        ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
-        ok, latency, _ = _attempt(url, ua, use_range=False, timeout=7)
-        return ch, ok, latency
-    else:
-        ok, latency, _ = _attempt(url, user_agent, use_range=True, timeout=5)
-        return ch, ok, latency
+    saved_ua = ch.get("user_agent")
+    
+    agents_to_try = list(CHECKER_AGENTS)
+    
+    # Если есть сохраненный UA, ставим его первым в очереди (он уже срабатывал раньше)
+    if saved_ua:
+        if saved_ua in agents_to_try:
+            agents_to_try.remove(saved_ua)
+        agents_to_try.insert(0, saved_ua)
+        
+    got_403 = False
+    last_403_ua = None
+    
+    for ua in agents_to_try:
+        use_range = not retry
+        timeout = 7 if retry else 5
+        
+        ok, latency, reason = _attempt(url, ua, use_range, timeout)
+        
+        if ok:
+            ch["user_agent"] = ua
+            return ch, True, latency
+            
+        if reason == "http_403":
+            got_403 = True
+            last_403_ua = ua
+            
+    # Если ни один UA не дал 200, но был 403 (геоблок), считаем канал живым
+    if got_403:
+        ch["user_agent"] = last_403_ua
+        return ch, True, 999.0
+        
+    return ch, False, 999.0
 
 
 def build_index_html(dashboard_data, active_count, total):
@@ -311,7 +352,6 @@ def main():
     ok_count = 0
     next_report = 0
 
-    # ---------- ПРОХОД 1 ----------
     with ThreadPoolExecutor(max_workers=50) as executor:
         futures = [executor.submit(check_stream, ch) for ch in channels]
         for future in as_completed(futures):
@@ -336,7 +376,6 @@ def main():
 
     log(f"[*] Проход 1 завершён. Успешно: {ok_count}, провалов: {len(failed_channels)}")
 
-    # ---------- ПРОХОД 2: РЕТРАЙ ----------
     if failed_channels:
         log(f"[*] Ретрай для {len(failed_channels)} каналов (пауза 2с, мягкий режим)...")
         time.sleep(2)
@@ -367,7 +406,6 @@ def main():
                     
         log(f"[*] Ретрай: восстановлено {retry_ok} из {len(failed_channels)}")
 
-    # ---------- Финальная статистика history ----------
     for ch in channels:
         first_pass_ok = ch.pop("_first_pass_ok", False)
         history = ch.get("history", [])
@@ -390,7 +428,6 @@ def main():
 
     active_channels.sort(key=lambda x: (x.get("group", ""), x.get("name", "")))
 
-    # ---------- M3U ----------
     lines = [f'#EXTM3U url-tvg="{EPG_URL}"']
     for ch in active_channels:
         tvg_id_attr = f' tvg-id="{m3u_clean(ch["tvg_id"])}"' if ch.get("tvg_id") else ""
@@ -398,13 +435,14 @@ def main():
         group = m3u_clean(ch.get("group", ""))
         name = m3u_clean(ch.get("name", ""))
         lines.append(f'#EXTINF:-1{tvg_id_attr}{logo_attr} group-title="{group}",{name}')
-        if ch.get("user_agent"):
-            lines.append(f'#EXTVLCOPT:http-user-agent={ch["user_agent"]}')
+        
+        ua = ch.get("user_agent") or "Wink/1.31.1"
+        lines.append(f'#EXTVLCOPT:http-user-agent={ua}')
+        
         lines.append(ch["url"])
     with open("playlist.m3u", "w", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")
 
-    # ---------- Плейлисты по категориям ----------
     os.makedirs("playlists", exist_ok=True)
     categories = sorted({c["group"] for c in active_channels})
     for cat in categories:
@@ -416,15 +454,16 @@ def main():
             group = m3u_clean(ch.get("group", ""))
             name = m3u_clean(ch.get("name", ""))
             cat_lines.append(f'#EXTINF:-1{tvg_id_attr}{logo_attr} group-title="{group}",{name}')
-            if ch.get("user_agent"):
-                cat_lines.append(f'#EXTVLCOPT:http-user-agent={ch["user_agent"]}')
+            
+            ua = ch.get("user_agent") or "Wink/1.31.1"
+            cat_lines.append(f'#EXTVLCOPT:http-user-agent={ua}')
+            
             cat_lines.append(ch["url"])
 
         safe_name = re.sub(r'[^a-zа-я0-9]+', '_', cat.lower()).strip('_') or "other"
         with open(f"playlists/{safe_name}.m3u", "w", encoding="utf-8") as f:
             f.write("\n".join(cat_lines) + "\n")
 
-    # ---------- Dashboard data ----------
     dashboard_data = []
     for c in active_channels:
         hist = c.get("history") or [0]
@@ -439,12 +478,10 @@ def main():
             "history": hist,
         })
 
-    # ---------- index.html ----------
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(build_index_html(dashboard_data, len(active_channels), total))
     log("[+] index.html сгенерирован")
 
-    # ---------- README.md ----------
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
     latencies = [c["latency"] for c in active_channels if c.get("latency", 999) < 999]
     avg_ping = f"{round(sum(latencies) / len(latencies) * 1000)} ms" if latencies else "—"
