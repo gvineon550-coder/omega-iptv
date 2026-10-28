@@ -18,6 +18,7 @@ ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
+# ИСПРАВЛЕНО: Рабочая ссылка на EPG с ID от iptv-org
 EPG_URL = "https://i.mjh.nz/iptv-org/ru.xml.gz"
 PLAYLIST_USER_AGENT = "HlsWinkPlayer"
 
@@ -308,7 +309,7 @@ def main():
     checked = 0
     failed_channels = []
     ok_count = 0
-    last_percent = -1
+    next_report = 0
 
     # ---------- ПРОХОД 1 ----------
     with ThreadPoolExecutor(max_workers=50) as executor:
@@ -327,11 +328,11 @@ def main():
                 failed_channels.append(ch)
 
             percent = checked * 100 // total
-            if percent != last_percent:
+            if percent >= next_report:
                 filled = int(percent / 5)
                 bar = "█" * filled + "░" * (20 - filled)
                 log(f"[{bar}] {percent}% ({checked}/{total}) | Живых: {ok_count} | Упало: {len(failed_channels)}")
-                last_percent = percent
+                next_report = percent + 5
 
     log(f"[*] Проход 1 завершён. Успешно: {ok_count}, провалов: {len(failed_channels)}")
 
@@ -343,7 +344,7 @@ def main():
         retry_ok = 0
         retry_checked = 0
         retry_total = len(failed_channels)
-        last_percent = -1
+        next_report = 0
 
         with ThreadPoolExecutor(max_workers=20) as executor:
             futures = [executor.submit(check_stream, ch, True) for ch in failed_channels]
@@ -358,11 +359,11 @@ def main():
                     ch["_first_pass_ok"] = True
                     
                 percent = retry_checked * 100 // retry_total
-                if percent != last_percent:
+                if percent >= next_report:
                     filled = int(percent / 5)
                     bar = "█" * filled + "░" * (20 - filled)
                     log(f"[{bar}] {percent}% РЕТРАЙ ({retry_checked}/{retry_total}) | Восстановлено: {retry_ok}")
-                    last_percent = percent
+                    next_report = percent + 10
                     
         log(f"[*] Ретрай: восстановлено {retry_ok} из {len(failed_channels)}")
 
