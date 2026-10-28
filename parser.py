@@ -56,6 +56,7 @@ def parse_m3u_from_url(url):
 def main():
     sources = [
         "https://iptv-org.github.io/iptv/countries/ru.m3u",
+        "https://raw.githubusercontent.com/iptv-org/iptv/master/streams/ru.m3u" 
         "https://iptv-org.github.io/iptv/languages/rus.m3u"
     ]
     
