@@ -276,12 +276,6 @@
     "url": "https://xykt-fix.github.io/cinerama_edge01/hls/BOLLYWOOD_RU/Movie009.m3u8"
   },
   {
-    "name": "Bolt (Russia) (576p)",
-    "group": "Movies;Series",
-    "logo": "https://i.imgur.com/YdIHXOR.png",
-    "url": "http://hls127.freeott.top:8080/Bolt/video.m3u8"
-  },
-  {
     "name": "BRIDGE (576p)",
     "group": "Music",
     "logo": "https://i.imgur.com/qYObfrG.png",
@@ -597,7 +591,7 @@
     "name": "Dikij (576p)",
     "group": "Outdoor",
     "logo": "https://i.imgur.com/VDXDiPC.png",
-    "url": "http://hls127.freeott.top:8080/Dikiy/video.m3u8"
+    "url": "https://stream3.cinerama.uz/1230/tracks-v1a1/mono.m3u8"
   },
   {
     "name": "Discovery Channel (Russia) (1080p)",
@@ -789,7 +783,7 @@
     "name": "First Music Channel Russia (1080p)",
     "group": "Music",
     "logo": "https://i.imgur.com/rEo7nR1.png",
-    "url": "http://hls127.freeott.top:8080/1muz_HD/video.m3u8"
+    "url": "http://rtmp.one.by:2300"
   },
   {
     "name": "FON Music (576p)",
@@ -873,7 +867,7 @@
     "name": "Hit HD (1080p)",
     "group": "Movies",
     "logo": "https://i.imgur.com/jl3MNPe.png",
-    "url": "http://hls127.freeott.top:8080/XitHD/video.m3u8"
+    "url": "http://stream.mcquack.net/363/index.m3u8"
   },
   {
     "name": "Hollywood (1080p)",
@@ -933,7 +927,7 @@
     "name": "Istoriya (576p)",
     "group": "Documentary",
     "logo": "https://i.imgur.com/eEjPail.png",
-    "url": "http://hls127.freeott.top:8080/Istoriya/video.m3u8"
+    "url": "https://fs.uplink.kz/istoriya/mono.m3u8?token=onlinetv"
   },
   {
     "name": "Izvestia (1080p)",
@@ -1014,12 +1008,6 @@
     "url": "http://stream.mcquack.net/64/index.m3u8"
   },
   {
-    "name": "Kinopokaz HD (1080p)",
-    "group": "Movies",
-    "logo": "https://i.imgur.com/nNjMyAq.png",
-    "url": "http://hls127.freeott.top:8080/Kinopokaz_HD/video.m3u8"
-  },
-  {
     "name": "Kinopremyera (1080p)",
     "group": "Movies",
     "logo": "https://i.imgur.com/s0UYT8T.png",
@@ -1044,10 +1032,10 @@
     "url": "http://stream.mcquack.net/170/index.m3u8"
   },
   {
-    "name": "Kinoseriya (1080p)",
+    "name": "Kinoseriya (576p)",
     "group": "Movies",
     "logo": "https://i.imgur.com/iao7zLZ.png",
-    "url": "http://hls127.freeott.top:8080/Kinoseriya_HD/video.m3u8"
+    "url": "https://fs.uplink.kz/kinoseria/mono.m3u8?token=onlinetv"
   },
   {
     "name": "Kinosvidanie (576p)",
@@ -1060,12 +1048,6 @@
     "group": "Movies",
     "logo": "https://i.imgur.com/mAcAAQF.png",
     "url": "http://stream.mcquack.net/278/index.m3u8"
-  },
-  {
-    "name": "Kluch (576p)",
-    "group": "Entertainment",
-    "logo": "https://i.imgur.com/WA9TOPi.png",
-    "url": "http://hls127.freeott.top:8080/Kluch/video.m3u8"
   },
   {
     "name": "KN Music TV",
@@ -1224,6 +1206,12 @@
     "url": "https://fs.uplink.kz/match_planeta/mono.m3u8?token=onlinetv"
   },
   {
+    "name": "Match! Premier (576p)",
+    "group": "Sports",
+    "logo": "https://i.imgur.com/GQPyHYK.png",
+    "url": "http://185.23.80.23:8080/MATCH_PREMIER/index.m3u8"
+  },
+  {
     "name": "Match! Strana (720p)",
     "group": "Sports",
     "logo": "https://i.imgur.com/X02s2UE.png",
@@ -1377,7 +1365,7 @@
     "name": "Mult i muzyka (576p)",
     "group": "Kids",
     "logo": "https://i.imgur.com/SYt6BZP.png",
-    "url": "http://hls127.freeott.top:8080/Mult_Muzika/video.m3u8"
+    "url": "http://stream.mcquack.net/82/index.m3u8"
   },
   {
     "name": "Muz Soyuz (576p)",
@@ -1446,12 +1434,6 @@
     "url": "http://stream.mcquack.net/217/index.m3u8"
   },
   {
-    "name": "Nashe Lubimoe Kino (576p)",
-    "group": "Movies",
-    "logo": "https://i.imgur.com/iKPfM5K.png",
-    "url": "http://hls127.freeott.top:8080/Lubimoe_Kino/video.m3u8"
-  },
-  {
     "name": "Nashe muzhskoe HD (1080p)",
     "group": "Movies",
     "logo": "https://i.imgur.com/QRWKpmb.png",
@@ -1470,10 +1452,10 @@
     "url": "http://dtv.vol.net.ua/National_Geographic-HD/index.m3u8"
   },
   {
-    "name": "National Geographic Wild (Russia) (1080p)",
+    "name": "National Geographic Wild (Russia) (576p)",
     "group": "Documentary",
     "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/National_Geographic_Wild_logo.svg/960px-National_Geographic_Wild_logo.svg.png",
-    "url": "http://hls127.freeott.top:8080/Nat_Geo_Wild_SD/video.m3u8"
+    "url": "https://fs.uplink.kz/nat_geo_wild/mono.m3u8?token=onlinetv"
   },
   {
     "name": "National Geographic Wild (Russia) HD",
@@ -1515,7 +1497,7 @@
     "name": "Nostalgia (Russia) (576p)",
     "group": "Classic",
     "logo": "https://i.imgur.com/YBdBc0J.png",
-    "url": "http://hls127.freeott.top:8080/Nostalgiya/video.m3u8"
+    "url": "http://176.118.197.101/Nostalgiya/index.m3u8"
   },
   {
     "name": "NovgorOblTV [Geo-blocked]",
@@ -1533,7 +1515,7 @@
     "name": "NST (576p)",
     "group": "Undefined",
     "logo": "https://i.imgur.com/uv2yxa5.png",
-    "url": "http://hls127.freeott.top:8080/HCTV/video.m3u8"
+    "url": "http://stream.mcquack.net/207/index.m3u8"
   },
   {
     "name": "NTK 21 [Geo-blocked]",
@@ -1593,7 +1575,7 @@
     "name": "NTV Law (576p)",
     "group": "Undefined",
     "logo": "https://i.imgur.com/3ChnWGg.png",
-    "url": "http://hls127.freeott.top:8080/NTV_PRAVO_TV/video.m3u8"
+    "url": "https://cdn.ntv.ru/th_pravo/playlist.m3u8"
   },
   {
     "name": "NTV Series (576p)",
@@ -1605,7 +1587,13 @@
     "name": "NTV Style (576p)",
     "group": "Lifestyle",
     "logo": "https://i.imgur.com/rX6K6qT.png",
-    "url": "http://hls127.freeott.top:8080/NTV_STIL_TV/video.m3u8"
+    "url": "https://cdn.ntv.ru/th_style/playlist.m3u8"
+  },
+  {
+    "name": "NTV Svoya igra (1080p)",
+    "group": "Undefined",
+    "logo": "https://dictant.rgo.ru/sites/default/files/styles/fullscreen/public/logo3.png",
+    "url": "https://cdn-dvr.ntv.ru/th_svoya_igra/index.m3u8"
   },
   {
     "name": "NTV Vitrina (720p)",
