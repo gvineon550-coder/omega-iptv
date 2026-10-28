@@ -1,6 +1,4 @@
 #EXTM3U url-tvg="https://iptv-org.github.io/epg/guides/ru.xml"
-#EXTINF:-1 tvg-id="RENTV.ru@SD" tvg-logo="https://i.imgur.com/0Tu5lte.png" group-title="Федеральные",REN TV (576p)
-http://31.148.48.15/REN-TV/index.m3u8
 #EXTINF:-1 tvg-id="RENTVInternational.ru@SD" tvg-logo="https://i.imgur.com/gBjk9oF.png" group-title="Федеральные",REN TV International (576p)
 http://178.134.1.158:8081/RENTV/index.m3u8
 #EXTINF:-1 tvg-id="Solnce.ru@SD" group-title="Федеральные",Солнце (576p)
