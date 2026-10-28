@@ -18,7 +18,7 @@ ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
-EPG_URL = "https://iptv-org.github.io/epg/guides/ru.xml"
+EPG_URL = "https://i.mjh.nz/iptv-org/ru.xml.gz"
 PLAYLIST_USER_AGENT = "HlsWinkPlayer"
 
 host_locks: dict[str, threading.Semaphore] = defaultdict(lambda: threading.Semaphore(4))
