@@ -5,18 +5,92 @@ import sys
 import urllib.request
 from urllib.parse import urlparse
 
+# ==========================================
+# НАСТРОЙКИ ФИЛЬТРАЦИИ (ЧТО УДАЛЯТЬ)
+# ==========================================
+
+BLOCKED_COUNTRIES = ['.ua', '.kz', '.by', '.uz', '.kg', '.am', '.ge', '.az', '.md', '.tj', '.tm']
+BLOCKED_GROUPS = ['🧸 Детские', '🙏 Религиозные', '🛒 Магазины']
+BLOCKED_KEYWORDS = [
+    'ukraine', 'ukraina', 'україна', 'украина', 'belarus', 'беларусь', 
+    'kazakhstan', 'казахстан', 'qazaqstan', 'uzbekistan', 'узбекистан',
+    'armenia', 'армения', 'georgia', 'грузия', 'moldova', 'молдова',
+    'kyrgyzstan', 'кыргызстан', 'tajikistan', 'таджикистан'
+]
+
+def should_block(ch):
+    tvg_id = str(ch.get("tvg_id", "")).lower()
+    group = str(ch.get("group", "")).lower()
+    name = str(ch.get("name", "")).lower()
+
+    for country in BLOCKED_COUNTRIES:
+        if country in tvg_id:
+            return True
+
+    for blocked_group in BLOCKED_GROUPS:
+        if blocked_group.lower() in group:
+            return True
+
+    for kw in BLOCKED_KEYWORDS:
+        if kw in name:
+            return True
+
+    return False
+
+# ==========================================
+# ЖЕСТКАЯ ПРОВЕРКА URL (ВЫРЕЗАЕМ МУСОР)
+# ==========================================
+def is_valid_url(url):
+    url_lower = url.lower()
+    
+    # 1. Разрешаем только HTTP и HTTPS (отсекает RTMP)
+    if not url_lower.startswith('http://') and not url_lower.startswith('https://'):
+        return False
+        
+    try:
+        parsed = urlparse(url_lower)
+        host = parsed.netloc
+        path = parsed.path
+        
+        # 2. Отсекаем локальные и приватные IP-адреса
+        if any(host.startswith(prefix) for prefix in ['127.', '10.', '192.168.', '0.0.0.0', 'localhost']):
+            return False
+        
+        # Отсекаем 172.16.0.0 - 172.31.255.255
+        if host.startswith('172.'):
+            parts = host.split('.')
+            if len(parts) > 1:
+                try:
+                    second_octet = int(parts[1])
+                    if 16 <= second_octet <= 31:
+                        return False
+                except ValueError:
+                    pass
+                    
+        # 3. Отсекаем UDP-мультикаст и RTMP в пути
+        if '/udp/' in path or 'multicast' in path or 'rtmp' in path:
+            return False
+            
+        # 4. Отсекаем плохие расширения (DASH .mpd, старые .mp4 и html-заглушки)
+        bad_extensions = ['.html', '.php', '.asp', '.htm', '.mpd', '.ism', '.mp4']
+        if any(path.endswith(ext) for ext in bad_extensions):
+            return False
+            
+        return True
+    except Exception:
+        return False
+
+# ==========================================
 
 def log(msg):
     print(msg)
     sys.stdout.flush()
-
 
 def normalize_name(name):
     name = name.lower().strip()
     name = re.sub(r'\b(hd|sd|4k|fhd|hq|1080p|720p|576i|1080|720)\b', '', name)
     name = re.sub(r'[^а-яa-z0-9]', '', name)
     return name
-
 
 def extract_display_name(extinf_line: str) -> str:
     in_quotes = False
@@ -27,45 +101,26 @@ def extract_display_name(extinf_line: str) -> str:
             return extinf_line[i + 1:].strip()
     return ""
 
-
-def is_valid_url(url):
-    try:
-        parsed = urlparse(url)
-        if parsed.scheme not in ['http', 'https']:
-            return False
-        host = parsed.netloc.lower()
-        if not host or 'localhost' in host or '127.0.0.1' in host or '0.0.0.0' in host:
-            return False
-        bad_extensions = ['.html', '.php', '.asp', '.htm']
-        if any(parsed.path.lower().endswith(ext) for ext in bad_extensions):
-            return False
-        return True
-    except Exception:
-        return False
-
-
 def _base_name(name_lower: str) -> str:
-    """Очищает название от скобок, качества, +1, пунктуации — для точного сравнения."""
-    s = re.sub(r'\[.*?\]', '', name_lower) # Убираем [Not 24/7], [Geo-blocked]
-    s = re.sub(r'\(.*?\)', '', s)         # Убираем (576p), (Russia)
-    s = s.replace('-', ' ')               # Меняем дефисы на пробелы
-    s = re.sub(r'\+\s*\d+', '', s)        # Убираем +1, +2, +4, +7
-    s = re.sub(r'[^\w\s]', '', s)         # Убираем пунктуацию (!, .)
+    s = re.sub(r'\[.*?\]', '', name_lower)
+    s = re.sub(r'\(.*?\)', '', s)
+    s = s.replace('-', ' ')
+    s = re.sub(r'\+\s*\d+', '', s)
+    s = re.sub(r'[^\w\s]', '', s)
     s = re.sub(r'\b(hd|sd|fhd|4k|1080p|720p|1080i|576i|576p|480p|480i)\b', '', s)
     s = re.sub(r'\s+', ' ', s).strip()
     return s
-
 
 def smart_categorize(name, current_group):
     name_lower = str(name).lower()
     group_lower = str(current_group).lower()
     base_name = _base_name(name_lower)
 
-    # --- 1. МАГАЗИНЫ ---
+    # 1. Магазины
     if any(k in name_lower for k in ['shop', 'магазин', 'покупк', 'ювелир', 'leomax', 'shopping live']):
         return '🛒 Магазины'
 
-    # --- 2. ДЕТСКИЕ ---
+    # 2. Детские
     kids_keywords = ['детск', 'мульт', 'disney', 'nickelodeon', 'nick jr', 'nicktoons',
                      'kids', 'baby', 'cartoon', 'радость моя', 'tiji', 'gulli', 'mult',
                      'никилодеон', 'сказки', 'карусель', 'carousel', 'kapitan fantastika',
@@ -74,15 +129,15 @@ def smart_categorize(name, current_group):
     if any(k in name_lower for k in kids_keywords) or any(g in group_lower for g in ['kids', 'детск', 'animation', 'cartoon']):
         return '🧸 Детские'
 
-    # --- 3. СПОРТ ---
-    sports_keywords = ['спорт', 'матч!', 'футбол', 'хоккей', 'бой', 'бокс', 'ufc',
+    # 3. Спорт (ДОБАВЛЕНЫ Match!, KHL, Setanta)
+    sports_keywords = ['спорт', 'матч!', 'match!', 'футбол', 'хоккей', 'бой', 'бокс', 'ufc',
                        'formula', 'sport', 'fight', 'racing', 'nfl', 'nba', 'кхл',
                        'рпл', 'arena', 'extreme', 'шахмат', 'бильярд', 'setanta',
-                       'eurosport', 'viju+ sport', 'khl', 'mma', 'okko futbol']
+                       'eurosport', 'viju+ sport', 'khl', 'mma', 'okko futbol', 'okko prajm sport']
     if any(k in name_lower for k in sports_keywords) or any(g in group_lower for g in ['sport', 'спорт']):
         return '⚽ Спорт'
 
-    # --- 4. МУЗЫКА ---
+    # 4. Музыка (ОЧИЩЕНА ОТ "MUZHSKOE KINO")
     music_keywords = ['музык', 'mtv', 'ru.tv', 'bridge', 'music', 'vh1', 'mcm', 'muz',
                       'europa plus', 'рекорд', 'chanson', 'energy', 'жара', 'ля-минор',
                       'mezzo', 'trace', 'classic music', '1hd', 'first music', 'muzzone',
@@ -90,7 +145,7 @@ def smart_categorize(name, current_group):
     if any(k in name_lower for k in music_keywords) or any(g in group_lower for g in ['music', 'музык']):
         return '🎵 Музыка'
 
-    # --- 5. РЕГИОНАЛЬНЫЕ ---
+    # 5. Региональные
     regional_keywords = ['гтрк', 'регион', 'область', 'край', 'москва 24', 'moscow 24', 'moskva 24', 
                          'санкт-петербург', 'sankt peterburg', 'спб', 'spb', 'сибир', 'sibir', 'урал', 'ural', 
                          'кубан', 'kuban', 'дон 24', 'don 24', 'don24', 'ника тв', 'телеканал санкт', 
@@ -111,7 +166,7 @@ def smart_categorize(name, current_group):
     if any(k in name_lower for k in regional_keywords) or any(g in group_lower for g in ['local', 'regional', 'регион']):
         return '📍 Региональные'
 
-    # --- 6. ФЕДЕРАЛЬНЫЕ (ТОЧНОЕ СОВПАДЕНИЕ) ---
+    # 6. Федеральные (ДОБАВЛЕНЫ NTV, ZVEZDA, FRIDAY)
     federal_exact = {
         'channel one', '1tv', 'perviy', 'первый', 'первый канал',
         'russia 1', 'russia1', 'россия 1',
@@ -138,7 +193,7 @@ def smart_categorize(name, current_group):
     if base_name in federal_exact:
         return '📺 Федеральные'
 
-    # --- 7. КИНО И СЕРИАЛЫ ---
+    # 7. Кино и Сериалы (ДОБАВЛЕНО MUZHSKOE KINO)
     movie_keywords = ['кино', 'фильм', 'сериал', 'movie', 'film', 'series', 'cinema',
                       'премиум', 'paramount', 'hbo', 'медиатека', 'кинопремьера',
                       'fox', 'tv1000', 'amedia', 'мост', 'картин', 'русский роман',
@@ -147,11 +202,12 @@ def smart_categorize(name, current_group):
                       'illusion', 'kinosvidanie', 'kinopokaz', 'kinohit', 'kinomix',
                       'kinosemja', 'kinouzhas', 'kinopremyera', 'kinoseriya', 'kino tv',
                       'tv 21', 'kino 1', 'kino 2', 'dom kino', 'saphire', 'premier',
-                      'serial', 'hit hd', 'hit (', 'hit ', 'city eden', 'bollywood', 'hollywood', 'tnt4', 'tnt series']
+                      'serial', 'hit hd', 'hit (', 'hit ', 'city eden', 'bollywood', 'hollywood', 'tnt4', 'tnt series',
+                      'muzhskoe kino', 'indiyskoye kino']
     if any(k in name_lower for k in movie_keywords) or any(g in group_lower for g in ['movies', 'series', 'кино', 'фильм', 'cinema']):
         return '🎬 Кино и Сериалы'
 
-    # --- 8. НОВОСТИ ---
+    # 8. Новости
     news_keywords = ['новост', 'вести', 'известия', 'соловьев', 'news', 'рбк', 'cnn',
                      'bbc', 'euronews', 'мир 24', 'mir 24', 'коммерсант', 'rbc', 'current time',
                      'dw ', 'настоящее время', 't24', 'eurasia', '360° news', 'izvestia',
@@ -159,41 +215,40 @@ def smart_categorize(name, current_group):
     if any(k in name_lower for k in news_keywords) or any(g in group_lower for g in ['news', 'новост']):
         return '📰 Новости'
 
-    # --- 9. ПОЗНАВАТЕЛЬНЫЕ ---
+    # 9. Познавательные (ДОБАВЛЕНЫ KUHNYA, KULINAR, VKUS, USADBA, DACHA)
     doc_keywords = ['познавательн', 'история', 'наук', 'discovery', 'national geographic',
                     'nat geo', 'animal planet', 'science', 'travel', 'documentary', 'docu',
                     'viasat explore', 'viju explore', 'viju history', 'viju nature',
                     'nature', 'outdoor', 'охота', 'рыбалка', 'живая природа', 'живой',
-                    '365 дней', '365 days', 'da vinci', 'rtg', 'terra', 'еда', 'food', 'kuhnya', 'кухня', 
+                    '365 дней', '365 days', 'da vinci', 'rtg', 'terra', 'еда', 'food', 
+                    'kuhnya', 'кухня', 'kulinar', 'kulinar tv', 'foodtime', 'vkus', 'вкус',
+                    'usadba', 'усадьба', 'dacha', 'дача', 'drive', 'драйв', 'auto plus', 'avto24',
                     'дикая', 'dikaja', 'dikij', 'моя планета', 'moya planeta', 'наука 2.0',
                     'nauka', 'top secret', 'совершенно секретно', 'english class',
                     'зоопарк', 'zoopark', 'в мире животных', 'v mire zhivotnykh', 'zhivaya priroda',
-                    'moy mir', 'мой мир', 'usadba', 'усадьба', 'dacha', 'дача', 'drive', 'драйв',
-                    'foodtime', 'kulinar', 'kulinar tv', 'vkus', 'вкус', 'auto plus', 'avto24',
-                    'glazami turista', 'глазами туриста', 'top secret', 'совершенно секретно',
-                    'nano', 'нано', 'nano tv', '365 tv', '365 days tv', '365', 'moya planeta']
+                    'moy mir', 'мой мир', 'glazami turista', 'глазами туриста', 'nano', 'нано', '365']
     if any(k in name_lower for k in doc_keywords) or any(g in group_lower for g in ['documentary', 'science', 'travel', 'education', 'outdoor', 'history', 'познават']):
         return '🧠 Познавательные'
 
-    # --- 10. РЕЛИГИОЗНЫЕ ---
+    # 10. Религиозные
     religious_keywords = ['религ', 'спас', 'religious', 'god', 'bible', 'союз', 'троица',
                           'ортодокс', 'мусульман', 'hope channel', '3abn', 'angel tv',
                           'tv mana', 'manasat', 'vera 24', 'вера', 'huzur', 'tsargrad', 'царьград']
     if any(k in name_lower for k in religious_keywords) or any(g in group_lower for g in ['religious', 'религ']):
         return '🙏 Религиозные'
 
-    # --- 11. РАЗВЛЕКАТЕЛЬНЫЕ ---
+    # 11. Развлекательные (ДОБАВЛЕНЫ 360, 555, 86, TVOYE TV YUMOR)
     fun_keywords = ['развлекательн', 'comedy', 'lifestyle', 'fashion', 'relax',
                     'entertainment', 'cooking', 'family', 'юмор', 'пельмени',
                     'наша russia', 'che!', 'сарафан', 'subbota', 'суббота',
                     'пятница', 'friday', 'ctc', 'стс', 'ю-тв', '2x2', 'мультиландия',
                     'peretz', 'raz', 'kvartal', 'tnt international', 'tlc', 'tv brics', 
-                    'voprosy i otvety', 'yapervyy', 'yumor', 'muzhskoe', 'priklyucheniya', '360', '555', '86']
+                    'voprosy i otvety', 'yapervyy', 'yumor', 'muzhskoe', 'priklyucheniya', 
+                    '360', '555', '86', 'tvoye tv', 'tvoe tv']
     if any(k in name_lower for k in fun_keywords) or any(g in group_lower for g in ['entertainment', 'lifestyle', 'cooking', 'family', 'general', 'развлек']):
         return '🎭 Развлекательные'
 
     return '📦 Общие'
-
 
 def load_iptv_org_epg_map():
     epg_map = {}
@@ -217,7 +272,6 @@ def load_iptv_org_epg_map():
     except Exception as e:
         log(f"[!] Ошибка загрузки базы tvg-id: {e}")
     return epg_map
-
 
 def parse_m3u_from_url(url, source_index, global_logos_by_norm_name, epg_map):
     log(f"[*] Скачивание источника #{source_index + 1}: {url}")
@@ -278,7 +332,7 @@ def parse_m3u_from_url(url, source_index, global_logos_by_norm_name, epg_map):
 
                 final_group = smart_categorize(current_name, current_group)
 
-                channels.append({
+                ch = {
                     "name": current_name,
                     "group": final_group,
                     "logo": logo,
@@ -286,12 +340,15 @@ def parse_m3u_from_url(url, source_index, global_logos_by_norm_name, epg_map):
                     "url": line,
                     "user_agent": custom_ua,
                     "norm_name": norm_name,
-                })
+                }
+                
+                if not should_block(ch):
+                    channels.append(ch)
+
                 current_name, current_logo, current_tvg_id, current_ua = "", "", "", None
 
-    log(f"[+] Источник #{source_index + 1} обработан. Найдено: {len(channels)}")
+    log(f"[+] Источник #{source_index + 1} обработан. Оставлено: {len(channels)}")
     return channels
-
 
 def deduplicate_channels(channels):
     by_url = {}
@@ -318,7 +375,6 @@ def deduplicate_channels(channels):
             by_key[key] = ch
 
     return list(by_key.values())
-
 
 def main():
     log("[*] Запуск парсера каналов...")
@@ -367,7 +423,6 @@ def main():
         json.dump(unique_channels, f, ensure_ascii=False, indent=2)
 
     log("[+] Парсинг успешно завершён, данные сохранены в channels.json")
-
 
 if __name__ == "__main__":
     main()
