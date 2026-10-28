@@ -1,12 +1,16 @@
 #EXTM3U url-tvg="https://i.mjh.nz/iptv-org/ru.xml.gz"
 #EXTINF:-1 tvg-id="Mir.ru@Plus4" group-title="Федеральные",Мир +4 (540p) [Not 24/7]
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://hls.mirtv.cdnvideo.ru/mirtv-parampublish/mirtv3_2500/playlist.m3u8
 #EXTINF:-1 tvg-id="MirBelogorya.ru@SD" group-title="Федеральные",Мир Белогорья (720p) [Geo-blocked]
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer
 http://stream.tvbelgorod.ru:8080/mirbelogorya/index.m3u8
 #EXTINF:-1 tvg-id="Friday.ru@SD" group-title="Федеральные",Пятница! (576p)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer
 https://vod.tuva.ru/friday/index.m3u8
 #EXTINF:-1 tvg-id="Solnce.ru@SD" group-title="Федеральные",Солнце (576p)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer
 http://tv.mediacdn.ru/live/solntse/playlist.m3u8
 #EXTINF:-1 tvg-id="TVCentr.ru@SD" group-title="Федеральные",ТВ Центр
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer
 https://tvc-hls.cdnvideo.ru/tvc-res/smil:vd9221.smil/playlist.m3u8

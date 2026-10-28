@@ -1,3 +1,4 @@
 #EXTM3U url-tvg="https://i.mjh.nz/iptv-org/ru.xml.gz"
 #EXTINF:-1 tvg-id="NizhniyNovgorod24.ru@SD" group-title="Региональные",Нижний Новгород 24 (720p) [Not 24/7]
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer
 https://live-vestinn.cdnvideo.ru/vestinn/nn24-khl/playlist.m3u8
