@@ -15,17 +15,14 @@ def clean_name(name):
     if not name:
         return ""
     name = name.lower().strip()
-    # Убираем скобки и их содержимое
     name = re.sub(r'\[.*?\]', '', name)
     name = re.sub(r'\(.*?\)', '', name)
-    # Убираем качество и мусорные слова
     name = re.sub(r'\b(hd|sd|4k|fhd|hq|1080p|720p|1080i|576i|576p|480p|480i|russia|ukraine|belarus|international|europe|asia|cis)\b', '', name)
-    # Убираем пунктуацию и оставляем только буквы/цифры
     name = re.sub(r'[^а-яa-z0-9]', '', name)
     return name
 
 def main():
-    log("[*] Запуск АВТОМАТИЧЕСКОЙ фильтрации с нечетким поиском...")
+    log("[*] Запуск фильтрации EPG (исправленная версия)...")
     
     try:
         with open("channels.json", "r", encoding="utf-8") as f:
@@ -34,37 +31,54 @@ def main():
         log("[!] channels.json не найден")
         return
 
-    valid_tvgids = {c.get("tvg_id") for c in channels if c.get("tvg_id")}
+    # Строим карту: базовый ID (без @SD) -> полный ID (с @SD)
+    base_to_actual = {}
+    name_to_tvgid = {} # Нормализованное имя -> полный ID
+    
+    for c in channels:
+        tvg_id = c.get("tvg_id")
+        if tvg_id:
+            base_id = tvg_id.split('@')[0]
+            base_to_actual[base_id] = tvg_id
+            
+            norm = c.get("norm_name")
+            if norm:
+                name_to_tvgid[clean_name(norm)] = tvg_id
+
+    valid_tvgids = set(base_to_actual.values())
     if not valid_tvgids:
         log("[!] Нет tvg-id для фильтрации")
         return
 
     log(f"[*] В базе {len(valid_tvgids)} каналов. Загружаем альтернативные имена...")
 
-    name_to_tvgid = {}
     try:
         api_url = "https://iptv-org.github.io/api/channels.json"
         req = urllib.request.Request(api_url, headers={"User-Agent": "Mozilla/5.0"})
         with urllib.request.urlopen(req, timeout=30) as response:
             api_data = json.loads(response.read().decode('utf-8'))
+            
+            added = 0
             for item in api_data:
                 ch_id = item.get("id")
-                if not ch_id or ch_id not in valid_tvgids:
+                if not ch_id or ch_id not in base_to_actual:
                     continue
+                
+                actual_id = base_to_actual[ch_id]
                 names = [item.get("name")] + item.get("alt_names", [])
                 for n in names:
                     if n:
                         norm = clean_name(n)
                         if norm and norm not in name_to_tvgid:
-                            name_to_tvgid[norm] = ch_id
-        log(f"[+] Загружено {len(name_to_tvgid)} имен.")
+                            name_to_tvgid[norm] = actual_id
+                            added += 1
+        log(f"[+] Загружено {added} новых альтернативных имен из API.")
     except Exception as e:
         log(f"[!] Ошибка загрузки API: {e}")
-        for c in channels:
-            if c.get("norm_name") and c.get("tvg_id"):
-                name_to_tvgid[clean_name(c["norm_name"])] = c["tvg_id"]
 
+    log(f"[*] Всего имен для поиска: {len(name_to_tvgid)}")
     log("[*] Скачиваем EPG от teleguide.info...")
+    
     url = "https://www.teleguide.info/download/new3/xmltv.xml.gz"
     try:
         req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
@@ -74,7 +88,7 @@ def main():
         log(f"[!] Ошибка скачивания EPG: {e}")
         return
 
-    log("[*] Анализ XML и поиск совпадений (включая нечеткие)...")
+    log("[*] Анализ XML и поиск совпадений...")
     
     try:
         with gzip.GzipFile(fileobj=io.BytesIO(gz_data)) as f:
@@ -88,8 +102,8 @@ def main():
     id_mapping = {}
     exact_matches = 0
     fuzzy_matches = 0
+    unmatched_epg_names = []
     
-    # Список всех нормализованных имен из API для нечеткого поиска
     all_norm_names = list(name_to_tvgid.keys())
 
     for channel in root.findall("channel"):
@@ -99,32 +113,35 @@ def main():
             
         matched_new_id = None
         
+        # 1. Прямое совпадение ID (редкость)
         if old_id in valid_tvgids:
             matched_new_id = old_id
             exact_matches += 1
         else:
             display_names = [dn.text for dn in channel.findall("display-name") if dn.text]
+            matched_name = None
+            
             for dn in display_names:
                 norm_dn = clean_name(dn)
                 
-                # 1. Точное совпадение
+                # 2. Точное совпадение имени
                 if norm_dn in name_to_tvgid:
-                    potential_id = name_to_tvgid[norm_dn]
-                    if potential_id in valid_tvgids:
-                        matched_new_id = potential_id
-                        exact_matches += 1
-                        break
+                    matched_new_id = name_to_tvgid[norm_dn]
+                    exact_matches += 1
+                    matched_name = dn
+                    break
                 
-                # 2. Нечеткое совпадение (если точного нет)
+                # 3. Нечеткое совпадение
                 if not matched_new_id and len(norm_dn) > 3:
-                    # Ищем самое похожее имя (порог схожести 0.85)
                     matches = difflib.get_close_matches(norm_dn, all_norm_names, n=1, cutoff=0.85)
                     if matches:
-                        potential_id = name_to_tvgid[matches[0]]
-                        if potential_id in valid_tvgids:
-                            matched_new_id = potential_id
-                            fuzzy_matches += 1
-                            break
+                        matched_new_id = name_to_tvgid[matches[0]]
+                        fuzzy_matches += 1
+                        matched_name = dn
+                        break
+            
+            if not matched_new_id and display_names:
+                unmatched_epg_names.append(display_names[0])
         
         if matched_new_id:
             id_mapping[old_id] = matched_new_id
@@ -141,7 +158,7 @@ def main():
             programme_count += 1
 
     log(f"[*] Точных совпадений: {exact_matches}")
-    log(f"[*] Нечетких совпадений (Fuzzy): {fuzzy_matches}")
+    log(f"[*] Нечетких совпадений: {fuzzy_matches}")
     log(f"[*] ВСЕГО Сопоставлено каналов: {len(id_mapping)}")
     log(f"[*] Найдено передач: {programme_count}")
 
