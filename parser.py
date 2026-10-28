@@ -5,7 +5,7 @@ import re
 from urllib.parse import urlparse
 
 def normalize_name(name):
-    """Приводит название канала к единому виду для поиска дубликатов, логотипов и tvg-id"""
+    """Приводит название канала к единому виду для поиска логотипов и tvg-id"""
     name = name.lower().strip()
     name = re.sub(r'\b(hd|sd|4k|fhd|hq|1080p|720p|576i)\b', '', name)
     name = re.sub(r'[^а-яa-z0-9]', '', name)
@@ -187,6 +187,7 @@ def main():
         print(f"[+] Найдено каналов в источнике: {len(parsed)}")
         all_channels.extend(parsed)
 
+    # Дедупликация ТОЛЬКО по точному URL, сохраняя разные рабочие зеркала с одинаковыми именами
     unique_by_url = {}
     for ch in all_channels:
         if ch["url"] not in unique_by_url:
@@ -198,20 +199,9 @@ def main():
             if not unique_by_url[ch["url"]].get("tvg_id") and ch.get("tvg_id"):
                 unique_by_url[ch["url"]]["tvg_id"] = ch["tvg_id"]
 
-    unique_channels = {}
-    for ch in unique_by_url.values():
-        n_name = ch["norm_name"]
-        if n_name not in unique_channels:
-            unique_channels[n_name] = ch
-        else:
-            if not unique_channels[n_name].get("logo") and ch.get("logo"):
-                unique_channels[n_name]["logo"] = ch["logo"]
-            if not unique_channels[n_name].get("tvg_id") and ch.get("tvg_id"):
-                unique_channels[n_name]["tvg_id"] = ch["tvg_id"]
+    final_list = list(unique_by_url.values())
 
-    final_list = list(unique_channels.values())
-
-    print(f"[*] Всего уникальных каналов после фильтрации: {len(final_list)}")
+    print(f"[*] Всего уникальных ссылок после фильтрации: {len(final_list)}")
 
     with open("channels.json", "w", encoding="utf-8") as f:
         json.dump(final_list, f, ensure_ascii=False, indent=2)
