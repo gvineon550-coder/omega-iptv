@@ -1,4 +1,4 @@
-#EXTM3U
+#EXTM3U url-tvg="https://raw.githubusercontent.com/Gvineon550-coder/omega-iptv/main/epg_lite.xml.gz"
 #EXTINF:-1 tvg-id="AstrahanRuSport.ru@SD" tvg-logo="https://i.imgur.com/BKaEtqL.png" group-title="⚽ Спорт",Astrahan.Ru Sport (720p)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer
 https://streaming.astrakhan.ru/astrakhanrusporthd/playlist.m3u8
@@ -17,19 +17,19 @@ http://stream.mcquack.net/176/index.m3u8
 #EXTINF:-1 tvg-id="Eurosport2.fr@Russia" tvg-logo="https://i.imgur.com/f56dHgR.png" group-title="⚽ Спорт",Eurosport 2 Russia (1080p)
 #EXTVLCOPT:http-user-agent=ru.rt.video.player.hls.HlsWinkPlayer
 http://stream.mcquack.net/192/index.m3u8
-#EXTINF:-1 tvg-id="KHL.ru@SD" group-title="⚽ Спорт",KHL (576p)
+#EXTINF:-1 tvg-id="KHL.ru@SD" tvg-logo="https://i.imgur.com/z1hO3Lk.png" group-title="⚽ Спорт",KHL (576p)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer
 http://stream.mcquack.net/166/index.m3u8
-#EXTINF:-1 tvg-id="KHLPrime.ru@SD" group-title="⚽ Спорт",KHL Prime (1080p)
+#EXTINF:-1 tvg-id="KHLPrime.ru@SD" tvg-logo="https://i.imgur.com/z1hO3Lk.png" group-title="⚽ Спорт",KHL Prime (1080p)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer
 http://stream.mcquack.net/178/index.m3u8
 #EXTINF:-1 tvg-id="MMATVcom.ru@SD" tvg-logo="https://i.imgur.com/QhdxNsB.png" group-title="⚽ Спорт",MMA-TV.com (1080p)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer
 https://streams2.sofast.tv/vglive-sk-462904/playlist.m3u8
-#EXTINF:-1 tvg-id="MMATVcom.ru@SD" group-title="⚽ Спорт",MMA-TV.com (576p)
+#EXTINF:-1 tvg-id="MMATVcom.ru@SD" tvg-logo="https://i.imgur.com/z1hO3Lk.png" group-title="⚽ Спорт",MMA-TV.com (576p)
 #EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 https://fs.uplink.kz/mma/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="MatchArena.ru@SD" group-title="⚽ Спорт",Match! Arena (576p)
+#EXTINF:-1 tvg-id="MatchArena.ru@SD" tvg-logo="https://i.imgur.com/z1hO3Lk.png" group-title="⚽ Спорт",Match! Arena (576p)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer
 http://stream.mcquack.net/163/index.m3u8
 #EXTINF:-1 tvg-id="MatchBoets.ru@SD" tvg-logo="https://i.imgur.com/DogOkA4.png" group-title="⚽ Спорт",Match! Boets (576p)
