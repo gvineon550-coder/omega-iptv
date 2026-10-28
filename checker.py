@@ -43,14 +43,12 @@ def get_host_lock(host):
 
 
 def m3u_clean(s):
-    """Экранирование для M3U: кавычки и переводы строк ломают #EXTINF."""
     if not s:
         return ""
     return s.replace('"', "'").replace("\r", " ").replace("\n", " ").strip()
 
 
 def _attempt(url, user_agent, use_range, timeout):
-    """Одна попытка проверки. Возвращает (success, latency, reason)."""
     headers = {
         "User-Agent": user_agent or "Mozilla/5.0",
         "Accept": "*/*",
@@ -78,7 +76,6 @@ def _attempt(url, user_agent, use_range, timeout):
         return True, round(time.time() - start, 3), "ok"
     except urllib.error.HTTPError as e:
         if e.code == 403:
-            # Геоблок ЦОД — живой
             return True, 999.0, "http_403_alive"
         return False, 999.0, f"http_{e.code}"
     except Exception:
@@ -86,10 +83,6 @@ def _attempt(url, user_agent, use_range, timeout):
 
 
 def check_stream(ch, retry=False):
-    """
-    Основная проверка. retry=True — мягкий режим для второй попытки:
-    без Range, другой UA, чуть больший timeout.
-    """
     url = ch.get("url")
     user_agent = ch.get("user_agent")
 
@@ -313,8 +306,9 @@ def main():
     log(f"[*] Всего каналов: {total}. Проверка (проход 1)...")
 
     checked = 0
-    next_report = 0
     failed_channels = []
+    ok_count = 0
+    last_percent = -1
 
     # ---------- ПРОХОД 1 ----------
     with ThreadPoolExecutor(max_workers=50) as executor:
@@ -327,32 +321,49 @@ def main():
                 ch["fail_count"] = 0
                 ch["latency"] = latency
                 ch["_first_pass_ok"] = True
+                ok_count += 1
             else:
                 ch["_first_pass_ok"] = False
                 failed_channels.append(ch)
 
             percent = checked * 100 // total
-            if percent >= next_report:
-                log(f"[*] {percent}% ({checked}/{total})")
-                next_report = percent + 5
+            if percent != last_percent:
+                filled = int(percent / 5)
+                bar = "█" * filled + "░" * (20 - filled)
+                log(f"[{bar}] {percent}% ({checked}/{total}) | Живых: {ok_count} | Упало: {len(failed_channels)}")
+                last_percent = percent
 
-    log(f"[*] Проход 1 завершён. Успешно: {total - len(failed_channels)}, провалов: {len(failed_channels)}")
+    log(f"[*] Проход 1 завершён. Успешно: {ok_count}, провалов: {len(failed_channels)}")
 
     # ---------- ПРОХОД 2: РЕТРАЙ ----------
     if failed_channels:
         log(f"[*] Ретрай для {len(failed_channels)} каналов (пауза 2с, мягкий режим)...")
         time.sleep(2)
+        
         retry_ok = 0
+        retry_checked = 0
+        retry_total = len(failed_channels)
+        last_percent = -1
 
         with ThreadPoolExecutor(max_workers=20) as executor:
             futures = [executor.submit(check_stream, ch, True) for ch in failed_channels]
             for future in as_completed(futures):
                 ch, success, latency = future.result()
+                retry_checked += 1
+                
                 if success:
                     retry_ok += 1
                     ch["fail_count"] = 0
                     ch["latency"] = latency
                     ch["_first_pass_ok"] = True
+                    
+                percent = retry_checked * 100 // retry_total
+                if percent != last_percent:
+                    filled = int(percent / 5)
+                    bar = "█" * filled + "░" * (20 - filled)
+                    log(f"[{bar}] {percent}% РЕТРАЙ ({retry_checked}/{retry_total}) | Восстановлено: {retry_ok}")
+                    last_percent = percent
+                    
         log(f"[*] Ретрай: восстановлено {retry_ok} из {len(failed_channels)}")
 
     # ---------- Финальная статистика history ----------
@@ -376,7 +387,6 @@ def main():
     active_channels = [c for c in channels if c.get("fail_count", 0) < 5]
     log(f"[*] Активных каналов после фильтрации: {len(active_channels)}")
 
-    # Стабильная сортировка → одинаковый diff между запусками
     active_channels.sort(key=lambda x: (x.get("group", ""), x.get("name", "")))
 
     # ---------- M3U ----------
