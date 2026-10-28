@@ -1,4 +1,4 @@
-#EXTM3U url-tvg="https://iptv-org.github.io/epg/guides/ru.xml"
+#EXTM3U url-tvg="https://i.mjh.nz/iptv-org/ru.xml.gz"
 #EXTINF:-1 tvg-id="red.ru@SD" tvg-logo="https://i.imgur.com/GET9Qut.png" group-title="Общие",.red (576p)
 http://stream.mcquack.net/69/index.m3u8
 #EXTINF:-1 tvg-id="360.ru@SD" tvg-logo="https://i.imgur.com/VTJqdoX.png" group-title="Общие",360°
@@ -165,6 +165,8 @@ http://origin5.mediacdn.ru/live/prodvizhenie_new/index.m3u8
 http://cdn-01.bonus-tv.ru/prosveschenie_edge/index.m3u8
 #EXTINF:-1 tvg-id="RAZ3International.ua@SD" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/b/bb/Raz_3_%282026%29.png" group-title="Общие",RAZ 3 International
 https://dash2.antik.sk/live/kvartal_tv/playlist.m3u8
+#EXTINF:-1 tvg-id="RENTV.ru@SD" tvg-logo="https://i.imgur.com/0Tu5lte.png" group-title="Общие",REN TV (576p)
+http://185.23.80.23:8080/REN/index.m3u8
 #EXTINF:-1 tvg-id="RT.ru@SD" group-title="Общие",RT (720p)
 http://212.5.144.156:8080/rt/index.m3u8
 #EXTINF:-1 tvg-id="RTBalkan.ru@SD" tvg-logo="https://pbs.twimg.com/media/FiHmjBrWIBsN41d.jpg" group-title="Общие",RT Balkan (1080p)
@@ -341,11 +343,6 @@ http://s55766.cdn.ngenix.net/s55766-media-origin/rline_low/index.m3u8
 http://46.46.143.222:1935/live/mp4:ldpr.stream_480p/playlist.m3u8
 #EXTINF:-1 tvg-id="LDPRTV.ru@SD" group-title="Общие",ЛДПР ТВ (720p)
 http://46.46.143.222:1935/live/mp4:ldpr.stream_720p/playlist.m3u8
-#EXTINF:-1 tvg-id="Mir.ru@Plus4" group-title="Общие",Мир +4 (540p) [Not 24/7]
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer
-http://hls.mirtv.cdnvideo.ru/mirtv-parampublish/mirtv3_2500/playlist.m3u8
-#EXTINF:-1 tvg-id="MirBelogorya.ru@SD" group-title="Общие",Мир Белогорья (720p) [Geo-blocked]
-http://stream.tvbelgorod.ru:8080/mirbelogorya/index.m3u8
 #EXTINF:-1 tvg-id="HopeChannelRussia.ru@SD" group-title="Общие",Надежда (720p)
 https://tvhope.cdnvideo.ru/tvhope-pull/tvhope_1/playlist.m3u8
 #EXTINF:-1 tvg-id="Nano.ru@HD" group-title="Общие",Нано ТВ HD (576p)
