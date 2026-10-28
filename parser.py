@@ -5,14 +5,12 @@ import re
 from urllib.parse import urlparse
 
 def normalize_name(name):
-    """Приводит название канала к единому виду для поиска логотипов и tvg-id"""
     name = name.lower().strip()
     name = re.sub(r'\b(hd|sd|4k|fhd|hq|1080p|720p|576i)\b', '', name)
     name = re.sub(r'[^а-яa-z0-9]', '', name)
     return name
 
 def is_valid_url(url):
-    """Отсекает мусорные и невалидные ссылки"""
     try:
         parsed = urlparse(url)
         if parsed.scheme not in ['http', 'https']:
@@ -27,16 +25,45 @@ def is_valid_url(url):
     except Exception:
         return False
 
+def cache_logo(logo_url, norm_name):
+    """Скачивает и кэширует логотип локально для защиты от удаления внешних хостингов"""
+    if not logo_url or not is_valid_url(logo_url):
+        return ""
+    
+    logos_dir = "logos"
+    os.makedirs(logos_dir, exist_ok=True)
+    
+    ext = ".png"
+    if ".jpg" in logo_url.lower() or ".jpeg" in logo_url.lower():
+        ext = ".jpg"
+    elif ".svg" in logo_url.lower():
+        ext = ".svg"
+        
+    filename = f"{norm_name}{ext}"
+    filepath = os.path.join(logos_dir, filename)
+    
+    if os.path.exists(filepath):
+        return f"./logos/{filename}"
+        
+    try:
+        req = urllib.request.Request(logo_url, headers={"User-Agent": "Mozilla/5.0"})
+        with urllib.request.urlopen(req, timeout=5) as resp:
+            data = resp.read()
+            if len(data) > 500: # Минимальный размер валидной картинки
+                with open(filepath, "wb") as f:
+                    f.write(data)
+                return f"./logos/{filename}"
+    except Exception:
+        pass
+    return logo_url # Возвращаем оригинал, если скачать не удалось
+
 def smart_categorize(name, current_group):
-    """Жесткая многоуровневая категоризация без свалки в 'Общих'"""
     name_lower = str(name).lower()
     group_lower = str(current_group).lower()
 
-    # 0. МАГАЗИНЫ
     if any(k in name_lower for k in ['shop', 'магазин', 'покупк', 'ювелир', 'home shopping', 'top shop']):
         return 'Магазины'
 
-    # 1. ФЕДЕРАЛЬНЫЕ
     federal_keywords = [
         'первый', 'россия 1', 'россия-1', 'нтв', 'матч тв', 'пятый канал', '5 канал', 
         'отр', 'тв центр', 'твц', 'рен тв', 'спас', 'стс', 'домашний', 'тв-3', 'тв3', 
@@ -45,7 +72,6 @@ def smart_categorize(name, current_group):
     if any(k in name_lower for k in federal_keywords) and not 'регион' in name_lower:
         return 'Федеральные'
 
-    # 2. РЕГИОНАЛЬНЫЕ
     regional_keywords = [
         'гтрк', 'регион', 'область', 'край', 'москва 24', 'санкт-петербург', 
         'сибир', 'урал', 'кубан', 'дон', 'ника', 'телеканал санкт', 'региональный'
@@ -53,54 +79,43 @@ def smart_categorize(name, current_group):
     if any(k in name_lower for k in regional_keywords) or 'local' in group_lower or 'regional' in group_lower:
         return 'Региональные'
 
-    # 3. СПОРТ
     sports_keywords = ['спорт', 'матч!', 'футбол', 'хоккей', 'бой', 'бокс', 'ufc', 'formula', 'sport', 'fight', 'racing', 'nfl', 'nba', 'кхл', 'рпл', 'arena', 'extreme']
     if any(k in name_lower for k in sports_keywords) or 'sport' in group_lower or 'спорт' in group_lower:
         return 'Спорт'
         
-    # 4. МУЗЫКА
     music_keywords = ['музык', 'mtv', 'ru.tv', 'bridge', 'music', 'vh1', 'mcm', 'muz', 'europa plus', 'рекорд', 'chanson', 'strana', 'energy', 'ля-минор']
     if any(k in name_lower for k in music_keywords) or 'music' in group_lower or 'музыка' in group_lower:
         return 'Музыка'
 
-    # 5. ДЕТСКИЕ
     kids_keywords = ['детск', 'мульт', 'карусель', 'disney', 'nickelodeon', 'kids', 'baby', 'animation', 'cartoon', 'радость моя', 'tiji', 'gulli', 'mult', 'никилодеон']
     if any(k in name_lower for k in kids_keywords) or 'kids' in group_lower or 'детские' in group_lower or 'animation' in group_lower:
         return 'Детские'
 
-    # 6. НОВОСТИ
     news_keywords = ['новост', 'вести', 'известия', 'рнв', 'соловьев', 'news', 'рбк', 'cnn', 'bbc', 'euronews', 'мир 24', 'коммерсант', 'rbc']
     if any(k in name_lower for k in news_keywords) or 'news' in group_lower or 'новости' in group_lower:
         return 'Новости'
 
-    # 7. КИНО И СЕРИАЛЫ
     movie_keywords = ['кино', 'фильм', 'сериал', 'movie', 'film', 'series', 'cinema', 'премиум', 'строго', 'paramount', 'hbo', 'mediateka', 'кинопремьера', 'fox', 'tv1000', 'amedia', 'мост', 'картин', 'русский роман', 'эгоист']
     if any(k in name_lower for k in movie_keywords) or any(g in group_lower for g in ['movies', 'series', 'кино', 'фильмы']):
         return 'Кино и Сериалы'
 
-    # 8. ПОЗНАВАТЕЛЬНЫЕ
     doc_keywords = ['познавательн', 'история', 'наук', 'discovery', 'national geographic', 'animal', 'science', 'travel', 'documentary', 'docu', 'viasat explore', 'nature', 'outdoor', 'auto', 'education', 'охота', 'рыбалка', 'живая природа', 'наука', 'живой']
     if any(k in name_lower for k in doc_keywords) or any(g in group_lower for g in ['documentary', 'science', 'travel', 'education', 'outdoor']):
         return 'Познавательные'
 
-    # 9. РЕЛИГИОЗНЫЕ
     religious_keywords = ['религ', 'пасха', 'спас', 'religious', 'god', 'bible', 'союз', 'троица']
     if any(k in name_lower for k in religious_keywords) or 'religious' in group_lower:
         return 'Религиозные'
 
-    # 10. РАЗВЛЕКАТЕЛЬНЫЕ
     fun_keywords = ['развлекательн', 'comedy', 'lifestyle', 'fashion', 'relax', 'entertainment', 'cooking', 'family', 'ржд', 'юмор', 'пельмени', 'наша rasha']
     if any(k in name_lower for k in fun_keywords) or any(g in group_lower for g in ['entertainment', 'lifestyle', 'cooking', 'family']):
         return 'Развлекательные'
 
-    # 11. ОБЩИЕ (Всё остальное)
     return 'Общие'
 
 def load_iptv_org_epg_map():
-    """Загружает официальную базу каналов iptv-org для сопоставления tvg-id"""
     epg_map = {}
     url = "https://iptv-org.github.io/api/channels.json"
-    print("[*] Загрузка официальной базы tvg-id (iptv-org)...")
     try:
         req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
         with urllib.request.urlopen(req, timeout=10) as response:
@@ -115,16 +130,12 @@ def load_iptv_org_epg_map():
                         norm = normalize_name(alias)
                         if norm and norm not in epg_map:
                             epg_map[norm] = channel_id
-        print(f"[+] База tvg-id успешно загружена. Записей: {len(epg_map)}")
-    except Exception as e:
-        print(f"[!] Не удалось загрузить базу tvg-id: {e}")
+    except Exception:
+        pass
     return epg_map
 
 def parse_m3u_from_url(url, source_index, global_logos_by_norm_name, epg_map):
-    req = urllib.request.Request(
-        url, 
-        headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
-    )
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
     channels = []
     try:
         with urllib.request.urlopen(req) as response:
@@ -139,22 +150,11 @@ def parse_m3u_from_url(url, source_index, global_logos_by_norm_name, epg_map):
                 line = line.strip()
                 if line.startswith("#EXTINF:"):
                     group_match = re.search(r'group-title="([^"]+)"', line)
-                    if group_match:
-                        current_group = group_match.group(1)
-                    else:
-                        current_group = "Общие"
-                    
+                    current_group = group_match.group(1) if group_match else "Общие"
                     logo_match = re.search(r'tvg-logo="([^"]+)"', line)
-                    if logo_match:
-                        current_logo = logo_match.group(1)
-                    else:
-                        current_logo = ""
-
+                    current_logo = logo_match.group(1) if logo_match else ""
                     tvg_match = re.search(r'tvg-id="([^"]+)"', line)
-                    if tvg_match:
-                        current_tvg_id = tvg_match.group(1)
-                    else:
-                        current_tvg_id = ""
+                    current_tvg_id = tvg_match.group(1) if tvg_match else ""
                     
                     parts = line.split(',')
                     if len(parts) > 1:
@@ -162,66 +162,53 @@ def parse_m3u_from_url(url, source_index, global_logos_by_norm_name, epg_map):
                 elif line and not line.startswith("#"):
                     if current_name:
                         if not is_valid_url(line):
-                            current_name = ""
-                            current_logo = ""
-                            current_tvg_id = ""
+                            current_name, current_logo, current_tvg_id = "", "", ""
                             continue
 
-                        logo = current_logo
                         norm_name = normalize_name(current_name)
+                        logo = current_logo
                         
                         if source_index == 2 and not logo:
                             if norm_name in global_logos_by_norm_name:
                                 logo = global_logos_by_norm_name[norm_name]
 
                         if logo and norm_name and norm_name not in global_logos_by_norm_name:
-                            global_logos_by_norm_name[norm_name] = logo
+                            global_logos_by_norm_name[norm_name] = cache_logo(logo, norm_name)
 
-                        # УНИВЕРСАЛЬНЫЙ АВТО-ГЕНЕРАТОР TVG-ID ДЛЯ 100% ПОКРЫТИЯ
                         tvg_id = current_tvg_id
                         if not tvg_id or tvg_id == "None":
-                            if norm_name in epg_map:
-                                tvg_id = epg_map[norm_name]
-                            else:
-                                tvg_id = norm_name
+                            tvg_id = epg_map.get(norm_name, norm_name)
 
-                        custom_ua = None
-                        if re.search(r'[\+\-]\d+', current_name):
-                            custom_ua = "HlsWinkPlayer"
-
+                        custom_ua = "HlsWinkPlayer" if re.search(r'[\+\-]\d+', current_name) else None
                         final_group = smart_categorize(current_name, current_group)
 
                         channels.append({
                             "name": current_name,
                             "group": final_group,
-                            "logo": logo,
+                            "logo": logo if logo.startswith("./logos/") else cache_logo(logo, norm_name),
                             "tvg_id": tvg_id,
                             "url": line,
                             "user_agent": custom_ua,
                             "norm_name": norm_name
                         })
-                        current_name = ""
-                        current_logo = ""
-                        current_tvg_id = ""
-    except Exception as e:
-        print(f"[!] Ошибка при скачивании {url}: {e}")
-    
+                        current_name, current_logo, current_tvg_id = "", "", ""
+    except Exception:
+        pass
     return channels
 
 def main():
-    old_fail_counts = {}
+    old_data_map = {}
     if os.path.exists("channels.json"):
         try:
             with open("channels.json", "r", encoding="utf-8") as f:
-                old_data = json.load(f)
-                for ch in old_data:
-                    if "url" in ch and "fail_count" in ch:
-                        old_fail_counts[ch["url"]] = ch["fail_count"]
+                old_list = json.load(f)
+                for ch in old_list:
+                    if "url" in ch:
+                        old_data_map[ch["url"]] = ch
         except Exception:
             pass
 
     epg_map = load_iptv_org_epg_map()
-
     sources = [
         "https://iptv-org.github.io/iptv/countries/ru.m3u",
         "https://iptv-org.github.io/iptv/languages/rus.m3u",
@@ -232,30 +219,24 @@ def main():
     global_logos_by_norm_name = {}
 
     for idx, src in enumerate(sources):
-        print(f"[*] Загрузка базы с {src} (источник #{idx + 1})...")
         parsed = parse_m3u_from_url(src, idx, global_logos_by_norm_name, epg_map)
-        print(f"[+] Найдено каналов в источнике: {len(parsed)}")
         all_channels.extend(parsed)
 
     unique_by_url = {}
     for ch in all_channels:
-        if ch["url"] not in unique_by_url:
-            ch["fail_count"] = old_fail_counts.get(ch["url"], 0)
-            unique_by_url[ch["url"]] = ch
+        url = ch["url"]
+        if url not in unique_by_url:
+            old_item = old_data_map.get(url, {})
+            ch["fail_count"] = old_item.get("fail_count", 0)
+            ch["latency"] = old_item.get("latency", 999.0)
+            ch["history"] = old_item.get("history", [])
+            unique_by_url[url] = ch
         else:
-            if not unique_by_url[ch["url"]].get("logo") and ch.get("logo"):
-                unique_by_url[ch["url"]]["logo"] = ch["logo"]
-            if not unique_by_url[ch["url"]].get("tvg_id") and ch.get("tvg_id"):
-                unique_by_url[ch["url"]]["tvg_id"] = ch["tvg_id"]
-
-    final_list = list(unique_by_url.values())
-
-    print(f"[*] Всего уникальных ссылок после фильтрации: {len(final_list)}")
+            if not unique_by_url[url].get("logo") and ch.get("logo"):
+                unique_by_url[url]["logo"] = ch["logo"]
 
     with open("channels.json", "w", encoding="utf-8") as f:
-        json.dump(final_list, f, ensure_ascii=False, indent=2)
-    
-    print("[+] Парсинг завершен, данные сохранены в channels.json")
+        json.dump(list(unique_by_url.values()), f, ensure_ascii=False, indent=2)
 
 if __name__ == "__main__":
     main()
