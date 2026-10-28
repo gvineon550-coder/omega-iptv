@@ -19,7 +19,6 @@ def normalize_name(name):
 
 
 def extract_display_name(extinf_line: str) -> str:
-    """Название канала = всё после первой запятой ВНЕ кавычек."""
     in_quotes = False
     for i, ch in enumerate(extinf_line):
         if ch == '"':
@@ -46,8 +45,12 @@ def is_valid_url(url):
 
 
 def _base_name(name_lower: str) -> str:
-    """Убирает качество и скобки — для точного сравнения коротких названий."""
-    s = re.sub(r'[\(\)\[\]]', ' ', name_lower)
+    """Очищает название от скобок, качества, +1, пунктуации — для точного сравнения."""
+    s = re.sub(r'\[.*?\]', '', name_lower) # Убираем [Not 24/7], [Geo-blocked]
+    s = re.sub(r'\(.*?\)', '', s)         # Убираем (576p), (Russia)
+    s = s.replace('-', ' ')               # Меняем дефисы на пробелы
+    s = re.sub(r'\+\s*\d+', '', s)        # Убираем +1, +2, +4, +7
+    s = re.sub(r'[^\w\s]', '', s)         # Убираем пунктуацию (!, .)
     s = re.sub(r'\b(hd|sd|fhd|4k|1080p|720p|1080i|576i|576p|480p|480i)\b', '', s)
     s = re.sub(r'\s+', ' ', s).strip()
     return s
@@ -56,41 +59,86 @@ def _base_name(name_lower: str) -> str:
 def smart_categorize(name, current_group):
     name_lower = str(name).lower()
     group_lower = str(current_group).lower()
+    base_name = _base_name(name_lower)
 
-    # 1. Магазины
-    if any(k in name_lower for k in ['shop', 'магазин', 'покупк', 'ювелир',
-                                       'home shopping', 'top shop', 'leomax', 'shopping live']):
+    # --- 1. МАГАЗИНЫ ---
+    if any(k in name_lower for k in ['shop', 'магазин', 'покупк', 'ювелир', 'leomax', 'shopping live']):
         return 'Магазины'
 
-    # 2. Детские
+    # --- 2. ДЕТСКИЕ ---
     kids_keywords = ['детск', 'мульт', 'disney', 'nickelodeon', 'nick jr', 'nicktoons',
                      'kids', 'baby', 'cartoon', 'радость моя', 'tiji', 'gulli', 'mult',
                      'никилодеон', 'сказки', 'карусель', 'carousel', 'kapitan fantastika',
                      'малыш', 'boomerang', 'unikum', 'detvora', 'tooku', 'anime', 'aqlvoy',
                      'тамыр', 'tamyr', 'ryzhiy']
-    if any(k in name_lower for k in kids_keywords) or \
-       any(g in group_lower for g in ['kids', 'детск', 'animation', 'cartoon']):
+    if any(k in name_lower for k in kids_keywords) or any(g in group_lower for g in ['kids', 'детск', 'animation', 'cartoon']):
         return 'Детские'
 
-    # 3. Спорт
+    # --- 3. СПОРТ ---
     sports_keywords = ['спорт', 'матч!', 'футбол', 'хоккей', 'бой', 'бокс', 'ufc',
                        'formula', 'sport', 'fight', 'racing', 'nfl', 'nba', 'кхл',
                        'рпл', 'arena', 'extreme', 'шахмат', 'бильярд', 'setanta',
-                       'eurosport', 'viju+ sport', 'khl', 'mma']
-    if any(k in name_lower for k in sports_keywords) or \
-       any(g in group_lower for g in ['sport', 'спорт']):
+                       'eurosport', 'viju+ sport', 'khl', 'mma', 'okko futbol']
+    if any(k in name_lower for k in sports_keywords) or any(g in group_lower for g in ['sport', 'спорт']):
         return 'Спорт'
 
-    # 4. Музыка
+    # --- 4. МУЗЫКА ---
     music_keywords = ['музык', 'mtv', 'ru.tv', 'bridge', 'music', 'vh1', 'mcm', 'muz',
                       'europa plus', 'рекорд', 'chanson', 'energy', 'жара', 'ля-минор',
                       'mezzo', 'trace', 'classic music', '1hd', 'first music', 'muzzone',
-                      'songtv', 'strana fm', 'радио']
-    if any(k in name_lower for k in music_keywords) or \
-       any(g in group_lower for g in ['music', 'музык']):
+                      'songtv', 'strana fm', 'радио', 'шансон', 'hit fm', 'viva']
+    if any(k in name_lower for k in music_keywords) or any(g in group_lower for g in ['music', 'музык']):
         return 'Музыка'
 
-    # 5. Кино и Сериалы
+    # --- 5. РЕГИОНАЛЬНЫЕ ---
+    regional_keywords = ['гтрк', 'регион', 'область', 'край', 'москва 24', 'moscow 24', 'moskva 24', 
+                         'санкт-петербург', 'sankt peterburg', 'спб', 'spb', 'сибир', 'sibir', 'урал', 'ural', 
+                         'кубан', 'kuban', 'дон 24', 'don 24', 'don24', 'ника тв', 'телеканал санкт', 
+                         'подмосковье', 'нижний новгород', 'nizhniy novgorod', 'казань', 'татарстан', 'tatarstan', 
+                         'башкорт', 'bashkortostan', 'дагестан', 'dagestan', 'ингушетия', 'ingushetia', 
+                         'осетия', 'ossetia', 'osetiya', 'чечня', 'чечен', 'chechnya', 'chechen', 'vainah', 'вайнах', 
+                         'ярославл', 'самара', 'samara', 'саратов', 'saratov', 'краснодар', 'krasnodar', 
+                         'красноярск', 'хабаровск', 'владивосток', 'архангельск', 'arktika', 'арктика', 
+                         'мурманск', 'тюмен', 'омск', 'томск', 'кемеров', 'новосибирск', 'пермь', 'екатеринбург', 
+                         'чебоксар', 'ставропол', 'астрахан', 'astrahan', 'astrakhan', 'белгород', 'belgorod', 
+                         'воронеж', 'липец', 'тула', 'калуг', 'рязан', 'тверь', 'псков', 'новгород', 'вологд', 
+                         'ижевск', 'киров', 'оренбург', 'уфа', 'саха', 'якут', 'бурят', 'тыва', 'алтай', 
+                         'крым', 'crimea', 'севастополь', 'sevastopol', 'симферополь', 'simferopol', 'губерния', 'gubernia', 
+                         'толк', 'tolk', 'крик', 'krik', 'архыз', 'arkhyz', 'волгоград', 'volgograd', 
+                         'восток 24', 'vostok 24', 'запад 24', 'zapad 24', 'кавказ', 'kavkaz', 
+                         'енисей', 'enisey', 'таврия', 'tavriya', 'луганск', 'lugansk', 'горловка', 'gorlovka', 
+                         'ялта', 'yalta', 'белогорья', 'belogorya', 'сургут', 'surgut', 'мурманск']
+    if any(k in name_lower for k in regional_keywords) or any(g in group_lower for g in ['local', 'regional', 'регион']):
+        return 'Региональные'
+
+    # --- 6. ФЕДЕРАЛЬНЫЕ (ТОЧНОЕ СОВПАДЕНИЕ ПОСЛЕ ОЧИСТКИ) ---
+    federal_exact = {
+        'channel one', '1tv', 'perviy', 'первый', 'первый канал',
+        'russia 1', 'russia1', 'россия 1',
+        'russia 24', 'russia24', 'россия 24',
+        'russia k', 'russiak', 'россия к', 'культура',
+        'ntv', 'нтв',
+        'ren tv', 'rentv', 'рен тв', 'рентв',
+        'tnt', 'тнт',
+        'sts', 'ctc', 'стс',
+        'tv 3', 'тв 3',
+        'friday', 'пятница',
+        'zvezda', 'звезда',
+        'otr', 'отр',
+        'mir', 'мир',
+        'solnce', 'солнце',
+        'tv centr', 'tvc', 'тв центр', 'твц',
+        'domashniy', 'домашний',
+        'spas', 'спас',
+        'match tv', 'матч тв',
+        'subbota', 'суббота',
+        'che', 'че',
+        'u', 'ю'
+    }
+    if base_name in federal_exact:
+        return 'Федеральные'
+
+    # --- 7. КИНО И СЕРИАЛЫ ---
     movie_keywords = ['кино', 'фильм', 'сериал', 'movie', 'film', 'series', 'cinema',
                       'премиум', 'paramount', 'hbo', 'медиатека', 'кинопремьера',
                       'fox', 'tv1000', 'amedia', 'мост', 'картин', 'русский роман',
@@ -99,80 +147,46 @@ def smart_categorize(name, current_group):
                       'illusion', 'kinosvidanie', 'kinopokaz', 'kinohit', 'kinomix',
                       'kinosemja', 'kinouzhas', 'kinopremyera', 'kinoseriya', 'kino tv',
                       'tv 21', 'kino 1', 'kino 2', 'dom kino', 'saphire', 'premier',
-                      'serial', 'hit hd', 'hit (', 'hit ']
-    if any(k in name_lower for k in movie_keywords) or \
-       any(g in group_lower for g in ['movies', 'series', 'кино', 'фильм', 'cinema']):
+                      'serial', 'hit hd', 'hit (', 'hit ', 'city eden', 'bollywood', 'hollywood', 'tnt4', 'tnt series']
+    if any(k in name_lower for k in movie_keywords) or any(g in group_lower for g in ['movies', 'series', 'кино', 'фильм', 'cinema']):
         return 'Кино и Сериалы'
 
-    # 6. Новости
+    # --- 8. НОВОСТИ ---
     news_keywords = ['новост', 'вести', 'известия', 'соловьев', 'news', 'рбк', 'cnn',
-                     'bbc', 'euronews', 'мир 24', 'коммерсант', 'rbc', 'current time',
+                     'bbc', 'euronews', 'мир 24', 'mir 24', 'коммерсант', 'rbc', 'current time',
                      'dw ', 'настоящее время', 't24', 'eurasia', '360° news', 'izvestia',
-                     'russia 24', 'россия 24', 'крик', 'толк', 'ост вест']
-    if any(k in name_lower for k in news_keywords) or \
-       any(g in group_lower for g in ['news', 'новост']):
+                     'russia 24', 'россия 24', 'millet', 'миллет', 'вестник']
+    if any(k in name_lower for k in news_keywords) or any(g in group_lower for g in ['news', 'новост']):
         return 'Новости'
 
-    # 7. Познавательные
+    # --- 9. ПОЗНАВАТЕЛЬНЫЕ ---
     doc_keywords = ['познавательн', 'история', 'наук', 'discovery', 'national geographic',
                     'nat geo', 'animal planet', 'science', 'travel', 'documentary', 'docu',
                     'viasat explore', 'viju explore', 'viju history', 'viju nature',
                     'nature', 'outdoor', 'охота', 'рыбалка', 'живая природа', 'живой',
-                    '365 дней', 'da vinci', 'rtg', 'terra', 'еда', 'food', '365 days',
-                    'дикая', 'dikaja', 'моя планета', 'moya planeta', 'наука 2.0',
+                    '365 дней', '365 days', 'da vinci', 'rtg', 'terra', 'еда', 'food', 'kuhnya', 'кухня', 
+                    'дикая', 'dikaja', 'dikij', 'моя планета', 'moya planeta', 'наука 2.0',
                     'nauka', 'top secret', 'совершенно секретно', 'english class',
-                    '365 day', 'зоопарк', 'zoopark', 'в мире животных']
-    if any(k in name_lower for k in doc_keywords) or \
-       any(g in group_lower for g in ['documentary', 'science', 'travel', 'education',
-                                       'outdoor', 'history', 'познават']):
+                    'зоопарк', 'zoopark', 'в мире животных', 'v mire zhivotnykh', 'zhivaya priroda',
+                    'moy mir', 'мой мир', 'usadba', 'усадьба', 'dacha', 'дача', 'drive', 'драйв']
+    if any(k in name_lower for k in doc_keywords) or any(g in group_lower for g in ['documentary', 'science', 'travel', 'education', 'outdoor', 'history', 'познават']):
         return 'Познавательные'
 
-    # 8. Религиозные
+    # --- 10. РЕЛИГИОЗНЫЕ ---
     religious_keywords = ['религ', 'спас', 'religious', 'god', 'bible', 'союз', 'троица',
                           'ортодокс', 'мусульман', 'hope channel', '3abn', 'angel tv',
-                          'tv mana', 'manasat', 'vera 24', 'вера', 'huzur', 'спас']
-    if any(k in name_lower for k in religious_keywords) or \
-       any(g in group_lower for g in ['religious', 'религ']):
+                          'tv mana', 'manasat', 'vera 24', 'вера', 'huzur', 'tsargrad', 'царьград']
+    if any(k in name_lower for k in religious_keywords) or any(g in group_lower for g in ['religious', 'религ']):
         return 'Религиозные'
 
-    # 9. Региональные
-    regional_keywords = ['гтрк', 'регион', 'область', 'край', 'москва 24',
-                         'санкт-петербург', 'спб', 'сибир', 'урал', 'кубан', 'дон',
-                         'ника тв', 'телеканал санкт', 'подмосковье', 'нижний новгород',
-                         'казань', 'татарстан', 'башкорт', 'дагестан', 'ингушетия',
-                         'осетия', 'чечня', 'ярославл', 'самара', 'саратов', 'краснодар',
-                         'красноярск', 'хабаровск', 'владивосток', 'архангельск',
-                         'мурманск', 'тюмен', 'омск', 'томск', 'кемеров', 'новосибирск',
-                         'пермь', 'екатеринбург', 'чебоксар', 'ставропол', 'астрахан',
-                         'белгород', 'воронеж', 'липец', 'тула', 'калуг', 'рязан',
-                         'тверь', 'псков', 'новгород', 'вологд', 'ижевск', 'киров',
-                         'оренбург', 'уфа', 'саха', 'якут', 'бурят', 'тыва', 'алтай']
-    if any(k in name_lower for k in regional_keywords) or \
-       any(g in group_lower for g in ['local', 'regional', 'регион']):
-        return 'Региональные'
-
-    # 10. Федеральные (ИСПРАВЛЕНО: ищем вхождение, а не точное совпадение)
-    federal_keywords = ['первый', 'россия 1', 'россия-1', 'нтв', 'стс', 'тнт', 
-                        'рен тв', 'рентв', 'тв-3', 'тв3', 'пятница', 'звезда', 'спас', 
-                        'тв центр', 'твц', 'отр', 'муз тв', 'муз-тв', 'матч тв', 'карусель',
-                        'че', 'ю', 'суббота', 'солнце']
-    
-    # Защита: "Мир" только если это отдельное слово или точное название канала
-    if 'мир' in name_lower and not any(x in name_lower for x in ['животных', 'природ', 'кино']):
-        if 'мир' in _base_name(name_lower).split() or name_lower == 'мир':
-            return 'Федеральные'
-
-    if any(k in name_lower for k in federal_keywords):
-        return 'Федеральные'
-
-    # 11. Развлекательные
+    # --- 11. РАЗВЛЕКАТЕЛЬНЫЕ ---
     fun_keywords = ['развлекательн', 'comedy', 'lifestyle', 'fashion', 'relax',
                     'entertainment', 'cooking', 'family', 'юмор', 'пельмени',
                     'наша russia', 'che!', 'сарафан', 'subbota', 'суббота',
-                    'пятница', 'friday', 'ctc', 'стс', 'ю-тв', '2x2', 'мультиландия']
-    if any(k in name_lower for k in fun_keywords) or \
-       any(g in group_lower for g in ['entertainment', 'lifestyle', 'cooking',
-                                       'family', 'general', 'развлек']):
+                    'пятница', 'friday', 'ctc', 'стс', 'ю-тв', '2x2', 'мультиландия',
+                    'peretz', 'raz', 'kvartal', 'tnt international', 'tlc', 'tv brics', 
+                    'voprosy i otvety', 'yapervyy', 'yumor', 'muzhskoe', 'priklyucheniya', '360', '555', '86']
+    if any(k in name_lower for k in fun_keywords) or any(g in group_lower for g in ['entertainment', 'lifestyle', 'cooking', 'family', 'general', 'развлек']):
         return 'Развлекательные'
 
     return 'Общие'
@@ -217,10 +231,14 @@ def parse_m3u_from_url(url, source_index, global_logos_by_norm_name, epg_map):
     current_name = ""
     current_logo = ""
     current_tvg_id = ""
+    current_ua = None
 
     for raw_line in content.splitlines():
         line = raw_line.strip()
-        if line.startswith("#EXTINF:"):
+        
+        if line.startswith("#EXTVLCOPT:http-user-agent="):
+            current_ua = line.replace("#EXTVLCOPT:http-user-agent=", "").strip()
+        elif line.startswith("#EXTINF:"):
             group_match = re.search(r'group-title="([^"]+)"', line)
             current_group = group_match.group(1) if group_match else "Общие"
 
@@ -234,7 +252,7 @@ def parse_m3u_from_url(url, source_index, global_logos_by_norm_name, epg_map):
         elif line and not line.startswith("#"):
             if current_name:
                 if not is_valid_url(line):
-                    current_name, current_logo, current_tvg_id = "", "", ""
+                    current_name, current_logo, current_tvg_id, current_ua = "", "", "", None
                     continue
 
                 norm_name = normalize_name(current_name)
@@ -250,7 +268,11 @@ def parse_m3u_from_url(url, source_index, global_logos_by_norm_name, epg_map):
                 if not tvg_id:
                     tvg_id = epg_map.get(norm_name, "")
 
-                custom_ua = "HlsWinkPlayer" if re.search(r'\+\s*\d+', current_name) else None
+                if re.search(r'\+\s*\d+', current_name):
+                    custom_ua = "HlsWinkPlayer"
+                else:
+                    custom_ua = current_ua
+
                 final_group = smart_categorize(current_name, current_group)
 
                 channels.append({
@@ -262,7 +284,7 @@ def parse_m3u_from_url(url, source_index, global_logos_by_norm_name, epg_map):
                     "user_agent": custom_ua,
                     "norm_name": norm_name,
                 })
-                current_name, current_logo, current_tvg_id = "", "", ""
+                current_name, current_logo, current_tvg_id, current_ua = "", "", "", None
 
     log(f"[+] Источник #{source_index + 1} обработан. Найдено: {len(channels)}")
     return channels
@@ -330,7 +352,6 @@ def main():
 
     unique_channels = deduplicate_channels(all_channels)
 
-    # Переносим историю/fail_count/latency из старого кэша
     for ch in unique_channels:
         old = old_data_map.get(ch["url"], {})
         ch["fail_count"] = old.get("fail_count", 0)
