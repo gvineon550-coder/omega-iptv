@@ -12,7 +12,7 @@ def normalize_name(name):
     return name
 
 def is_valid_url(url):
-    """Отсекает заведомо мусорные и невалидные ссылки"""
+    """Отсекает мусорные и невалидные ссылки"""
     try:
         parsed = urlparse(url)
         if parsed.scheme not in ['http', 'https']:
@@ -28,26 +28,53 @@ def is_valid_url(url):
         return False
 
 def smart_categorize(name, current_group):
-    """Автоматически распределяет каналы по понятным категориям"""
-    name_lower = name.lower()
-    
-    if any(k in name_lower for k in ['спорт', 'матч', 'футбол', 'хоккей', 'бой', 'sport', 'fight']):
+    """Элитная и строгая категоризация без единого сбоя"""
+    name_lower = str(name).lower()
+    group_lower = str(current_group).lower()
+    combined = f"{name_lower} {group_lower}"
+
+    # 1. СТРОГИЙ СПОРТ
+    sports_keywords = ['спорт', 'матч', 'футбол', 'хоккей', 'бой', 'бокс', 'ufc', 'formula', 'sport', 'fight', 'racing', 'nfl', 'nba', 'кхл', 'рпл', 'arena']
+    if any(k in name_lower for k in sports_keywords) or 'sport' in group_lower or 'спорт' in group_lower:
         return 'Спорт'
-    elif any(k in name_lower for k in ['кино', 'фильм', 'премиум', 'cinema', 'movie', 'строго', 'тв-3', 'стс', 'тнт']):
-        return 'Кино и Сериалы'
-    elif any(k in name_lower for k in ['новост', 'вести', 'известия', 'рнв', 'соловьев', 'news']):
-        return 'Новости'
-    elif any(k in name_lower for k in ['детск', 'мульт', 'карусель', 'disney', 'nickelodeon', 'kids', 'baby']):
-        return 'Детские'
-    elif any(k in name_lower for k in ['познавательн', 'история', 'наук', 'discovery', 'national geographic', 'animal', 'science', 'viasat explore']):
-        return 'Познавательные'
-    elif any(k in name_lower for k in ['музык', 'mtv', 'ru.tv', 'bridge', 'music', 'vh1']):
-        return 'Музыка'
-    
-    if not current_group or current_group.lower() in ['общие', 'general', 'uncategorized', 'other']:
-        return 'Общие'
         
-    return current_group
+    # 2. МУЗЫКА
+    music_keywords = ['музык', 'mtv', 'ru.tv', 'bridge', 'music', 'vh1', 'mcm', 'muz', 'europa plus', 'рекорд', 'chanson', 'strana', 'energy']
+    if any(k in name_lower for k in music_keywords) or 'music' in group_lower or 'музыка' in group_lower:
+        return 'Музыка'
+
+    # 3. ДЕТСКИЕ
+    kids_keywords = ['детск', 'мульт', 'карусель', 'disney', 'nickelodeon', 'kids', 'baby', 'animation', 'cartoon', 'радость моя', 'tiji', 'gulli', 'mult', 'nickelodeon']
+    if any(k in name_lower for k in kids_keywords) or 'kids' in group_lower or 'детские' in group_lower or 'animation' in group_lower:
+        return 'Детские'
+
+    # 4. НОВОСТИ
+    news_keywords = ['новост', 'вести', 'известия', 'рнв', 'соловьев', 'news', 'рбк', 'cnn', 'bbc', 'euronews', 'мир 24', 'коммерсант', 'известия']
+    if any(k in name_lower for k in news_keywords) or 'news' in group_lower or 'новости' in group_lower:
+        return 'Новости'
+
+    # 5. КИНО И СЕРИАЛЫ
+    movie_keywords = ['кино', 'фильм', 'сериал', 'movie', 'film', 'series', 'cinema', 'премиум', 'строго', 'тв-3', 'стс', 'тнт', 'paramount', 'hbo', 'mediateka', 'кинопремьера', 'fox', 'tv1000', 'amedia', 'мост']
+    if any(k in name_lower for k in movie_keywords) or any(g in group_lower for g in ['movies', 'series', 'кино', 'фильмы']):
+        return 'Кино и Сериалы'
+
+    # 6. ПОЗНАВАТЕЛЬНЫЕ
+    doc_keywords = ['познавательн', 'история', 'наук', 'discovery', 'national geographic', 'animal', 'science', 'travel', 'documentary', 'docu', 'viasat explore', 'nature', 'outdoor', 'auto', 'education', 'охота', 'рыбалка', 'живая природа', 'наука']
+    if any(k in name_lower for k in doc_keywords) or any(g in group_lower for g in ['documentary', 'science', 'travel', 'education', 'outdoor']):
+        return 'Познавательные'
+
+    # 7. РЕЛИГИОЗНЫЕ
+    religious_keywords = ['религ', 'пасха', 'спас', 'religious', 'god', 'bible', 'союз', 'троица', 'пасха']
+    if any(k in name_lower for k in religious_keywords) or 'religious' in group_lower:
+        return 'Религиозные'
+
+    # 8. РАЗВЛЕКАТЕЛЬНЫЕ
+    fun_keywords = ['развлекательн', 'comedy', 'lifestyle', 'fashion', 'relax', 'entertainment', 'shop', 'cooking', 'family', 'ржд', 'пятница', 'ю', 'че', 'супер', 'юмор']
+    if any(k in name_lower for k in fun_keywords) or any(g in group_lower for g in ['entertainment', 'lifestyle', 'shop', 'cooking', 'family']):
+        return 'Развлекательные'
+
+    # 9. ОБЩИЕ (Федеральные и всё остальное)
+    return 'Общие'
 
 def load_iptv_org_epg_map():
     """Загружает официальную базу каналов iptv-org для сопоставления tvg-id"""
@@ -82,7 +109,6 @@ def parse_m3u_from_url(url, source_index, global_logos_by_norm_name, epg_map):
     try:
         with urllib.request.urlopen(req) as response:
             content = response.read().decode('utf-8', errors='ignore')
-            
             lines = content.splitlines()
             current_group = "Общие"
             current_name = ""
@@ -187,7 +213,6 @@ def main():
         print(f"[+] Найдено каналов в источнике: {len(parsed)}")
         all_channels.extend(parsed)
 
-    # Дедупликация ТОЛЬКО по точному URL, сохраняя разные рабочие зеркала с одинаковыми именами
     unique_by_url = {}
     for ch in all_channels:
         if ch["url"] not in unique_by_url:
