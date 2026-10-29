@@ -8,7 +8,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "1hdmusictelevision",
     "fail_count": 0,
-    "latency": 0.37,
+    "latency": 0.404,
     "history": [
       1,
       1,
@@ -31,7 +31,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "2x2",
     "fail_count": 0,
-    "latency": 1.075,
+    "latency": 1.206,
     "history": [
       1,
       1,
@@ -54,7 +54,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "5minuttishiny",
     "fail_count": 0,
-    "latency": 1.242,
+    "latency": 1.793,
     "history": [
       1,
       1,
@@ -76,7 +76,7 @@
     "url": "https://live.15plusmg.ru/memfs/ce3366b1-bf25-4e24-96bb-1adf0d44bd3d.m3u8",
     "user_agent": null,
     "norm_name": "15music",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -100,7 +100,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "86not247",
     "fail_count": 0,
-    "latency": 1.036,
+    "latency": 1.323,
     "history": [
       1,
       1,
@@ -123,7 +123,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "360",
     "fail_count": 0,
-    "latency": 0.579,
+    "latency": 0.743,
     "history": [
       1,
       1,
@@ -146,7 +146,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "360news",
     "fail_count": 0,
-    "latency": 0.527,
+    "latency": 1.04,
     "history": [
       1,
       1,
@@ -169,7 +169,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "365daystv576p",
     "fail_count": 0,
-    "latency": 0.265,
+    "latency": 0.322,
     "history": [
       1,
       1,
@@ -192,7 +192,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "555",
     "fail_count": 0,
-    "latency": 0.991,
+    "latency": 1.045,
     "history": [
       1,
       1,
@@ -215,7 +215,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "black576p",
     "fail_count": 0,
-    "latency": 0.273,
+    "latency": 0.326,
     "history": [
       1,
       1,
@@ -238,7 +238,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "red576p",
     "fail_count": 0,
-    "latency": 0.243,
+    "latency": 0.294,
     "history": [
       1,
       1,
@@ -261,7 +261,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "red",
     "fail_count": 0,
-    "latency": 0.321,
+    "latency": 0.328,
     "history": [
       1,
       1,
@@ -284,7 +284,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "scifi576p",
     "fail_count": 0,
-    "latency": 0.259,
+    "latency": 0.326,
     "history": [
       1,
       1,
@@ -306,7 +306,7 @@
     "url": "http://31.148.48.15/A1/index.m3u8",
     "user_agent": null,
     "norm_name": "a1576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -329,7 +329,7 @@
     "url": "http://31.148.48.15/A2/index.m3u8",
     "user_agent": null,
     "norm_name": "a2576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -353,7 +353,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "afontovo",
     "fail_count": 0,
-    "latency": 1.166,
+    "latency": 1.349,
     "history": [
       1,
       1,
@@ -376,7 +376,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "aisttv",
     "fail_count": 0,
-    "latency": 0.414,
+    "latency": 0.93,
     "history": [
       1,
       1,
@@ -398,7 +398,7 @@
     "url": "https://live.15plusmg.ru/memfs/b389173a-df4e-4171-8904-e249893e71eb.m3u8",
     "user_agent": null,
     "norm_name": "alphacinema",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -422,7 +422,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "amediahit",
     "fail_count": 0,
-    "latency": 0.277,
+    "latency": 0.32,
     "history": [
       1,
       1,
@@ -444,7 +444,7 @@
     "url": "http://31.148.48.15/Amedia_Premium_HD/index.m3u8",
     "user_agent": null,
     "norm_name": "amediapremium",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -468,7 +468,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "aris24not247",
     "fail_count": 0,
-    "latency": 0.407,
+    "latency": 0.461,
     "history": [
       1,
       1,
@@ -491,7 +491,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "arkhyz24",
     "fail_count": 0,
-    "latency": 0.77,
+    "latency": 0.873,
     "history": [
       1,
       1,
@@ -513,7 +513,7 @@
     "url": "https://vgtrkregion-reg.cdnvideo.ru/vgtrk/arhangelsk/arktika24-hd/index.m3u8",
     "user_agent": null,
     "norm_name": "arktika24",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -537,7 +537,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "arsenal576p",
     "fail_count": 0,
-    "latency": 0.907,
+    "latency": 1.103,
     "history": [
       1,
       1,
@@ -560,7 +560,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "artrussia576p",
     "fail_count": 0,
-    "latency": 0.246,
+    "latency": 0.276,
     "history": [
       1,
       1,
@@ -583,7 +583,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "astrahan24",
     "fail_count": 0,
-    "latency": 0.548,
+    "latency": 0.68,
     "history": [
       1,
       1,
@@ -606,7 +606,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "astrahanrusport",
     "fail_count": 0,
-    "latency": 0.54,
+    "latency": 0.671,
     "history": [
       1,
       1,
@@ -629,7 +629,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "astrahanrutv480p",
     "fail_count": 0,
-    "latency": 0.544,
+    "latency": 0.661,
     "history": [
       1,
       1,
@@ -651,7 +651,7 @@
     "url": "http://31.148.48.15/Avto_Plus/index.m3u8",
     "user_agent": null,
     "norm_name": "autoplus576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -675,7 +675,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "avto24576p",
     "fail_count": 0,
-    "latency": 0.28,
+    "latency": 0.309,
     "history": [
       1,
       1,
@@ -698,7 +698,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "balabol",
     "fail_count": 0,
-    "latency": 1.292,
+    "latency": 1.971,
     "history": [
       1,
       1,
@@ -720,7 +720,7 @@
     "url": "https://vgtrkregion-reg.cdnvideo.ru/vgtrk/ufa/bashkortostan24-hd/index.m3u8",
     "user_agent": null,
     "norm_name": "bashkortostan24",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -744,7 +744,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "belgorod24",
     "fail_count": 0,
-    "latency": 1.05,
+    "latency": 1.151,
     "history": [
       1,
       1,
@@ -767,7 +767,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "bigasia",
     "fail_count": 0,
-    "latency": 0.43,
+    "latency": 1.244,
     "history": [
       1,
       1,
@@ -813,7 +813,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "blokbaster",
     "fail_count": 0,
-    "latency": 0.277,
+    "latency": 0.317,
     "history": [
       1,
       1,
@@ -858,7 +858,7 @@
     "url": "http://31.148.48.15/Boks_TV/index.m3u8",
     "user_agent": null,
     "norm_name": "bokstv",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -882,7 +882,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "bollywood576p",
     "fail_count": 0,
-    "latency": 0.373,
+    "latency": 0.401,
     "history": [
       1,
       1,
@@ -905,7 +905,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "bollywoodrussia576p",
     "fail_count": 0,
-    "latency": 0.038,
+    "latency": 0.07,
     "history": [
       1,
       1,
@@ -928,7 +928,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "bridge576p",
     "fail_count": 0,
-    "latency": 0.282,
+    "latency": 0.315,
     "history": [
       1,
       1,
@@ -951,7 +951,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "bridgeclassic576p",
     "fail_count": 0,
-    "latency": 0.261,
+    "latency": 0.313,
     "history": [
       1,
       1,
@@ -973,7 +973,7 @@
     "url": "http://31.148.48.15/Bridge_TV_HD/index.m3u8",
     "user_agent": null,
     "norm_name": "bridgedeluxe",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -997,7 +997,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "bridgedeluxe576p",
     "fail_count": 0,
-    "latency": 0.52,
+    "latency": 0.583,
     "history": [
       1,
       1,
@@ -1020,7 +1020,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "bridgehits576p",
     "fail_count": 0,
-    "latency": 0.524,
+    "latency": 0.585,
     "history": [
       1,
       1,
@@ -1043,7 +1043,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "bridgerock576p",
     "fail_count": 0,
-    "latency": 0.31,
+    "latency": 0.358,
     "history": [
       1,
       1,
@@ -1066,7 +1066,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "bst576p",
     "fail_count": 0,
-    "latency": 1.653,
+    "latency": 1.813,
     "history": [
       1,
       1,
@@ -1089,7 +1089,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "channel5russia576p",
     "fail_count": 0,
-    "latency": 0.438,
+    "latency": 0.464,
     "history": [
       1,
       1,
@@ -1112,7 +1112,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "channel8russia576p",
     "fail_count": 0,
-    "latency": 0.304,
+    "latency": 0.32,
     "history": [
       1,
       1,
@@ -1135,7 +1135,7 @@
     "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 Edg/150.0.0.0",
     "norm_name": "channel8krasnoyarsk",
     "fail_count": 0,
-    "latency": 1.044,
+    "latency": 1.132,
     "history": [
       1,
       1,
@@ -1158,7 +1158,7 @@
     "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36 Edg/150.0.0.0",
     "norm_name": "channel8novosibirsk480i",
     "fail_count": 0,
-    "latency": 0.534,
+    "latency": 2.465,
     "history": [
       1,
       1,
@@ -1181,7 +1181,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "channel10russia",
     "fail_count": 0,
-    "latency": 0.943,
+    "latency": 1.197,
     "history": [
       1,
       1,
@@ -1204,7 +1204,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "channel12",
     "fail_count": 0,
-    "latency": 0.941,
+    "latency": 1.426,
     "history": [
       1,
       1,
@@ -1226,7 +1226,7 @@
     "url": "http://31.148.48.15/Pervii_kanal_HD/index.m3u8",
     "user_agent": null,
     "norm_name": "channelonerussia",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -1250,7 +1250,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "channel16406pnot247",
     "fail_count": 0,
-    "latency": 0.29,
+    "latency": 0.741,
     "history": [
       1,
       1,
@@ -1273,7 +1273,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "che576p",
     "fail_count": 0,
-    "latency": 0.709,
+    "latency": 0.829,
     "history": [
       1,
       1,
@@ -1296,7 +1296,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "cinemarussia576p",
     "fail_count": 0,
-    "latency": 0.693,
+    "latency": 0.824,
     "history": [
       1,
       1,
@@ -1318,7 +1318,7 @@
     "url": "https://cityeden.catcast.tv/content/47515/index.m3u8",
     "user_agent": null,
     "norm_name": "cityedenautogidnot247",
-    "fail_count": 11,
+    "fail_count": 12,
     "latency": 999.0,
     "history": [
       0,
@@ -1341,7 +1341,7 @@
     "url": "https://cityeden.catcast.tv/content/34364/index.m3u8",
     "user_agent": null,
     "norm_name": "cityedenbirmaplaynot247",
-    "fail_count": 11,
+    "fail_count": 12,
     "latency": 999.0,
     "history": [
       0,
@@ -1364,7 +1364,7 @@
     "url": "https://cityeden.catcast.tv/content/47400/index.m3u8",
     "user_agent": null,
     "norm_name": "cityedenclassicmusicnot247",
-    "fail_count": 11,
+    "fail_count": 12,
     "latency": 999.0,
     "history": [
       0,
@@ -1387,7 +1387,7 @@
     "url": "https://cityeden.catcast.tv/content/41333/index.m3u8",
     "user_agent": null,
     "norm_name": "cityedenkinoactionnot247",
-    "fail_count": 11,
+    "fail_count": 12,
     "latency": 999.0,
     "history": [
       0,
@@ -1410,7 +1410,7 @@
     "url": "https://cityeden.catcast.tv/content/38398/index.m3u8",
     "user_agent": null,
     "norm_name": "cityedenkinoartnot247",
-    "fail_count": 11,
+    "fail_count": 12,
     "latency": 999.0,
     "history": [
       0,
@@ -1433,7 +1433,7 @@
     "url": "https://cityeden.catcast.tv/content/34393/index.m3u8",
     "user_agent": null,
     "norm_name": "cityedenkinoasianot247",
-    "fail_count": 11,
+    "fail_count": 12,
     "latency": 999.0,
     "history": [
       0,
@@ -1456,7 +1456,7 @@
     "url": "https://cityeden.catcast.tv/content/41327/index.m3u8",
     "user_agent": null,
     "norm_name": "cityedenkinodetektivnot247",
-    "fail_count": 11,
+    "fail_count": 12,
     "latency": 999.0,
     "history": [
       0,
@@ -1479,7 +1479,7 @@
     "url": "https://cityeden.catcast.tv/content/38354/index.m3u8",
     "user_agent": null,
     "norm_name": "cityedenkinodoknot247",
-    "fail_count": 11,
+    "fail_count": 12,
     "latency": 999.0,
     "history": [
       0,
@@ -1502,7 +1502,7 @@
     "url": "https://cityeden.catcast.tv/content/45269/index.m3u8",
     "user_agent": null,
     "norm_name": "cityedenkinodramanot247",
-    "fail_count": 11,
+    "fail_count": 12,
     "latency": 999.0,
     "history": [
       0,
@@ -1525,7 +1525,7 @@
     "url": "https://cityeden.catcast.tv/content/34185/index.m3u8",
     "user_agent": null,
     "norm_name": "cityedenkinoklassikanot247",
-    "fail_count": 11,
+    "fail_count": 12,
     "latency": 999.0,
     "history": [
       0,
@@ -1548,7 +1548,7 @@
     "url": "https://cityeden.catcast.tv/content/41331/index.m3u8",
     "user_agent": null,
     "norm_name": "cityedenkinokomediyanot247",
-    "fail_count": 11,
+    "fail_count": 12,
     "latency": 999.0,
     "history": [
       0,
@@ -1571,7 +1571,7 @@
     "url": "https://cityeden.catcast.tv/content/40783/index.m3u8",
     "user_agent": null,
     "norm_name": "cityedenkinomistikanot247",
-    "fail_count": 11,
+    "fail_count": 12,
     "latency": 999.0,
     "history": [
       0,
@@ -1594,7 +1594,7 @@
     "url": "https://v2.catcast.tv/content/38128/index.m3u8",
     "user_agent": null,
     "norm_name": "cityedenkinosemyanot247",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -1617,7 +1617,7 @@
     "url": "https://cityeden.catcast.tv/content/47519/index.m3u8",
     "user_agent": null,
     "norm_name": "cityedenmedzdravnot247",
-    "fail_count": 11,
+    "fail_count": 12,
     "latency": 999.0,
     "history": [
       0,
@@ -1640,7 +1640,7 @@
     "url": "https://cityeden.catcast.tv/content/34100/index.m3u8",
     "user_agent": null,
     "norm_name": "cityedenplaynot247",
-    "fail_count": 11,
+    "fail_count": 12,
     "latency": 999.0,
     "history": [
       0,
@@ -1663,7 +1663,7 @@
     "url": "https://cityeden.catcast.tv/content/47516/index.m3u8",
     "user_agent": null,
     "norm_name": "cityedenreceptygurmananot247",
-    "fail_count": 11,
+    "fail_count": 12,
     "latency": 999.0,
     "history": [
       0,
@@ -1686,7 +1686,7 @@
     "url": "https://cityeden.catcast.tv/content/46421/index.m3u8",
     "user_agent": null,
     "norm_name": "cityedensirtakitvnot247",
-    "fail_count": 11,
+    "fail_count": 12,
     "latency": 999.0,
     "history": [
       0,
@@ -1710,7 +1710,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "cityedentelenovellanot247",
     "fail_count": 0,
-    "latency": 1.428,
+    "latency": 1.463,
     "history": [
       1,
       1,
@@ -1733,7 +1733,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "cityedentvnot247",
     "fail_count": 0,
-    "latency": 1.368,
+    "latency": 1.497,
     "history": [
       1,
       1,
@@ -1756,7 +1756,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "classicmusic",
     "fail_count": 0,
-    "latency": 0.25,
+    "latency": 0.334,
     "history": [
       1,
       1,
@@ -1778,15 +1778,15 @@
     "url": "https://cdn.1tvcrimea.ru/24tvcrimea.m3u8",
     "user_agent": null,
     "norm_name": "crimea24",
-    "fail_count": 4,
+    "fail_count": 5,
     "latency": 999.0,
     "history": [
       0,
-      0,
       1,
       0,
       0,
       1,
+      0,
       0,
       0,
       0,
@@ -1802,7 +1802,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "currenttimetv",
     "fail_count": 0,
-    "latency": 0.49,
+    "latency": 0.69,
     "history": [
       1,
       1,
@@ -1825,7 +1825,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "davinci576p",
     "fail_count": 0,
-    "latency": 0.25,
+    "latency": 0.318,
     "history": [
       1,
       1,
@@ -1848,7 +1848,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "dagestan",
     "fail_count": 0,
-    "latency": 0.706,
+    "latency": 1.837,
     "history": [
       1,
       1,
@@ -1871,7 +1871,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "dancehits80",
     "fail_count": 0,
-    "latency": 0.732,
+    "latency": 1.294,
     "history": [
       1,
       1,
@@ -1893,7 +1893,7 @@
     "url": "https://autopilot.catcast.tv/content/38720/index.m3u8",
     "user_agent": null,
     "norm_name": "detskoekinonot247",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -1917,7 +1917,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "dikayaokhota",
     "fail_count": 0,
-    "latency": 0.268,
+    "latency": 0.301,
     "history": [
       1,
       1,
@@ -1940,7 +1940,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "dikayarybalka",
     "fail_count": 0,
-    "latency": 0.261,
+    "latency": 0.294,
     "history": [
       1,
       1,
@@ -1963,7 +1963,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "dikij576p",
     "fail_count": 0,
-    "latency": 0.991,
+    "latency": 1.253,
     "history": [
       1,
       1,
@@ -1986,7 +1986,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "discoverychannelrussia",
     "fail_count": 0,
-    "latency": 0.244,
+    "latency": 0.319,
     "history": [
       1,
       1,
@@ -2008,7 +2008,7 @@
     "url": "http://31.148.48.15/Doktor/index.m3u8",
     "user_agent": null,
     "norm_name": "doctor",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -2031,7 +2031,7 @@
     "url": "http://dtv.vol.net.ua/DOCUBOX-HD/index.m3u8",
     "user_agent": null,
     "norm_name": "docuboxrussia",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -2055,7 +2055,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "domkino576p",
     "fail_count": 0,
-    "latency": 0.259,
+    "latency": 0.292,
     "history": [
       1,
       1,
@@ -2100,7 +2100,7 @@
     "url": "http://31.148.48.15/Dom_Kino_Premium_HD/index.m3u8",
     "user_agent": null,
     "norm_name": "domkinopremium",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -2124,7 +2124,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "domashniezhivotnye576p",
     "fail_count": 0,
-    "latency": 1.254,
+    "latency": 1.147,
     "history": [
       1,
       1,
@@ -2147,7 +2147,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "domashniy576p",
     "fail_count": 0,
-    "latency": 0.268,
+    "latency": 0.26,
     "history": [
       1,
       1,
@@ -2193,7 +2193,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "dorama576p",
     "fail_count": 0,
-    "latency": 0.649,
+    "latency": 0.69,
     "history": [
       1,
       1,
@@ -2216,7 +2216,7 @@
     "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
     "norm_name": "dorama",
     "fail_count": 0,
-    "latency": 0.263,
+    "latency": 0.273,
     "history": [
       1,
       1,
@@ -2239,7 +2239,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "drive",
     "fail_count": 0,
-    "latency": 1.145,
+    "latency": 1.021,
     "history": [
       1,
       1,
@@ -2262,7 +2262,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "dumatv",
     "fail_count": 0,
-    "latency": 0.275,
+    "latency": 0.294,
     "history": [
       1,
       1,
@@ -2285,7 +2285,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "dushevnoe",
     "fail_count": 0,
-    "latency": 0.26,
+    "latency": 0.305,
     "history": [
       1,
       1,
@@ -2307,7 +2307,7 @@
     "url": "http://31.148.48.15/English_club_TV_HD/index.m3u8",
     "user_agent": null,
     "norm_name": "englishclass",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -2331,7 +2331,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "enisey576p",
     "fail_count": 0,
-    "latency": 0.8,
+    "latency": 0.932,
     "history": [
       1,
       1,
@@ -2354,7 +2354,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "eurasia",
     "fail_count": 0,
-    "latency": 1.659,
+    "latency": 1.48,
     "history": [
       1,
       1,
@@ -2377,7 +2377,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "euronewsrussian",
     "fail_count": 0,
-    "latency": 0.233,
+    "latency": 0.142,
     "history": [
       1,
       1,
@@ -2399,7 +2399,7 @@
     "url": "http://31.148.48.15/Europa_Plus_HD/index.m3u8",
     "user_agent": null,
     "norm_name": "europaplustv",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -2492,7 +2492,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "evrokino",
     "fail_count": 0,
-    "latency": 0.277,
+    "latency": 0.322,
     "history": [
       1,
       1,
@@ -2514,7 +2514,7 @@
     "url": "http://46.32.176.50/extremesport/index.m3u8",
     "user_agent": null,
     "norm_name": "extremesportschannel576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -2538,7 +2538,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "fashionlifestyle",
     "fail_count": 0,
-    "latency": 0.266,
+    "latency": 0.295,
     "history": [
       1,
       1,
@@ -2553,15 +2553,15 @@
     ]
   },
   {
-    "name": "FashionTV (1080p)",
+    "name": "FashionTV (Russia) (1080p)",
     "group": "🎭 Развлекательные",
     "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Fashion_TV_logo.svg/960px-Fashion_TV_logo.svg.png",
     "tvg_id": "FashionTV.ru@SD",
     "url": "http://fashionlive.mediacdn.ru/cdn/fashiontv/playlist.m3u8",
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
-    "norm_name": "fashiontv",
+    "norm_name": "fashiontvrussia",
     "fail_count": 0,
-    "latency": 1.489,
+    "latency": 1.625,
     "history": [
       1,
       1,
@@ -2583,7 +2583,7 @@
     "url": "http://31.148.48.15/Feniks_plus_kino/index.m3u8",
     "user_agent": null,
     "norm_name": "fenikspluskino576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -2607,7 +2607,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "fonmusic576p",
     "fail_count": 0,
-    "latency": 0.842,
+    "latency": 0.66,
     "history": [
       1,
       1,
@@ -2630,7 +2630,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "foodnetworkrussia",
     "fail_count": 0,
-    "latency": 0.269,
+    "latency": 0.319,
     "history": [
       1,
       1,
@@ -2653,7 +2653,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "foxrussia576p",
     "fail_count": 0,
-    "latency": 0.267,
+    "latency": 0.337,
     "history": [
       1,
       1,
@@ -2676,7 +2676,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "foxlife576p",
     "fail_count": 0,
-    "latency": 0.25,
+    "latency": 0.335,
     "history": [
       1,
       1,
@@ -2699,7 +2699,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "friday576p",
     "fail_count": 0,
-    "latency": 0.256,
+    "latency": 0.303,
     "history": [
       1,
       1,
@@ -2721,7 +2721,7 @@
     "url": "http://hls127.freeott.top:8080/Gagsnetwork/video.m3u8",
     "user_agent": null,
     "norm_name": "gagsnetwork576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -2745,7 +2745,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "glazamiturista",
     "fail_count": 0,
-    "latency": 0.767,
+    "latency": 0.599,
     "history": [
       1,
       1,
@@ -2767,7 +2767,7 @@
     "url": "https://gtk.tv/hls/gtyar.m3u8",
     "user_agent": null,
     "norm_name": "gorodskoytelekanal",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -2791,7 +2791,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "govoritmoskva",
     "fail_count": 0,
-    "latency": 0.45,
+    "latency": 0.566,
     "history": [
       1,
       1,
@@ -2814,7 +2814,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "groznyj",
     "fail_count": 0,
-    "latency": 1.146,
+    "latency": 2.44,
     "history": [
       1,
       1,
@@ -2837,7 +2837,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "guberniasamara576p",
     "fail_count": 0,
-    "latency": 0.414,
+    "latency": 1.386,
     "history": [
       1,
       1,
@@ -2860,7 +2860,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "hit",
     "fail_count": 0,
-    "latency": 0.254,
+    "latency": 0.291,
     "history": [
       1,
       1,
@@ -2882,7 +2882,7 @@
     "url": "http://31.148.48.15/MGM_HD/index.m3u8",
     "user_agent": null,
     "norm_name": "hollywood",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -2906,7 +2906,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "horosheekino",
     "fail_count": 0,
-    "latency": 0.53,
+    "latency": 1.655,
     "history": [
       1,
       1,
@@ -2929,7 +2929,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "illusion576p",
     "fail_count": 0,
-    "latency": 0.363,
+    "latency": 0.386,
     "history": [
       1,
       1,
@@ -2975,7 +2975,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "indiyskoyekino576p",
     "fail_count": 0,
-    "latency": 0.447,
+    "latency": 0.449,
     "history": [
       1,
       1,
@@ -2998,7 +2998,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "ingushetia",
     "fail_count": 0,
-    "latency": 0.792,
+    "latency": 1.151,
     "history": [
       1,
       1,
@@ -3021,7 +3021,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "investigationdiscoveryrussia",
     "fail_count": 0,
-    "latency": 0.267,
+    "latency": 0.262,
     "history": [
       1,
       1,
@@ -3044,7 +3044,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "istoki",
     "fail_count": 0,
-    "latency": 0.585,
+    "latency": 0.992,
     "history": [
       1,
       1,
@@ -3090,7 +3090,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "izvestia",
     "fail_count": 0,
-    "latency": 0.454,
+    "latency": 0.5,
     "history": [
       1,
       1,
@@ -3112,7 +3112,7 @@
     "url": "https://vgtrkregion-reg.cdnvideo.ru/vgtrk/stavropol/kavkaz24-hd/index.m3u8",
     "user_agent": null,
     "norm_name": "kavkaz24576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -3135,7 +3135,7 @@
     "url": "http://31.148.48.15/KHL_TV/index.m3u8",
     "user_agent": null,
     "norm_name": "khl",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -3158,7 +3158,7 @@
     "url": "http://31.148.48.15/Kineko_HD/index.m3u8",
     "user_agent": null,
     "norm_name": "kineko",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -3182,7 +3182,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "kino1russianot247",
     "fail_count": 0,
-    "latency": 0.209,
+    "latency": 0.247,
     "history": [
       1,
       1,
@@ -3204,7 +3204,7 @@
     "url": "http://sirius.greenhosting.ru/Kino24Ru/video.m3u8",
     "user_agent": null,
     "norm_name": "kino24",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -3227,7 +3227,7 @@
     "url": "http://31.148.48.15/Kino_TV_HD/index.m3u8",
     "user_agent": null,
     "norm_name": "kinotv",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -3251,7 +3251,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "kinohit576p",
     "fail_count": 0,
-    "latency": 0.278,
+    "latency": 0.276,
     "history": [
       1,
       1,
@@ -3274,7 +3274,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "kinokomedija576p",
     "fail_count": 0,
-    "latency": 0.248,
+    "latency": 0.311,
     "history": [
       1,
       1,
@@ -3297,7 +3297,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "kinomix576p",
     "fail_count": 0,
-    "latency": 0.256,
+    "latency": 0.303,
     "history": [
       1,
       1,
@@ -3320,7 +3320,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "kinopokaz576p",
     "fail_count": 0,
-    "latency": 0.256,
+    "latency": 0.296,
     "history": [
       1,
       1,
@@ -3343,7 +3343,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "kinopremyera",
     "fail_count": 0,
-    "latency": 0.241,
+    "latency": 0.276,
     "history": [
       1,
       1,
@@ -3365,7 +3365,7 @@
     "url": "http://31.148.48.15/Kineko/index.m3u8",
     "user_agent": null,
     "norm_name": "kinosat576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -3389,7 +3389,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "kinosemja576p",
     "fail_count": 0,
-    "latency": 0.257,
+    "latency": 0.262,
     "history": [
       1,
       1,
@@ -3412,7 +3412,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "kinoseriya576p",
     "fail_count": 0,
-    "latency": 0.843,
+    "latency": 0.571,
     "history": [
       1,
       1,
@@ -3435,7 +3435,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "kinouzhas576p",
     "fail_count": 0,
-    "latency": 0.284,
+    "latency": 0.277,
     "history": [
       1,
       1,
@@ -3458,7 +3458,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "komedia576p",
     "fail_count": 0,
-    "latency": 0.273,
+    "latency": 0.263,
     "history": [
       1,
       1,
@@ -3481,7 +3481,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "komediynoe",
     "fail_count": 0,
-    "latency": 0.33,
+    "latency": 0.301,
     "history": [
       1,
       1,
@@ -3504,7 +3504,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "kongresstv",
     "fail_count": 0,
-    "latency": 0.891,
+    "latency": 1.015,
     "history": [
       1,
       1,
@@ -3527,7 +3527,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "kriktv",
     "fail_count": 0,
-    "latency": 0.501,
+    "latency": 0.582,
     "history": [
       1,
       1,
@@ -3549,7 +3549,7 @@
     "url": "http://31.148.48.15/Kto_est_kto/index.m3u8",
     "user_agent": null,
     "norm_name": "ktoestkto576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -3573,7 +3573,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "kuban24480pgeoblocked",
     "fail_count": 0,
-    "latency": 0.945,
+    "latency": 0.987,
     "history": [
       1,
       1,
@@ -3596,7 +3596,7 @@
     "user_agent": "WINK/1.40.1 (AndroidTV/9) HlsWinkPlayer",
     "norm_name": "kuban24geoblocked",
     "fail_count": 0,
-    "latency": 1.146,
+    "latency": 1.372,
     "history": [
       1,
       1,
@@ -3619,7 +3619,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "kuhnya576p",
     "fail_count": 0,
-    "latency": 0.249,
+    "latency": 0.278,
     "history": [
       1,
       1,
@@ -3642,7 +3642,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "kulinartv576p",
     "fail_count": 0,
-    "latency": 0.32,
+    "latency": 0.404,
     "history": [
       1,
       1,
@@ -3665,7 +3665,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "kurajtv576p",
     "fail_count": 0,
-    "latency": 0.824,
+    "latency": 0.44,
     "history": [
       1,
       1,
@@ -3688,7 +3688,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "kvntv576p",
     "fail_count": 0,
-    "latency": 0.235,
+    "latency": 0.272,
     "history": [
       1,
       1,
@@ -3734,7 +3734,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "ldprtv",
     "fail_count": 0,
-    "latency": 0.352,
+    "latency": 0.391,
     "history": [
       1,
       1,
@@ -3757,7 +3757,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "legendarnyy24",
     "fail_count": 0,
-    "latency": 0.877,
+    "latency": 1.011,
     "history": [
       1,
       1,
@@ -3779,7 +3779,7 @@
     "url": "https://player.smotrim.ru/iframe/stream/live_id/3e95d201-f87d-4ac1-8897-db2c66bb9657",
     "user_agent": null,
     "norm_name": "lentv24",
-    "fail_count": 19,
+    "fail_count": 20,
     "latency": 999.0,
     "history": [
       0,
@@ -3803,7 +3803,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "livemusicchannel",
     "fail_count": 0,
-    "latency": 0.216,
+    "latency": 0.24,
     "history": [
       1,
       1,
@@ -3826,7 +3826,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "magnat",
     "fail_count": 0,
-    "latency": 0.545,
+    "latency": 0.871,
     "history": [
       1,
       1,
@@ -3849,7 +3849,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "maidan",
     "fail_count": 0,
-    "latency": 0.522,
+    "latency": 0.568,
     "history": [
       1,
       1,
@@ -3871,7 +3871,7 @@
     "url": "http://31.148.48.15/Match_Arena_HD/index.m3u8",
     "user_agent": null,
     "norm_name": "matcharena",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -3895,7 +3895,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "matchboets576p",
     "fail_count": 0,
-    "latency": 0.257,
+    "latency": 0.268,
     "history": [
       1,
       1,
@@ -3917,7 +3917,7 @@
     "url": "http://31.148.48.15/Match_Igra_HD/index.m3u8",
     "user_agent": null,
     "norm_name": "matchigra",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -3964,7 +3964,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "matchpremier576p",
     "fail_count": 0,
-    "latency": 0.283,
+    "latency": 0.292,
     "history": [
       1,
       1,
@@ -3986,7 +3986,7 @@
     "url": "http://31.148.48.15/Match_Strana/index.m3u8",
     "user_agent": null,
     "norm_name": "matchstrana",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -4010,7 +4010,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "matchultra",
     "fail_count": 0,
-    "latency": 0.444,
+    "latency": 0.462,
     "history": [
       1,
       1,
@@ -4032,7 +4032,7 @@
     "url": "http://46.32.176.50/mcmtop/index.m3u8",
     "user_agent": null,
     "norm_name": "mcmtop576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -4053,12 +4053,11 @@
     "logo": "https://i.imgur.com/H9ytKPN.png",
     "tvg_id": "MezzoLive.fr@SD",
     "url": "http://stream.mcquack.net/276/index.m3u8",
-    "user_agent": null,
+    "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "mezzolive",
-    "fail_count": 9,
-    "latency": 999.0,
+    "fail_count": 0,
+    "latency": 0.306,
     "history": [
-      1,
       0,
       0,
       0,
@@ -4067,7 +4066,8 @@
       0,
       0,
       0,
-      0
+      0,
+      1
     ]
   },
   {
@@ -4079,7 +4079,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "millet",
     "fail_count": 0,
-    "latency": 0.827,
+    "latency": 0.924,
     "history": [
       1,
       1,
@@ -4101,17 +4101,17 @@
     "url": "https://live-minidey.cdnvideo.ru/minidey-srt/minidey/playlist.m3u8",
     "user_agent": null,
     "norm_name": "ministerstvoidey",
-    "fail_count": 2,
+    "fail_count": 3,
     "latency": 999.0,
     "history": [
       1,
-      1,
       0,
       0,
       1,
       0,
       1,
       1,
+      0,
       0,
       0
     ]
@@ -4125,7 +4125,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "mir24",
     "fail_count": 0,
-    "latency": 1.152,
+    "latency": 0.488,
     "history": [
       1,
       1,
@@ -4148,7 +4148,7 @@
     "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
     "norm_name": "mir",
     "fail_count": 0,
-    "latency": 1.725,
+    "latency": 2.094,
     "history": [
       1,
       1,
@@ -4193,7 +4193,7 @@
     "url": "http://31.148.48.15/Mir/index.m3u8",
     "user_agent": "HlsWinkPlayer",
     "norm_name": "mir4576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -4240,7 +4240,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "mirnot247",
     "fail_count": 0,
-    "latency": 1.343,
+    "latency": 0.779,
     "history": [
       1,
       1,
@@ -4263,7 +4263,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "mirbelogoryageoblocked",
     "fail_count": 0,
-    "latency": 0.952,
+    "latency": 0.871,
     "history": [
       1,
       1,
@@ -4286,7 +4286,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "mirseriala576p",
     "fail_count": 0,
-    "latency": 0.366,
+    "latency": 0.412,
     "history": [
       1,
       1,
@@ -4309,7 +4309,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "mmatvcom",
     "fail_count": 0,
-    "latency": 0.246,
+    "latency": 0.455,
     "history": [
       1,
       1,
@@ -4331,7 +4331,7 @@
     "url": "http://31.222.235.15/mosfilm/index.m3u8",
     "user_agent": null,
     "norm_name": "mosfilmgoldcollection576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -4355,7 +4355,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "moskva24",
     "fail_count": 0,
-    "latency": 0.829,
+    "latency": 0.904,
     "history": [
       1,
       1,
@@ -4378,7 +4378,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "moskvadoveriye576p",
     "fail_count": 0,
-    "latency": 0.663,
+    "latency": 0.83,
     "history": [
       1,
       1,
@@ -4401,7 +4401,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "moymir",
     "fail_count": 0,
-    "latency": 0.682,
+    "latency": 2.209,
     "history": [
       1,
       1,
@@ -4423,7 +4423,7 @@
     "url": "http://91.226.120.120/chid210/tracks-v1a1/mono.m3u8",
     "user_agent": null,
     "norm_name": "moyaplaneta",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -4447,7 +4447,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "moyastikhiya",
     "fail_count": 0,
-    "latency": 0.267,
+    "latency": 0.266,
     "history": [
       1,
       1,
@@ -4470,7 +4470,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "mtvvolgogradnot247",
     "fail_count": 0,
-    "latency": 0.436,
+    "latency": 0.979,
     "history": [
       1,
       1,
@@ -4493,7 +4493,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "muzsoyuz576p",
     "fail_count": 0,
-    "latency": 0.515,
+    "latency": 1.184,
     "history": [
       1,
       1,
@@ -4515,7 +4515,7 @@
     "url": "http://46.32.176.50/muztv/index.m3u8",
     "user_agent": null,
     "norm_name": "muztv576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -4539,7 +4539,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "muzhskoekino576p",
     "fail_count": 0,
-    "latency": 0.262,
+    "latency": 0.277,
     "history": [
       1,
       1,
@@ -4562,7 +4562,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "muzyka1not247",
     "fail_count": 0,
-    "latency": 0.406,
+    "latency": 0.481,
     "history": [
       1,
       1,
@@ -4585,7 +4585,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "muzykakinonot247",
     "fail_count": 0,
-    "latency": 0.405,
+    "latency": 0.487,
     "history": [
       1,
       1,
@@ -4608,7 +4608,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "muzykalive576p",
     "fail_count": 0,
-    "latency": 0.271,
+    "latency": 0.282,
     "history": [
       1,
       1,
@@ -4631,7 +4631,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "muzykapervogo576p",
     "fail_count": 0,
-    "latency": 0.267,
+    "latency": 0.273,
     "history": [
       1,
       1,
@@ -4654,7 +4654,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "nano576p",
     "fail_count": 0,
-    "latency": 0.257,
+    "latency": 0.261,
     "history": [
       1,
       1,
@@ -4677,7 +4677,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "nano",
     "fail_count": 0,
-    "latency": 0.263,
+    "latency": 0.31,
     "history": [
       1,
       1,
@@ -4700,7 +4700,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "nashkinopokaz576p",
     "fail_count": 0,
-    "latency": 0.225,
+    "latency": 0.244,
     "history": [
       1,
       1,
@@ -4723,7 +4723,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "nashe576p",
     "fail_count": 0,
-    "latency": 0.266,
+    "latency": 0.281,
     "history": [
       1,
       1,
@@ -4746,7 +4746,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "nashemuzhskoe",
     "fail_count": 0,
-    "latency": 0.26,
+    "latency": 0.273,
     "history": [
       1,
       1,
@@ -4769,7 +4769,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "nashenovoekino",
     "fail_count": 0,
-    "latency": 0.965,
+    "latency": 1.495,
     "history": [
       1,
       1,
@@ -4791,7 +4791,7 @@
     "url": "http://dtv.vol.net.ua/National_Geographic-HD/index.m3u8",
     "user_agent": null,
     "norm_name": "nationalgeographicrussia",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -4837,7 +4837,7 @@
     "url": "http://178.76.68.60:7442/50/mpegts",
     "user_agent": null,
     "norm_name": "nationalgeographicwildrussia",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -4860,7 +4860,7 @@
     "url": "http://31.148.48.15/Nauka_2.0/index.m3u8",
     "user_agent": null,
     "norm_name": "naukarussia",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -4884,7 +4884,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "nevskiy",
     "fail_count": 0,
-    "latency": 0.413,
+    "latency": 0.444,
     "history": [
       1,
       1,
@@ -4907,7 +4907,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "nikatv576pnot247",
     "fail_count": 0,
-    "latency": 0.4,
+    "latency": 1.165,
     "history": [
       1,
       1,
@@ -4929,7 +4929,7 @@
     "url": "https://vgtrkregion-reg.cdnvideo.ru/vgtrk/nigniynovgorod/nigniynovgorod24-hd/index.m3u8",
     "user_agent": null,
     "norm_name": "nizhniynovgorod24",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -4953,7 +4953,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "nostalgiarussia576p",
     "fail_count": 0,
-    "latency": 0.355,
+    "latency": 0.389,
     "history": [
       1,
       1,
@@ -4976,7 +4976,7 @@
     "user_agent": "WINK/1.40.1 (AndroidTV/9) HlsWinkPlayer",
     "norm_name": "novgorobltvgeoblocked",
     "fail_count": 0,
-    "latency": 1.06,
+    "latency": 1.205,
     "history": [
       1,
       1,
@@ -4996,21 +4996,21 @@
     "logo": "https://i.imgur.com/ijmf0bV.png",
     "tvg_id": "NovorossiyaTV.ru@SD",
     "url": "http://31.131.139.253:9002/novoros/index.m3u8",
-    "user_agent": null,
+    "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "novorossiyatvgeoblocked",
-    "fail_count": 4,
-    "latency": 999.0,
+    "fail_count": 0,
+    "latency": 0.314,
     "history": [
       1,
       1,
       1,
       1,
       1,
-      1,
       0,
       0,
       0,
-      0
+      0,
+      1
     ]
   },
   {
@@ -5022,7 +5022,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "nst576p",
     "fail_count": 0,
-    "latency": 0.259,
+    "latency": 0.27,
     "history": [
       1,
       1,
@@ -5045,7 +5045,7 @@
     "user_agent": "WINK/1.40.1 (AndroidTV/9) HlsWinkPlayer",
     "norm_name": "ntk21geoblocked",
     "fail_count": 0,
-    "latency": 1.051,
+    "latency": 1.153,
     "history": [
       1,
       1,
@@ -5068,7 +5068,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "ntmnot247",
     "fail_count": 0,
-    "latency": 0.403,
+    "latency": 0.614,
     "history": [
       1,
       1,
@@ -5091,7 +5091,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "ntsnot247",
     "fail_count": 0,
-    "latency": 0.511,
+    "latency": 0.547,
     "history": [
       1,
       1,
@@ -5113,7 +5113,7 @@
     "url": "http://45.153.24.78/NTV/index.m3u8",
     "user_agent": null,
     "norm_name": "ntvrussia576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -5137,7 +5137,7 @@
     "user_agent": "HlsWinkPlayer",
     "norm_name": "ntvrussia1576p",
     "fail_count": 0,
-    "latency": 1.002,
+    "latency": 1.011,
     "history": [
       1,
       1,
@@ -5160,7 +5160,7 @@
     "user_agent": "HlsWinkPlayer",
     "norm_name": "ntvrussia2576p",
     "fail_count": 0,
-    "latency": 0.825,
+    "latency": 1.244,
     "history": [
       1,
       1,
@@ -5183,7 +5183,7 @@
     "user_agent": "HlsWinkPlayer",
     "norm_name": "ntvrussia4576p",
     "fail_count": 0,
-    "latency": 0.871,
+    "latency": 1.15,
     "history": [
       1,
       1,
@@ -5206,7 +5206,7 @@
     "user_agent": "HlsWinkPlayer",
     "norm_name": "ntvrussia7576p",
     "fail_count": 0,
-    "latency": 1.362,
+    "latency": 0.913,
     "history": [
       1,
       1,
@@ -5229,7 +5229,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "ntvrussia",
     "fail_count": 0,
-    "latency": 0.767,
+    "latency": 1.221,
     "history": [
       1,
       1,
@@ -5252,7 +5252,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "ntvlaw576p",
     "fail_count": 0,
-    "latency": 1.308,
+    "latency": 0.776,
     "history": [
       1,
       1,
@@ -5275,7 +5275,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "ntvseries576p",
     "fail_count": 0,
-    "latency": 0.247,
+    "latency": 0.336,
     "history": [
       1,
       1,
@@ -5298,7 +5298,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "ntvstyle576p",
     "fail_count": 0,
-    "latency": 0.799,
+    "latency": 0.76,
     "history": [
       1,
       1,
@@ -5321,7 +5321,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "ntvsvoyaigra",
     "fail_count": 0,
-    "latency": 0.563,
+    "latency": 0.427,
     "history": [
       1,
       1,
@@ -5344,7 +5344,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "ntvvitrina",
     "fail_count": 0,
-    "latency": 0.67,
+    "latency": 0.605,
     "history": [
       1,
       1,
@@ -5367,7 +5367,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "ntvhit576p",
     "fail_count": 0,
-    "latency": 0.307,
+    "latency": 0.335,
     "history": [
       1,
       1,
@@ -5390,7 +5390,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "nvksakhanot247",
     "fail_count": 0,
-    "latency": 0.522,
+    "latency": 0.767,
     "history": [
       1,
       1,
@@ -5412,7 +5412,7 @@
     "url": "http://31.148.48.15/O2_HD/index.m3u8",
     "user_agent": null,
     "norm_name": "o2tv",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -5435,7 +5435,7 @@
     "url": "http://hls127.freeott.top:8080/Ocean_TV/video.m3u8",
     "user_agent": null,
     "norm_name": "oceantv576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -5459,7 +5459,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "ohotnikirybolov",
     "fail_count": 0,
-    "latency": 0.674,
+    "latency": 1.397,
     "history": [
       1,
       1,
@@ -5482,7 +5482,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "okhotairybalka576p",
     "fail_count": 0,
-    "latency": 0.258,
+    "latency": 0.279,
     "history": [
       1,
       1,
@@ -5505,7 +5505,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "okkofutbol576p",
     "fail_count": 0,
-    "latency": 0.232,
+    "latency": 0.272,
     "history": [
       1,
       1,
@@ -5551,7 +5551,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "oplot2geoblocked",
     "fail_count": 0,
-    "latency": 0.286,
+    "latency": 0.33,
     "history": [
       1,
       1,
@@ -5574,7 +5574,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "oplottvgeoblocked",
     "fail_count": 0,
-    "latency": 0.293,
+    "latency": 0.328,
     "history": [
       1,
       1,
@@ -5597,9 +5597,8 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "osetiyairyston",
     "fail_count": 0,
-    "latency": 0.412,
+    "latency": 1.236,
     "history": [
-      0,
       1,
       0,
       0,
@@ -5608,6 +5607,7 @@
       1,
       1,
       0,
+      1,
       1
     ]
   },
@@ -5619,7 +5619,7 @@
     "url": "http://osnmedia.servicecdn.ru/streams/17603_88089/playlist.m3u8",
     "user_agent": null,
     "norm_name": "osn",
-    "fail_count": 11,
+    "fail_count": 12,
     "latency": 999.0,
     "history": [
       0,
@@ -5643,7 +5643,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "ostrosyuzhetnoye",
     "fail_count": 0,
-    "latency": 0.248,
+    "latency": 0.278,
     "history": [
       1,
       1,
@@ -5666,7 +5666,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "otkritiymirzdorove576p",
     "fail_count": 0,
-    "latency": 0.652,
+    "latency": 0.832,
     "history": [
       1,
       1,
@@ -5689,7 +5689,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "otr576p",
     "fail_count": 0,
-    "latency": 0.487,
+    "latency": 0.534,
     "history": [
       1,
       1,
@@ -5712,7 +5712,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "otvprim",
     "fail_count": 0,
-    "latency": 0.556,
+    "latency": 0.568,
     "history": [
       1,
       1,
@@ -5734,7 +5734,7 @@
     "url": "https://stream.smotrim.ru/hls2/static/playlist_4.m3u8",
     "user_agent": null,
     "norm_name": "patriot",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -5758,7 +5758,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "perviykrymskiy",
     "fail_count": 0,
-    "latency": 0.884,
+    "latency": 1.013,
     "history": [
       1,
       1,
@@ -5781,7 +5781,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "perviyotdel",
     "fail_count": 0,
-    "latency": 0.37,
+    "latency": 0.457,
     "history": [
       1,
       1,
@@ -5804,7 +5804,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "pervyyrespublikanskiy",
     "fail_count": 0,
-    "latency": 1.103,
+    "latency": 1.469,
     "history": [
       1,
       1,
@@ -5827,7 +5827,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "pes",
     "fail_count": 0,
-    "latency": 0.517,
+    "latency": 0.555,
     "history": [
       1,
       1,
@@ -5850,7 +5850,7 @@
     "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
     "norm_name": "pobeda576p",
     "fail_count": 0,
-    "latency": 1.05,
+    "latency": 0.78,
     "history": [
       1,
       1,
@@ -5872,7 +5872,7 @@
     "url": "http://31.148.48.15/Poehali/index.m3u8",
     "user_agent": null,
     "norm_name": "poehali",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -5896,7 +5896,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "premialnoe",
     "fail_count": 0,
-    "latency": 0.245,
+    "latency": 0.274,
     "history": [
       1,
       1,
@@ -5919,7 +5919,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "priklyucheniya576p",
     "fail_count": 0,
-    "latency": 0.687,
+    "latency": 0.816,
     "history": [
       1,
       1,
@@ -5942,7 +5942,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "priklyucheniya",
     "fail_count": 0,
-    "latency": 0.247,
+    "latency": 0.283,
     "history": [
       1,
       1,
@@ -5965,7 +5965,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "primarussia",
     "fail_count": 0,
-    "latency": 0.506,
+    "latency": 0.559,
     "history": [
       1,
       1,
@@ -5988,7 +5988,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "probusiness",
     "fail_count": 0,
-    "latency": 0.866,
+    "latency": 0.959,
     "history": [
       1,
       1,
@@ -6010,7 +6010,7 @@
     "url": "http://hls127.freeott.top:8080/ProLubovHD/video.m3u8",
     "user_agent": null,
     "norm_name": "prolyubov",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -6034,7 +6034,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "prodvizhenie",
     "fail_count": 0,
-    "latency": 0.618,
+    "latency": 0.59,
     "history": [
       1,
       1,
@@ -6057,7 +6057,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "prosveshchenie576p",
     "fail_count": 0,
-    "latency": 0.387,
+    "latency": 0.5,
     "history": [
       1,
       1,
@@ -6080,9 +6080,9 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "radio1russiageoblocked",
     "fail_count": 0,
-    "latency": 0.499,
+    "latency": 0.512,
     "history": [
-      0,
+      1,
       1,
       1,
       1,
@@ -6103,7 +6103,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "radiorossii",
     "fail_count": 0,
-    "latency": 0.531,
+    "latency": 0.524,
     "history": [
       1,
       1,
@@ -6125,7 +6125,7 @@
     "url": "http://chanson-video.hostingradio.ru:8080/hls/chansonabr/live.m3u8",
     "user_agent": null,
     "norm_name": "radioshansonnot247",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -6148,7 +6148,7 @@
     "url": "http://hls127.freeott.top:8080/RBK/video.m3u8",
     "user_agent": null,
     "norm_name": "rbktv576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -6172,7 +6172,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "redline480p",
     "fail_count": 0,
-    "latency": 0.501,
+    "latency": 0.65,
     "history": [
       1,
       1,
@@ -6194,7 +6194,7 @@
     "url": "http://31.148.48.15/REN-TV/index.m3u8",
     "user_agent": null,
     "norm_name": "rentv576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -6218,7 +6218,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "retro576p",
     "fail_count": 0,
-    "latency": 0.267,
+    "latency": 0.266,
     "history": [
       1,
       1,
@@ -6241,7 +6241,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "rodnoekino576p",
     "fail_count": 0,
-    "latency": 0.256,
+    "latency": 0.287,
     "history": [
       1,
       1,
@@ -6264,7 +6264,7 @@
     "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36 OPR/130.0.0.0 (Edition std-2)",
     "norm_name": "rossiya1vainah",
     "fail_count": 0,
-    "latency": 1.047,
+    "latency": 1.145,
     "history": [
       1,
       1,
@@ -6287,7 +6287,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "rtbalkan",
     "fail_count": 0,
-    "latency": 1.174,
+    "latency": 1.343,
     "history": [
       1,
       1,
@@ -6310,7 +6310,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "rtdocumentaryrussian",
     "fail_count": 0,
-    "latency": 1.55,
+    "latency": 1.201,
     "history": [
       1,
       1,
@@ -6332,7 +6332,7 @@
     "url": "http://31.148.48.15/RTG_HD/index.m3u8",
     "user_agent": null,
     "norm_name": "rtgtv",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -6356,7 +6356,7 @@
     "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
     "norm_name": "rtvi576p",
     "fail_count": 0,
-    "latency": 0.667,
+    "latency": 0.901,
     "history": [
       1,
       1,
@@ -6379,7 +6379,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "rutv",
     "fail_count": 0,
-    "latency": 1.122,
+    "latency": 0.707,
     "history": [
       1,
       1,
@@ -6402,7 +6402,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "rus576p",
     "fail_count": 0,
-    "latency": 0.445,
+    "latency": 0.468,
     "history": [
       1,
       1,
@@ -6424,7 +6424,7 @@
     "url": "http://vgtrkregion-reg.cdnvideo.ru/vgtrk/maykop/russia1-hd/index.m3u8",
     "user_agent": null,
     "norm_name": "russia1",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -6447,7 +6447,7 @@
     "url": "https://vgtrkregion-reg.cdnvideo.ru/vgtrk/4/russia1-hd/index.m3u8",
     "user_agent": "HlsWinkPlayer",
     "norm_name": "russia14",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -6470,7 +6470,7 @@
     "url": "https://vgtrkregion-reg.cdnvideo.ru/vgtrk/5/russia1-hd/index.m3u8",
     "user_agent": "HlsWinkPlayer",
     "norm_name": "russia15",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -6493,7 +6493,7 @@
     "url": "https://vgtrkregion-reg.cdnvideo.ru/vgtrk/6/russia1-hd/index.m3u8",
     "user_agent": "HlsWinkPlayer",
     "norm_name": "russia16",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -6516,7 +6516,7 @@
     "url": "https://vgtrkregion-reg.cdnvideo.ru/vgtrk/7/russia1-hd/index.m3u8",
     "user_agent": "HlsWinkPlayer",
     "norm_name": "russia17",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -6539,7 +6539,7 @@
     "url": "https://vgtrkregion-reg.cdnvideo.ru/vgtrk/8/russia1-hd/index.m3u8",
     "user_agent": "HlsWinkPlayer",
     "norm_name": "russia18",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -6562,7 +6562,7 @@
     "url": "https://vgtrkregion-reg.cdnvideo.ru/vgtrk/9/russia1-hd/index.m3u8",
     "user_agent": "HlsWinkPlayer",
     "norm_name": "russia19",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -6585,7 +6585,7 @@
     "url": "https://vgtrkregion-reg.cdnvideo.ru/vgtrk/habarovsk/russia24-sd/index.m3u8",
     "user_agent": null,
     "norm_name": "russia24",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -6609,7 +6609,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "russiak576p",
     "fail_count": 0,
-    "latency": 0.248,
+    "latency": 0.268,
     "history": [
       1,
       1,
@@ -6631,7 +6631,7 @@
     "url": "https://vgtrkregion-reg.cdnvideo.ru/vgtrk/2/kultura-hd/index.m3u8",
     "user_agent": "HlsWinkPlayer",
     "norm_name": "russiak2",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -6654,7 +6654,7 @@
     "url": "https://vgtrkregion-reg.cdnvideo.ru/vgtrk/4/kultura-hd/index.m3u8",
     "user_agent": "HlsWinkPlayer",
     "norm_name": "russiak4",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -6677,7 +6677,7 @@
     "url": "https://vgtrkregion-reg.cdnvideo.ru/vgtrk/7/kultura-hd/index.m3u8",
     "user_agent": "HlsWinkPlayer",
     "norm_name": "russiak7",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -6701,7 +6701,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "russiak",
     "fail_count": 0,
-    "latency": 0.428,
+    "latency": 0.426,
     "history": [
       1,
       1,
@@ -6723,7 +6723,7 @@
     "url": "http://31.148.48.15/Russkiy_Ekstrim/index.m3u8",
     "user_agent": null,
     "norm_name": "russianextreme576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -6747,7 +6747,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "russianextremeultra1440p",
     "fail_count": 0,
-    "latency": 0.215,
+    "latency": 0.241,
     "history": [
       1,
       1,
@@ -6770,7 +6770,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "russianmusicbox576p",
     "fail_count": 0,
-    "latency": 0.254,
+    "latency": 0.26,
     "history": [
       1,
       1,
@@ -6793,7 +6793,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "russkiybestseller576p",
     "fail_count": 0,
-    "latency": 0.243,
+    "latency": 0.277,
     "history": [
       1,
       1,
@@ -6816,7 +6816,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "russkiydetektiv576p",
     "fail_count": 0,
-    "latency": 0.247,
+    "latency": 0.287,
     "history": [
       1,
       1,
@@ -6838,7 +6838,7 @@
     "url": "http://31.148.48.15/Russkiy_illusion/index.m3u8",
     "user_agent": null,
     "norm_name": "russkiyillusion576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -6861,7 +6861,7 @@
     "url": "http://31.148.48.15/Russkiy_Roman_HD/index.m3u8",
     "user_agent": null,
     "norm_name": "russkiyroman",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -6885,7 +6885,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "rybolov576p",
     "fail_count": 0,
-    "latency": 0.265,
+    "latency": 0.272,
     "history": [
       1,
       1,
@@ -6931,7 +6931,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "s1not247",
     "fail_count": 0,
-    "latency": 1.006,
+    "latency": 0.588,
     "history": [
       1,
       1,
@@ -6954,7 +6954,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "salyam576p",
     "fail_count": 0,
-    "latency": 0.818,
+    "latency": 0.824,
     "history": [
       1,
       1,
@@ -6976,7 +6976,7 @@
     "url": "https://vgtrkregion-reg.cdnvideo.ru/vgtrk/samara/samara24-hd/index.m3u8",
     "user_agent": null,
     "norm_name": "samara24",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -7000,7 +7000,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "samaragisnot247",
     "fail_count": 0,
-    "latency": 0.748,
+    "latency": 0.809,
     "history": [
       1,
       1,
@@ -7022,7 +7022,7 @@
     "url": "http://31.148.48.15/Sankt_Peterburg/index.m3u8",
     "user_agent": null,
     "norm_name": "sanktpeterburg576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -7046,7 +7046,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "sanktpeterburg",
     "fail_count": 0,
-    "latency": 0.411,
+    "latency": 0.39,
     "history": [
       1,
       1,
@@ -7068,7 +7068,7 @@
     "url": "http://77.232.131.211/Sapfir/manifest.m3u8",
     "user_agent": null,
     "norm_name": "saphire",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -7091,7 +7091,7 @@
     "url": "http://31.148.48.15/7TV/index.m3u8",
     "user_agent": null,
     "norm_name": "seven576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -7115,7 +7115,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "sever",
     "fail_count": 0,
-    "latency": 0.516,
+    "latency": 0.606,
     "history": [
       1,
       1,
@@ -7138,7 +7138,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "shansontv576p",
     "fail_count": 0,
-    "latency": 0.621,
+    "latency": 0.633,
     "history": [
       1,
       1,
@@ -7161,7 +7161,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "shchyolkovskoetv576pnot247",
     "fail_count": 0,
-    "latency": 1.176,
+    "latency": 1.404,
     "history": [
       1,
       1,
@@ -7184,7 +7184,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "shef",
     "fail_count": 0,
-    "latency": 0.411,
+    "latency": 0.428,
     "history": [
       1,
       1,
@@ -7207,7 +7207,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "shokiruyushchee",
     "fail_count": 0,
-    "latency": 0.258,
+    "latency": 0.266,
     "history": [
       1,
       1,
@@ -7229,7 +7229,7 @@
     "url": "http://hls127.freeott.top:8080/SHOT_TV/video.m3u8",
     "user_agent": null,
     "norm_name": "shottv576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -7252,7 +7252,7 @@
     "url": "https://vgtrkregion-reg.cdnvideo.ru/vgtrk/novosibirsk/sibir24-hd/index.m3u8",
     "user_agent": null,
     "norm_name": "sibir24",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -7275,7 +7275,7 @@
     "url": "https://vgtrkregion-reg.cdnvideo.ru/vgtrk/krasnoyarsk/sibir24-hd/index.m3u8",
     "user_agent": null,
     "norm_name": "sibir24kya",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -7299,7 +7299,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "simferopol24",
     "fail_count": 0,
-    "latency": 0.897,
+    "latency": 0.812,
     "history": [
       1,
       1,
@@ -7322,7 +7322,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "skorayapomoshch",
     "fail_count": 0,
-    "latency": 0.734,
+    "latency": 0.446,
     "history": [
       1,
       1,
@@ -7345,7 +7345,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "smotrim100fakty",
     "fail_count": 0,
-    "latency": 0.432,
+    "latency": 0.542,
     "history": [
       1,
       1,
@@ -7368,7 +7368,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "smotrim100klassika",
     "fail_count": 0,
-    "latency": 0.395,
+    "latency": 0.485,
     "history": [
       1,
       1,
@@ -7391,7 +7391,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "smotrim100lyubov",
     "fail_count": 0,
-    "latency": 0.392,
+    "latency": 0.488,
     "history": [
       1,
       1,
@@ -7414,7 +7414,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "smotrim100muzhskoe",
     "fail_count": 0,
-    "latency": 0.375,
+    "latency": 0.459,
     "history": [
       1,
       1,
@@ -7437,7 +7437,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "smotrim100prazdnik",
     "fail_count": 0,
-    "latency": 0.289,
+    "latency": 0.466,
     "history": [
       1,
       1,
@@ -7460,7 +7460,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "smotrimchestnyydetektiv",
     "fail_count": 0,
-    "latency": 0.537,
+    "latency": 0.586,
     "history": [
       1,
       1,
@@ -7483,7 +7483,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "sochi24",
     "fail_count": 0,
-    "latency": 0.413,
+    "latency": 0.697,
     "history": [
       1,
       1,
@@ -7506,7 +7506,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "sochilivenot247",
     "fail_count": 0,
-    "latency": 0.397,
+    "latency": 0.681,
     "history": [
       1,
       1,
@@ -7528,7 +7528,7 @@
     "url": "https://stream.smotrim.ru/hls2/solovievlive/playlist_6.m3u8",
     "user_agent": null,
     "norm_name": "solovyovlive",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -7552,7 +7552,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "songtvrussia",
     "fail_count": 0,
-    "latency": 0.891,
+    "latency": 0.818,
     "history": [
       1,
       1,
@@ -7575,9 +7575,8 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "soyuzny576p",
     "fail_count": 0,
-    "latency": 0.409,
+    "latency": 0.43,
     "history": [
-      0,
       1,
       0,
       0,
@@ -7586,6 +7585,7 @@
       1,
       1,
       0,
+      1,
       1
     ]
   },
@@ -7598,7 +7598,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "spas576p",
     "fail_count": 0,
-    "latency": 0.894,
+    "latency": 1.098,
     "history": [
       1,
       1,
@@ -7621,7 +7621,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "sportivnyy",
     "fail_count": 0,
-    "latency": 0.64,
+    "latency": 1.009,
     "history": [
       1,
       1,
@@ -7644,7 +7644,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "starcinema",
     "fail_count": 0,
-    "latency": 0.421,
+    "latency": 0.51,
     "history": [
       1,
       1,
@@ -7667,7 +7667,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "starfamily",
     "fail_count": 0,
-    "latency": 0.428,
+    "latency": 0.458,
     "history": [
       1,
       1,
@@ -7690,7 +7690,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "startair",
     "fail_count": 0,
-    "latency": 0.373,
+    "latency": 0.404,
     "history": [
       1,
       1,
@@ -7759,7 +7759,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "stranafm",
     "fail_count": 0,
-    "latency": 0.507,
+    "latency": 0.585,
     "history": [
       1,
       1,
@@ -7782,7 +7782,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "sts576p",
     "fail_count": 0,
-    "latency": 0.832,
+    "latency": 0.924,
     "history": [
       1,
       1,
@@ -7805,7 +7805,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "sts",
     "fail_count": 0,
-    "latency": 0.259,
+    "latency": 0.267,
     "history": [
       1,
       1,
@@ -7828,7 +7828,7 @@
     "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
     "norm_name": "stslove",
     "fail_count": 0,
-    "latency": 1.842,
+    "latency": 1.067,
     "history": [
       1,
       1,
@@ -7851,7 +7851,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "subbota",
     "fail_count": 0,
-    "latency": 0.754,
+    "latency": 0.761,
     "history": [
       1,
       1,
@@ -7874,7 +7874,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "surgut24",
     "fail_count": 0,
-    "latency": 0.763,
+    "latency": 0.79,
     "history": [
       1,
       1,
@@ -7897,7 +7897,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "svoyotv",
     "fail_count": 0,
-    "latency": 1.688,
+    "latency": 1.414,
     "history": [
       1,
       1,
@@ -7920,7 +7920,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "t24576p",
     "fail_count": 0,
-    "latency": 0.316,
+    "latency": 0.34,
     "history": [
       1,
       1,
@@ -7943,7 +7943,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "tavriya",
     "fail_count": 0,
-    "latency": 1.215,
+    "latency": 1.317,
     "history": [
       1,
       1,
@@ -7965,7 +7965,7 @@
     "url": "http://hls127.freeott.top:8080/Teatr/video.m3u8",
     "user_agent": null,
     "norm_name": "teatr576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -7989,7 +7989,7 @@
     "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
     "norm_name": "telecaferussia",
     "fail_count": 0,
-    "latency": 1.707,
+    "latency": 0.853,
     "history": [
       1,
       1,
@@ -8012,7 +8012,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "teledom",
     "fail_count": 0,
-    "latency": 0.751,
+    "latency": 0.965,
     "history": [
       1,
       1,
@@ -8035,7 +8035,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "telekanalkrasnodar",
     "fail_count": 0,
-    "latency": 0.531,
+    "latency": 0.593,
     "history": [
       1,
       1,
@@ -8057,7 +8057,7 @@
     "url": "http://31.148.48.15/Teleputeshestviya/index.m3u8",
     "user_agent": null,
     "norm_name": "teleputeshestviya576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -8081,7 +8081,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "telplus360pnot247",
     "fail_count": 0,
-    "latency": 0.589,
+    "latency": 0.669,
     "history": [
       1,
       1,
@@ -8103,7 +8103,7 @@
     "url": "http://31.148.48.15/Terra_HD/index.m3u8",
     "user_agent": null,
     "norm_name": "terra",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -8127,7 +8127,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "tkrnot247",
     "fail_count": 0,
-    "latency": 0.435,
+    "latency": 0.471,
     "history": [
       1,
       1,
@@ -8150,7 +8150,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "tlcrussia",
     "fail_count": 0,
-    "latency": 0.255,
+    "latency": 0.27,
     "history": [
       1,
       1,
@@ -8173,7 +8173,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "tnt4576p",
     "fail_count": 0,
-    "latency": 0.383,
+    "latency": 0.271,
     "history": [
       1,
       1,
@@ -8196,7 +8196,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "tntrussia576p",
     "fail_count": 0,
-    "latency": 0.259,
+    "latency": 0.266,
     "history": [
       1,
       1,
@@ -8218,7 +8218,7 @@
     "url": "http://45.153.24.78/TNT/index.m3u8",
     "user_agent": null,
     "norm_name": "tntrussia",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -8265,7 +8265,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "tnvtatarstan",
     "fail_count": 0,
-    "latency": 0.966,
+    "latency": 0.609,
     "history": [
       1,
       1,
@@ -8288,7 +8288,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "tochkaotryva576p",
     "fail_count": 0,
-    "latency": 0.499,
+    "latency": 1.095,
     "history": [
       1,
       1,
@@ -8310,7 +8310,7 @@
     "url": "http://31.148.48.15/Tochka_TV/index.m3u8",
     "user_agent": null,
     "norm_name": "tochkatv576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -8334,7 +8334,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "tolk",
     "fail_count": 0,
-    "latency": 0.425,
+    "latency": 0.479,
     "history": [
       1,
       1,
@@ -8357,7 +8357,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "tonus576p",
     "fail_count": 0,
-    "latency": 0.383,
+    "latency": 0.411,
     "history": [
       1,
       1,
@@ -8379,7 +8379,7 @@
     "url": "http://hls127.freeott.top:8080/Sovershenno_Sekretno/video.m3u8",
     "user_agent": null,
     "norm_name": "topsecret576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -8403,7 +8403,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "tracesportstarsrussia",
     "fail_count": 0,
-    "latency": 0.686,
+    "latency": 1.036,
     "history": [
       1,
       1,
@@ -8426,7 +8426,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "travelchannelrussia",
     "fail_count": 0,
-    "latency": 0.249,
+    "latency": 0.284,
     "history": [
       1,
       1,
@@ -8448,7 +8448,7 @@
     "url": "http://31.148.48.15/Travel_Adventure_HD/index.m3u8",
     "user_agent": null,
     "norm_name": "traveladventure",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -8472,7 +8472,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "tv21576p",
     "fail_count": 0,
-    "latency": 0.319,
+    "latency": 0.348,
     "history": [
       1,
       1,
@@ -8495,7 +8495,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "tv21international576p",
     "fail_count": 0,
-    "latency": 0.247,
+    "latency": 0.273,
     "history": [
       1,
       1,
@@ -8518,7 +8518,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "tvbricsrussian",
     "fail_count": 0,
-    "latency": 0.281,
+    "latency": 0.286,
     "history": [
       1,
       1,
@@ -8540,7 +8540,7 @@
     "url": "http://hls127.freeott.top:8080/Tv_Center/video.m3u8",
     "user_agent": null,
     "norm_name": "tvcentr576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -8564,7 +8564,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "tvcentrinternational576p",
     "fail_count": 0,
-    "latency": 0.794,
+    "latency": 0.781,
     "history": [
       1,
       1,
@@ -8587,7 +8587,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "tvpro",
     "fail_count": 0,
-    "latency": 0.512,
+    "latency": 0.708,
     "history": [
       1,
       1,
@@ -8610,7 +8610,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "tvraingeoblocked",
     "fail_count": 0,
-    "latency": 0.203,
+    "latency": 0.204,
     "history": [
       1,
       1,
@@ -8633,7 +8633,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "tv3576p",
     "fail_count": 0,
-    "latency": 0.375,
+    "latency": 0.263,
     "history": [
       1,
       1,
@@ -8656,7 +8656,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "tv3",
     "fail_count": 0,
-    "latency": 0.257,
+    "latency": 0.267,
     "history": [
       1,
       1,
@@ -8679,7 +8679,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "tvkrussia576p",
     "fail_count": 0,
-    "latency": 0.861,
+    "latency": 0.879,
     "history": [
       1,
       1,
@@ -8702,7 +8702,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "tvoetv",
     "fail_count": 0,
-    "latency": 0.259,
+    "latency": 0.314,
     "history": [
       1,
       1,
@@ -8725,7 +8725,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "tvoyetvyumor",
     "fail_count": 0,
-    "latency": 0.245,
+    "latency": 0.3,
     "history": [
       1,
       1,
@@ -8748,7 +8748,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "u",
     "fail_count": 0,
-    "latency": 1.059,
+    "latency": 1.09,
     "history": [
       1,
       1,
@@ -8771,7 +8771,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "ugratv",
     "fail_count": 0,
-    "latency": 0.53,
+    "latency": 0.557,
     "history": [
       1,
       1,
@@ -8794,7 +8794,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "univertv",
     "fail_count": 0,
-    "latency": 1.158,
+    "latency": 1.217,
     "history": [
       1,
       1,
@@ -8817,7 +8817,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "unknownrussia",
     "fail_count": 0,
-    "latency": 0.937,
+    "latency": 0.931,
     "history": [
       1,
       1,
@@ -8839,7 +8839,7 @@
     "url": "https://vgtrkregion-reg.cdnvideo.ru/vgtrk/chelyabinsk/ural24-hd/index.m3u8",
     "user_agent": null,
     "norm_name": "ural24",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -8863,7 +8863,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "usadba576p",
     "fail_count": 0,
-    "latency": 0.243,
+    "latency": 0.279,
     "history": [
       1,
       1,
@@ -8886,7 +8886,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "vmirezhivotnykh",
     "fail_count": 0,
-    "latency": 0.256,
+    "latency": 0.254,
     "history": [
       1,
       1,
@@ -8908,7 +8908,7 @@
     "url": "https://cdn.rostelekom-tv.xyz/live/LQ3j0n7j0Kq4OQm8.m3u8",
     "user_agent": null,
     "norm_name": "velveteuropeanmovies",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -8931,7 +8931,7 @@
     "url": "https://cdn.rostelekom-tv.xyz/live/v804qFZr0QVQ1s9Z.m3u8",
     "user_agent": null,
     "norm_name": "velvetgoldencollection",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -8954,7 +8954,7 @@
     "url": "https://cdn.rostelekom-tv.xyz/live/tWQ0ge9rspBQhRst.m3u8",
     "user_agent": null,
     "norm_name": "velvetmentovskiyeserialy",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -8977,7 +8977,7 @@
     "url": "https://cdn.rostelekom-tv.xyz/live/NImhIFLevxCbtcP-.m3u8",
     "user_agent": null,
     "norm_name": "velvetscary",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -9000,7 +9000,7 @@
     "url": "https://cdn.rostelekom-tv.xyz/live/DeWr3Sgw1Aj2lJd0.m3u8",
     "user_agent": null,
     "norm_name": "velvetserieshits",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -9023,7 +9023,7 @@
     "url": "https://cdn.rostelekom-tv.xyz/live/nF4sFCa49nFPHSF_.m3u8",
     "user_agent": null,
     "norm_name": "velvetsovetskoekino",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -9046,7 +9046,7 @@
     "url": "https://cdn.rostelekom-tv.xyz/live/HSxyMqDlSVR54UTN.m3u8",
     "user_agent": null,
     "norm_name": "velvetsvaty",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -9069,7 +9069,7 @@
     "url": "https://cdn.rostelekom-tv.xyz/live/2RR44py-yGlIWQIp.m3u8",
     "user_agent": null,
     "norm_name": "velvetworldseries",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -9093,7 +9093,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "vestifm",
     "fail_count": 0,
-    "latency": 0.39,
+    "latency": 0.382,
     "history": [
       1,
       1,
@@ -9116,7 +9116,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "vetta24576pnot247",
     "fail_count": 0,
-    "latency": 0.702,
+    "latency": 0.933,
     "history": [
       1,
       1,
@@ -9139,7 +9139,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "vijuexplore576p",
     "fail_count": 0,
-    "latency": 0.256,
+    "latency": 0.265,
     "history": [
       1,
       1,
@@ -9162,7 +9162,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "vijuhistory576p",
     "fail_count": 0,
-    "latency": 0.24,
+    "latency": 0.269,
     "history": [
       1,
       1,
@@ -9208,7 +9208,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "vijutv1000576p",
     "fail_count": 0,
-    "latency": 0.257,
+    "latency": 0.277,
     "history": [
       1,
       1,
@@ -9231,7 +9231,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "vijutv1000action576p",
     "fail_count": 0,
-    "latency": 0.245,
+    "latency": 0.266,
     "history": [
       1,
       1,
@@ -9254,7 +9254,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "vijutv1000novella",
     "fail_count": 0,
-    "latency": 0.215,
+    "latency": 0.243,
     "history": [
       1,
       1,
@@ -9277,7 +9277,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "vijutv1000romantica",
     "fail_count": 0,
-    "latency": 0.218,
+    "latency": 0.244,
     "history": [
       1,
       1,
@@ -9323,7 +9323,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "vijucomedy",
     "fail_count": 0,
-    "latency": 0.246,
+    "latency": 0.286,
     "history": [
       1,
       1,
@@ -9346,7 +9346,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "vijumegahit",
     "fail_count": 0,
-    "latency": 0.254,
+    "latency": 0.276,
     "history": [
       1,
       1,
@@ -9369,7 +9369,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "vijuplanet",
     "fail_count": 0,
-    "latency": 0.258,
+    "latency": 0.277,
     "history": [
       1,
       1,
@@ -9392,7 +9392,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "vijupremiere",
     "fail_count": 0,
-    "latency": 0.269,
+    "latency": 0.254,
     "history": [
       1,
       1,
@@ -9415,7 +9415,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "vijuserial",
     "fail_count": 0,
-    "latency": 0.247,
+    "latency": 0.282,
     "history": [
       1,
       1,
@@ -9438,7 +9438,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "vijusport576p",
     "fail_count": 0,
-    "latency": 0.257,
+    "latency": 0.284,
     "history": [
       1,
       1,
@@ -9461,7 +9461,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "vijusport",
     "fail_count": 0,
-    "latency": 0.227,
+    "latency": 0.244,
     "history": [
       1,
       1,
@@ -9483,7 +9483,7 @@
     "url": "https://autopilot.catcast.tv/content/37909/index.m3u8",
     "user_agent": null,
     "norm_name": "vitaldrive",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -9507,7 +9507,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "vitrinatv",
     "fail_count": 0,
-    "latency": 0.54,
+    "latency": 0.59,
     "history": [
       1,
       1,
@@ -9530,7 +9530,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "vivarussia",
     "fail_count": 0,
-    "latency": 0.061,
+    "latency": 0.118,
     "history": [
       1,
       1,
@@ -9553,7 +9553,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "vkus576p",
     "fail_count": 0,
-    "latency": 0.315,
+    "latency": 0.345,
     "history": [
       1,
       1,
@@ -9576,7 +9576,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "vmesterf",
     "fail_count": 0,
-    "latency": 0.521,
+    "latency": 0.547,
     "history": [
       1,
       1,
@@ -9599,7 +9599,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "volga",
     "fail_count": 0,
-    "latency": 0.399,
+    "latency": 0.461,
     "history": [
       1,
       1,
@@ -9621,7 +9621,7 @@
     "url": "https://vgtrkregion-reg.cdnvideo.ru/vgtrk/volgograd/russia1-hd/index.m3u8",
     "user_agent": null,
     "norm_name": "volgograd24",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -9644,7 +9644,7 @@
     "url": "https://vgtrkregion-reg.cdnvideo.ru/vgtrk/vladivostok/vostok24-hd/index.m3u8",
     "user_agent": null,
     "norm_name": "vostok24",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -9668,7 +9668,7 @@
     "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
     "norm_name": "vremya",
     "fail_count": 0,
-    "latency": 0.83,
+    "latency": 0.786,
     "history": [
       1,
       1,
@@ -9690,7 +9690,7 @@
     "url": "http://195.26.83.96:7029/play/a006",
     "user_agent": null,
     "norm_name": "yaltatv480pgeoblocked",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -9714,17 +9714,17 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "yapervyy",
     "fail_count": 0,
-    "latency": 1.292,
+    "latency": 0.962,
     "history": [
       0,
       0,
       0,
-      0,
       1,
       1,
       1,
       1,
       0,
+      1,
       1
     ]
   },
@@ -9737,7 +9737,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "yuvelirochka576p",
     "fail_count": 0,
-    "latency": 0.959,
+    "latency": 1.25,
     "history": [
       1,
       1,
@@ -9757,10 +9757,10 @@
     "logo": "https://i.imgur.com/pVPTl8J.png",
     "tvg_id": "ZaTV.ru@SD",
     "url": "https://streaming.televizor-24-tochka.ru/live/25.m3u8",
-    "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
+    "user_agent": null,
     "norm_name": "zatv",
-    "fail_count": 0,
-    "latency": 1.185,
+    "fail_count": 1,
+    "latency": 999.0,
     "history": [
       1,
       1,
@@ -9771,7 +9771,7 @@
       1,
       1,
       1,
-      1
+      0
     ]
   },
   {
@@ -9783,7 +9783,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "zagorodnayazhizn576p",
     "fail_count": 0,
-    "latency": 0.298,
+    "latency": 0.326,
     "history": [
       1,
       1,
@@ -9805,7 +9805,7 @@
     "url": "https://vgtrkregion-reg.cdnvideo.ru/vgtrk/kaliningrad/zapad24-hd/index.m3u8",
     "user_agent": null,
     "norm_name": "zapad24",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -9829,7 +9829,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "zdorovoetv576p",
     "fail_count": 0,
-    "latency": 1.188,
+    "latency": 0.923,
     "history": [
       1,
       1,
@@ -9852,7 +9852,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "zhivayaplaneta576p",
     "fail_count": 0,
-    "latency": 1.165,
+    "latency": 0.866,
     "history": [
       1,
       1,
@@ -9875,7 +9875,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "zhivayapriroda",
     "fail_count": 0,
-    "latency": 0.246,
+    "latency": 0.267,
     "history": [
       1,
       1,
@@ -9897,7 +9897,7 @@
     "url": "http://31.148.48.15/Zhivi/index.m3u8",
     "user_agent": null,
     "norm_name": "zhivi",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -9920,7 +9920,7 @@
     "url": "http://31.148.48.15/Zoo_TV/index.m3u8",
     "user_agent": null,
     "norm_name": "zootv576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -9944,7 +9944,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "zoopark",
     "fail_count": 0,
-    "latency": 1.031,
+    "latency": 0.703,
     "history": [
       1,
       1,
@@ -9990,7 +9990,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "zvezdaplus",
     "fail_count": 0,
-    "latency": 0.699,
+    "latency": 0.697,
     "history": [
       1,
       1,
@@ -10013,7 +10013,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "abazatv",
     "fail_count": 0,
-    "latency": 0.959,
+    "latency": 0.977,
     "history": [
       1,
       1,
@@ -10040,13 +10040,27 @@
     "history": [
       1,
       1,
-      1,
       0,
       1,
       1,
       1,
       1,
       1,
+      1,
+      1
+    ]
+  },
+  {
+    "name": "Belsat TV",
+    "group": "🎭 Развлекательные",
+    "logo": "https://i.imgur.com/qJyjSR6.png",
+    "tvg_id": "BelsatTV.pl@SD",
+    "url": "http://78.62.9.23:55555/Belsat",
+    "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
+    "norm_name": "belsattv",
+    "fail_count": 0,
+    "latency": 0.557,
+    "history": [
       1
     ]
   },
@@ -10058,7 +10072,7 @@
     "url": "https://russian-livews.cgtn.com/hls/LSvexABhNipibK5KRuUkvHZ7220802LSTeze9o8tdFXMHsb1VosgoT220802cd/playlist.m3u8",
     "user_agent": null,
     "norm_name": "cgtnrussian",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -10082,7 +10096,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "channel5international576p",
     "fail_count": 0,
-    "latency": 0.321,
+    "latency": 0.331,
     "history": [
       1,
       1,
@@ -10105,7 +10119,7 @@
     "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/154.0.0.0 Safari/537.36 Edg/154.0.0.0",
     "norm_name": "channel8international576pgeoblocked",
     "fail_count": 0,
-    "latency": 0.437,
+    "latency": 0.503,
     "history": [
       1,
       1,
@@ -10128,7 +10142,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "channel9israel",
     "fail_count": 0,
-    "latency": 0.572,
+    "latency": 0.655,
     "history": [
       1,
       1,
@@ -10151,7 +10165,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "channelonerussiaeuropa480p",
     "fail_count": 0,
-    "latency": 0.794,
+    "latency": 0.936,
     "history": [
       1,
       1,
@@ -10197,7 +10211,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "dwrussian",
     "fail_count": 0,
-    "latency": 0.441,
+    "latency": 0.359,
     "history": [
       1,
       1,
@@ -10220,7 +10234,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "etv",
     "fail_count": 0,
-    "latency": 0.665,
+    "latency": 0.857,
     "history": [
       1,
       1,
@@ -10242,7 +10256,7 @@
     "url": "https://void.greenhosting.ru/HochuVjeZnat_Mpeg4/index.m3u8",
     "user_agent": null,
     "norm_name": "gribuvisuzinat576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -10266,7 +10280,7 @@
     "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
     "norm_name": "lawtv",
     "fail_count": 0,
-    "latency": 0.245,
+    "latency": 0.275,
     "history": [
       1,
       1,
@@ -10289,7 +10303,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "lovenature",
     "fail_count": 0,
-    "latency": 0.17,
+    "latency": 0.2,
     "history": [
       1,
       1,
@@ -10311,7 +10325,7 @@
     "url": "http://103.154.3.101:5001/live/1736.m3u8",
     "user_agent": null,
     "norm_name": "luxetv",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -10334,7 +10348,7 @@
     "url": "https://void.greenhosting.ru/MovifyKino_Mpeg4/index.m3u8",
     "user_agent": null,
     "norm_name": "movifykino576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -10357,7 +10371,7 @@
     "url": "https://cdn-ue1-prod.tsv2.amagi.tv/linear/amg01255-secomcofites-my-myzen-en-plex/playlist.m3u8",
     "user_agent": null,
     "norm_name": "myzentv",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -10380,7 +10394,7 @@
     "url": "http://hls127.freeott.top:8080/Nash_kinomir/video.m3u8",
     "user_agent": null,
     "norm_name": "nashkinomir576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -10404,7 +10418,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "ntvmir576p",
     "fail_count": 0,
-    "latency": 0.249,
+    "latency": 0.275,
     "history": [
       1,
       1,
@@ -10427,7 +10441,7 @@
     "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
     "norm_name": "ostwest24",
     "fail_count": 0,
-    "latency": 0.268,
+    "latency": 0.267,
     "history": [
       1,
       1,
@@ -10449,7 +10463,7 @@
     "url": "http://hls127.freeott.top:8080/OstWest/video.m3u8",
     "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.3",
     "norm_name": "ostwest576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -10473,7 +10487,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "otvestonia",
     "fail_count": 0,
-    "latency": 0.211,
+    "latency": 0.248,
     "history": [
       1,
       1,
@@ -10496,7 +10510,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "peretzinternational576p",
     "fail_count": 0,
-    "latency": 0.267,
+    "latency": 0.282,
     "history": [
       1,
       1,
@@ -10519,7 +10533,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "rentvinternational576p",
     "fail_count": 0,
-    "latency": 0.317,
+    "latency": 0.334,
     "history": [
       1,
       1,
@@ -10542,7 +10556,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "rtrplanetageoblocked",
     "fail_count": 0,
-    "latency": 0.513,
+    "latency": 0.54,
     "history": [
       1,
       1,
@@ -10565,7 +10579,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "rtrplanetaasia",
     "fail_count": 0,
-    "latency": 1.129,
+    "latency": 1.499,
     "history": [
       1,
       1,
@@ -10588,7 +10602,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "rtrplanetaeuropegeoblocked",
     "fail_count": 0,
-    "latency": 0.571,
+    "latency": 0.45,
     "history": [
       1,
       1,
@@ -10634,7 +10648,7 @@
     "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
     "norm_name": "setantasports1eurasia",
     "fail_count": 0,
-    "latency": 0.252,
+    "latency": 0.265,
     "history": [
       1,
       1,
@@ -10657,7 +10671,7 @@
     "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36",
     "norm_name": "setantasports2eurasia",
     "fail_count": 0,
-    "latency": 0.265,
+    "latency": 0.285,
     "history": [
       1,
       1,
@@ -10680,7 +10694,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "stsinternational576p",
     "fail_count": 0,
-    "latency": 0.31,
+    "latency": 0.342,
     "history": [
       1,
       1,
@@ -10703,7 +10717,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "svoboda",
     "fail_count": 0,
-    "latency": 0.214,
+    "latency": 0.26,
     "history": [
       1,
       1,
@@ -10748,7 +10762,7 @@
     "url": "http://91.228.35.249:8001/1:0:1:6a7:3138:13e:820000:0:0:0:",
     "user_agent": null,
     "norm_name": "tntinternational480p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -10772,7 +10786,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "travelxprussia",
     "fail_count": 0,
-    "latency": 0.258,
+    "latency": 0.271,
     "history": [
       1,
       1,
@@ -10794,7 +10808,7 @@
     "url": "http://213.91.179.28:8000/play/a0bx",
     "user_agent": null,
     "norm_name": "tv1000russiankinoglobal",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -10817,7 +10831,7 @@
     "url": "http://213.91.179.28:8000/play/a082",
     "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.3",
     "norm_name": "tvrus",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -10840,7 +10854,7 @@
     "url": "http://83.228.75.166:8000/play/a0aq",
     "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.3",
     "norm_name": "tvrus",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -10864,7 +10878,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "voprosyiotvety576p",
     "fail_count": 0,
-    "latency": 0.259,
+    "latency": 0.275,
     "history": [
       1,
       1,
@@ -10887,7 +10901,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "2x2576p",
     "fail_count": 0,
-    "latency": 0.248,
+    "latency": 0.266,
     "history": [
       1,
       1,
@@ -10910,7 +10924,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "360576pgeoblocked",
     "fail_count": 0,
-    "latency": 0.763,
+    "latency": 0.744,
     "history": [
       1,
       1,
@@ -10933,7 +10947,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "360новости",
     "fail_count": 0,
-    "latency": 1.636,
+    "latency": 1.821,
     "history": [
       1,
       1,
@@ -10956,7 +10970,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "red576p",
     "fail_count": 0,
-    "latency": 0.258,
+    "latency": 0.281,
     "history": [
       1,
       1,
@@ -10979,7 +10993,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "autoplus",
     "fail_count": 0,
-    "latency": 0.664,
+    "latency": 0.549,
     "history": [
       1,
       1,
@@ -11002,7 +11016,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "bokstv576p",
     "fail_count": 0,
-    "latency": 0.257,
+    "latency": 0.262,
     "history": [
       1,
       1,
@@ -11025,7 +11039,7 @@
     "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
     "norm_name": "channel5international",
     "fail_count": 0,
-    "latency": 0.835,
+    "latency": 0.79,
     "history": [
       1,
       1,
@@ -11048,7 +11062,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "channel8576p",
     "fail_count": 0,
-    "latency": 0.805,
+    "latency": 0.852,
     "history": [
       1,
       1,
@@ -11070,7 +11084,7 @@
     "url": "https://streaming.thestream.cyou/live/7004.m3u8",
     "user_agent": null,
     "norm_name": "channel12576pgeoblocked",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -11094,10 +11108,9 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "channelone576p",
     "fail_count": 0,
-    "latency": 0.306,
+    "latency": 0.338,
     "history": [
       1,
-      1,
       0,
       1,
       1,
@@ -11105,6 +11118,7 @@
       1,
       1,
       0,
+      1,
       1
     ]
   },
@@ -11117,7 +11131,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "channelone",
     "fail_count": 0,
-    "latency": 0.541,
+    "latency": 0.825,
     "history": [
       1,
       1,
@@ -11163,7 +11177,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "davinci",
     "fail_count": 0,
-    "latency": 0.683,
+    "latency": 0.791,
     "history": [
       1,
       1,
@@ -11186,7 +11200,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "doctor576p",
     "fail_count": 0,
-    "latency": 0.318,
+    "latency": 0.331,
     "history": [
       1,
       1,
@@ -11209,7 +11223,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "doctor",
     "fail_count": 0,
-    "latency": 0.708,
+    "latency": 0.769,
     "history": [
       1,
       1,
@@ -11232,7 +11246,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "domkino",
     "fail_count": 0,
-    "latency": 0.523,
+    "latency": 0.708,
     "history": [
       1,
       1,
@@ -11255,7 +11269,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "dorama",
     "fail_count": 0,
-    "latency": 0.509,
+    "latency": 0.655,
     "history": [
       1,
       1,
@@ -11278,7 +11292,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "europaplustv576p",
     "fail_count": 0,
-    "latency": 0.247,
+    "latency": 0.283,
     "history": [
       1,
       1,
@@ -11301,7 +11315,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "foodtime",
     "fail_count": 0,
-    "latency": 0.259,
+    "latency": 0.274,
     "history": [
       1,
       1,
@@ -11324,7 +11338,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "indiyskoyekino",
     "fail_count": 0,
-    "latency": 0.523,
+    "latency": 0.614,
     "history": [
       1,
       1,
@@ -11347,7 +11361,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "insayttv2160p",
     "fail_count": 0,
-    "latency": 0.497,
+    "latency": 0.579,
     "history": [
       1,
       1,
@@ -11370,7 +11384,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "insayttv",
     "fail_count": 0,
-    "latency": 0.276,
+    "latency": 0.273,
     "history": [
       1,
       1,
@@ -11393,7 +11407,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "khl576p",
     "fail_count": 0,
-    "latency": 0.26,
+    "latency": 0.287,
     "history": [
       1,
       1,
@@ -11416,7 +11430,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "khlprime",
     "fail_count": 0,
-    "latency": 0.25,
+    "latency": 0.288,
     "history": [
       1,
       1,
@@ -11439,7 +11453,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "kinotv576p",
     "fail_count": 0,
-    "latency": 0.259,
+    "latency": 0.265,
     "history": [
       1,
       1,
@@ -11462,7 +11476,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "kinohit",
     "fail_count": 0,
-    "latency": 0.52,
+    "latency": 1.316,
     "history": [
       1,
       1,
@@ -11485,7 +11499,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "kinopokaz",
     "fail_count": 0,
-    "latency": 0.5,
+    "latency": 1.3,
     "history": [
       1,
       1,
@@ -11508,7 +11522,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "kongresstv",
     "fail_count": 0,
-    "latency": 0.624,
+    "latency": 0.724,
     "history": [
       1,
       1,
@@ -11531,7 +11545,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "mama576p",
     "fail_count": 0,
-    "latency": 0.256,
+    "latency": 0.276,
     "history": [
       1,
       1,
@@ -11554,7 +11568,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "matcharena576p",
     "fail_count": 0,
-    "latency": 0.259,
+    "latency": 0.289,
     "history": [
       1,
       1,
@@ -11577,7 +11591,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "matchigra576p",
     "fail_count": 0,
-    "latency": 0.306,
+    "latency": 0.349,
     "history": [
       1,
       1,
@@ -11600,7 +11614,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "matchstrana576p",
     "fail_count": 0,
-    "latency": 0.505,
+    "latency": 0.387,
     "history": [
       1,
       1,
@@ -11623,7 +11637,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "mir576p",
     "fail_count": 0,
-    "latency": 0.31,
+    "latency": 0.342,
     "history": [
       1,
       1,
@@ -11646,7 +11660,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "mir24576p",
     "fail_count": 0,
-    "latency": 0.245,
+    "latency": 0.283,
     "history": [
       1,
       1,
@@ -11669,7 +11683,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "moskva24576p",
     "fail_count": 0,
-    "latency": 0.455,
+    "latency": 0.53,
     "history": [
       1,
       1,
@@ -11692,7 +11706,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "moyaplaneta576p",
     "fail_count": 0,
-    "latency": 0.411,
+    "latency": 0.274,
     "history": [
       1,
       1,
@@ -11715,7 +11729,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "muztv",
     "fail_count": 0,
-    "latency": 0.637,
+    "latency": 1.068,
     "history": [
       1,
       1,
@@ -11738,7 +11752,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "muzykapervogo",
     "fail_count": 0,
-    "latency": 0.584,
+    "latency": 1.029,
     "history": [
       1,
       1,
@@ -11761,7 +11775,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "nationalgeographic576p",
     "fail_count": 0,
-    "latency": 0.432,
+    "latency": 0.269,
     "history": [
       1,
       1,
@@ -11784,7 +11798,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "nauka576p",
     "fail_count": 0,
-    "latency": 0.258,
+    "latency": 0.266,
     "history": [
       1,
       1,
@@ -11807,7 +11821,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "ntv",
     "fail_count": 0,
-    "latency": 0.929,
+    "latency": 0.956,
     "history": [
       1,
       1,
@@ -11830,7 +11844,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "ntv576p",
     "fail_count": 0,
-    "latency": 0.442,
+    "latency": 0.437,
     "history": [
       1,
       1,
@@ -11853,7 +11867,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "o576p",
     "fail_count": 0,
-    "latency": 0.386,
+    "latency": 0.28,
     "history": [
       1,
       1,
@@ -11876,7 +11890,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "okhotairybalka",
     "fail_count": 0,
-    "latency": 0.523,
+    "latency": 0.874,
     "history": [
       1,
       1,
@@ -11899,7 +11913,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "prodvizhenie576p",
     "fail_count": 0,
-    "latency": 0.396,
+    "latency": 0.483,
     "history": [
       1,
       1,
@@ -11921,7 +11935,7 @@
     "url": "http://31.148.48.15/Radost_moya/index.m3u8",
     "user_agent": null,
     "norm_name": "radostmoya576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -11945,7 +11959,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "retro",
     "fail_count": 0,
-    "latency": 0.797,
+    "latency": 0.849,
     "history": [
       1,
       1,
@@ -11968,7 +11982,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "rodnoekino",
     "fail_count": 0,
-    "latency": 0.792,
+    "latency": 0.822,
     "history": [
       1,
       1,
@@ -11991,7 +12005,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "rt",
     "fail_count": 0,
-    "latency": 0.238,
+    "latency": 0.26,
     "history": [
       1,
       1,
@@ -12014,7 +12028,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "rtbalkan",
     "fail_count": 0,
-    "latency": 0.38,
+    "latency": 0.452,
     "history": [
       1,
       1,
@@ -12036,7 +12050,7 @@
     "url": "http://15.204.246.24:8080/RTHD/index.m3u8",
     "user_agent": null,
     "norm_name": "rtenespanol",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -12060,7 +12074,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "rtenespanol576p",
     "fail_count": 0,
-    "latency": 0.753,
+    "latency": 0.696,
     "history": [
       1,
       1,
@@ -12082,7 +12096,7 @@
     "url": "http://213.91.179.28:8000/play/a0bw",
     "user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.3",
     "norm_name": "rtgint",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -12129,7 +12143,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "rutv576p",
     "fail_count": 0,
-    "latency": 0.265,
+    "latency": 0.257,
     "history": [
       1,
       1,
@@ -12152,12 +12166,12 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "russia1576p",
     "fail_count": 0,
-    "latency": 0.348,
+    "latency": 0.389,
     "history": [
+      0,
+      0,
+      0,
       1,
-      0,
-      0,
-      0,
       1,
       1,
       1,
@@ -12175,7 +12189,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "russkiyroman576p",
     "fail_count": 0,
-    "latency": 0.269,
+    "latency": 0.278,
     "history": [
       1,
       1,
@@ -12198,7 +12212,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "shansontv576pgeoblocked",
     "fail_count": 0,
-    "latency": 0.806,
+    "latency": 0.947,
     "history": [
       1,
       1,
@@ -12220,7 +12234,7 @@
     "url": "http://hls127.freeott.top:8080/Shanson_Tv/video.m3u8",
     "user_agent": null,
     "norm_name": "shansontv576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -12244,7 +12258,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "smiletv",
     "fail_count": 0,
-    "latency": 0.769,
+    "latency": 0.868,
     "history": [
       1,
       1,
@@ -12267,7 +12281,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "smotrim100detskoe",
     "fail_count": 0,
-    "latency": 0.448,
+    "latency": 0.828,
     "history": [
       1,
       1,
@@ -12289,7 +12303,7 @@
     "url": "http://31.148.48.15/Solnce/index.m3u8",
     "user_agent": null,
     "norm_name": "solnce576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -12313,7 +12327,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "soyuzny480p",
     "fail_count": 0,
-    "latency": 0.243,
+    "latency": 0.276,
     "history": [
       1,
       1,
@@ -12336,7 +12350,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "startair576p",
     "fail_count": 0,
-    "latency": 0.269,
+    "latency": 0.281,
     "history": [
       1,
       1,
@@ -12359,7 +12373,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "stslove576p",
     "fail_count": 0,
-    "latency": 0.268,
+    "latency": 0.286,
     "history": [
       1,
       1,
@@ -12382,7 +12396,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "subbota576p",
     "fail_count": 0,
-    "latency": 0.344,
+    "latency": 0.367,
     "history": [
       1,
       1,
@@ -12404,7 +12418,7 @@
     "url": "http://31.148.48.15/Malish_TV/index.m3u8",
     "user_agent": null,
     "norm_name": "supergeroi",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -12428,7 +12442,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "supergeroi576p",
     "fail_count": 0,
-    "latency": 0.262,
+    "latency": 0.279,
     "history": [
       1,
       1,
@@ -12451,7 +12465,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "t24",
     "fail_count": 0,
-    "latency": 1.035,
+    "latency": 1.045,
     "history": [
       1,
       1,
@@ -12474,7 +12488,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "telecafe",
     "fail_count": 0,
-    "latency": 1.007,
+    "latency": 1.062,
     "history": [
       1,
       1,
@@ -12497,7 +12511,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "tnvplanet",
     "fail_count": 0,
-    "latency": 1.027,
+    "latency": 1.034,
     "history": [
       1,
       1,
@@ -12520,7 +12534,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "tochkarf",
     "fail_count": 0,
-    "latency": 0.268,
+    "latency": 0.278,
     "history": [
       1,
       1,
@@ -12543,7 +12557,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "u576p",
     "fail_count": 0,
-    "latency": 0.318,
+    "latency": 0.35,
     "history": [
       1,
       1,
@@ -12566,7 +12580,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "udar",
     "fail_count": 0,
-    "latency": 0.245,
+    "latency": 0.296,
     "history": [
       1,
       1,
@@ -12589,7 +12603,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "detskiy576p",
     "fail_count": 0,
-    "latency": 0.937,
+    "latency": 0.912,
     "history": [
       1,
       1,
@@ -12612,7 +12626,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "univertvnot247",
     "fail_count": 0,
-    "latency": 1.084,
+    "latency": 1.157,
     "history": [
       1,
       1,
@@ -12635,7 +12649,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "vgostyakhuskazki576p",
     "fail_count": 0,
-    "latency": 0.257,
+    "latency": 0.285,
     "history": [
       1,
       1,
@@ -12658,7 +12672,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "vijunature",
     "fail_count": 0,
-    "latency": 0.89,
+    "latency": 0.791,
     "history": [
       1,
       1,
@@ -12681,7 +12695,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "vijutv1000action",
     "fail_count": 0,
-    "latency": 0.842,
+    "latency": 0.921,
     "history": [
       1,
       1,
@@ -12704,7 +12718,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "vijutv1000russkoe",
     "fail_count": 0,
-    "latency": 0.851,
+    "latency": 0.868,
     "history": [
       1,
       1,
@@ -12727,7 +12741,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "vmesterf576pgeoblocked",
     "fail_count": 0,
-    "latency": 0.792,
+    "latency": 0.698,
     "history": [
       1,
       1,
@@ -12750,7 +12764,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "vremya576p",
     "fail_count": 0,
-    "latency": 0.266,
+    "latency": 0.268,
     "history": [
       1,
       1,
@@ -12773,7 +12787,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "zagorodnayazhizn",
     "fail_count": 0,
-    "latency": 1.596,
+    "latency": 0.785,
     "history": [
       1,
       1,
@@ -12795,7 +12809,7 @@
     "url": "http://hls127.freeott.top:8080/Zhara/video.m3u8",
     "user_agent": null,
     "norm_name": "zhara576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -12819,7 +12833,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "zvezdanot247",
     "fail_count": 0,
-    "latency": 2.077,
+    "latency": 1.714,
     "history": [
       1,
       1,
@@ -12842,7 +12856,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "бст24братск",
     "fail_count": 0,
-    "latency": 2.02,
+    "latency": 2.256,
     "history": [
       1,
       1,
@@ -12865,7 +12879,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "енисейnot247",
     "fail_count": 0,
-    "latency": 0.502,
+    "latency": 0.597,
     "history": [
       1,
       1,
@@ -12888,7 +12902,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "кинотв",
     "fail_count": 0,
-    "latency": 1.133,
+    "latency": 1.26,
     "history": [
       1,
       1,
@@ -12911,7 +12925,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "краснаялиния288p",
     "fail_count": 0,
-    "latency": 0.566,
+    "latency": 0.464,
     "history": [
       1,
       1,
@@ -12934,7 +12948,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "лдпртв",
     "fail_count": 0,
-    "latency": 0.369,
+    "latency": 0.397,
     "history": [
       1,
       1,
@@ -12957,7 +12971,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "лдпртв480p",
     "fail_count": 0,
-    "latency": 0.374,
+    "latency": 0.395,
     "history": [
       1,
       1,
@@ -13003,7 +13017,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "мирбелогорьяgeoblocked",
     "fail_count": 0,
-    "latency": 0.917,
+    "latency": 0.913,
     "history": [
       1,
       1,
@@ -13026,7 +13040,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "надежда",
     "fail_count": 0,
-    "latency": 0.513,
+    "latency": 0.593,
     "history": [
       1,
       1,
@@ -13049,7 +13063,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "нанотв576p",
     "fail_count": 0,
-    "latency": 0.403,
+    "latency": 0.637,
     "history": [
       1,
       1,
@@ -13072,7 +13086,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "наука",
     "fail_count": 0,
-    "latency": 1.008,
+    "latency": 1.159,
     "history": [
       1,
       1,
@@ -13095,7 +13109,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "нижнийновгород24not247",
     "fail_count": 0,
-    "latency": 0.63,
+    "latency": 0.661,
     "history": [
       1,
       1,
@@ -13118,7 +13132,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "пятница576p",
     "fail_count": 0,
-    "latency": 1.112,
+    "latency": 1.077,
     "history": [
       1,
       1,
@@ -13140,7 +13154,7 @@
     "url": "https://uiptv.do.am/1ufc/701293058/playlist.m3u8",
     "user_agent": null,
     "norm_name": "рбк576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -13187,7 +13201,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "рбкспб576p",
     "fail_count": 0,
-    "latency": 0.763,
+    "latency": 1.141,
     "history": [
       1,
       1,
@@ -13210,7 +13224,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "рбктв",
     "fail_count": 0,
-    "latency": 1.664,
+    "latency": 1.884,
     "history": [
       1,
       1,
@@ -13255,7 +13269,7 @@
     "url": "https://uiptv.do.am/1ufc/000000006/playlist.m3u8",
     "user_agent": null,
     "norm_name": "россия24576pnot247",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -13279,7 +13293,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "смайлтв",
     "fail_count": 0,
-    "latency": 0.732,
+    "latency": 0.95,
     "history": [
       1,
       1,
@@ -13302,7 +13316,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "солнце576p",
     "fail_count": 0,
-    "latency": 0.556,
+    "latency": 0.452,
     "history": [
       1,
       1,
@@ -13325,7 +13339,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "странаfmnot247",
     "fail_count": 0,
-    "latency": 0.443,
+    "latency": 1.038,
     "history": [
       1,
       1,
@@ -13348,7 +13362,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "твцентр",
     "fail_count": 0,
-    "latency": 0.531,
+    "latency": 0.577,
     "history": [
       1,
       1,
@@ -13371,7 +13385,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "триангела",
     "fail_count": 0,
-    "latency": 0.791,
+    "latency": 1.042,
     "history": [
       1,
       1,
@@ -13394,7 +13408,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "хузуртвnot247",
     "fail_count": 0,
-    "latency": 0.53,
+    "latency": 0.558,
     "history": [
       1,
       1,
@@ -13416,7 +13430,7 @@
     "url": "https://uiptv.do.am/1ufc/602079679/playlist.m3u8",
     "user_agent": null,
     "norm_name": "шансонтв576pgeoblocked",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -13463,7 +13477,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "art576p",
     "fail_count": 0,
-    "latency": 0.259,
+    "latency": 0.303,
     "history": [
       1,
       1,
@@ -13486,7 +13500,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "aisttv576p",
     "fail_count": 0,
-    "latency": 0.38,
+    "latency": 0.415,
     "history": [
       1,
       1,
@@ -13509,7 +13523,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "tnt576p",
     "fail_count": 0,
-    "latency": 0.743,
+    "latency": 0.809,
     "history": [
       1,
       1,
@@ -13532,7 +13546,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "zvezda576p",
     "fail_count": 0,
-    "latency": 0.697,
+    "latency": 0.813,
     "history": [
       1,
       1,
@@ -13555,7 +13569,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "amediahit576p",
     "fail_count": 0,
-    "latency": 0.639,
+    "latency": 0.804,
     "history": [
       1,
       1,
@@ -13578,7 +13592,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "matchultra576p",
     "fail_count": 0,
-    "latency": 0.564,
+    "latency": 0.797,
     "history": [
       1,
       1,
@@ -13601,7 +13615,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "telecafe576p",
     "fail_count": 0,
-    "latency": 0.257,
+    "latency": 0.275,
     "history": [
       1,
       1,
@@ -13624,7 +13638,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "vgostyakhuskazki",
     "fail_count": 0,
-    "latency": 0.566,
+    "latency": 0.541,
     "history": [
       1,
       1,
@@ -13646,7 +13660,7 @@
     "url": "https://fs.uplink.kz/zhivi/mono.m3u8?token=onlinetv",
     "user_agent": null,
     "norm_name": "zhivi576p",
-    "fail_count": 22,
+    "fail_count": 23,
     "latency": 999.0,
     "history": [
       0,
@@ -13762,7 +13776,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "evrokino576p",
     "fail_count": 0,
-    "latency": 0.365,
+    "latency": 0.401,
     "history": [
       1,
       1,
@@ -13785,7 +13799,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "russia24576p",
     "fail_count": 0,
-    "latency": 0.363,
+    "latency": 0.41,
     "history": [
       1,
       1,
@@ -13808,7 +13822,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "domkinopremium576p",
     "fail_count": 0,
-    "latency": 0.222,
+    "latency": 0.243,
     "history": [
       1,
       1,
@@ -13831,7 +13845,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "poehali576p",
     "fail_count": 0,
-    "latency": 0.218,
+    "latency": 0.238,
     "history": [
       1,
       1,
@@ -13854,7 +13868,7 @@
     "user_agent": "Mozilla/5.0 WINK/1.34.1 (AndroidTV/6.1.1) HlsWinkPlayer",
     "norm_name": "ointernational",
     "fail_count": 0,
-    "latency": 0.22,
+    "latency": 0.238,
     "history": [
       1,
       1,
